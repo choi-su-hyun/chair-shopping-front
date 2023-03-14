@@ -1,0 +1,127 @@
+/* 공용 */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
+  font-family: 'Pretendard Variable';
+}
+
+// 변수
+$cg-900: #29333d;
+$cg-800: #3d4d5c;
+$cg-700: #52677a;
+$cg-600: #668099;
+$cg-400: #c2ccd6;
+$primary-dark1: #934b0b;
+$primary: #c2630f;
+$primary-light1: #ee7b17;
+$primary-light3: #f5b175;
+
+/* container */
+.container {
+  max-width: 1128px;
+  margin: 0 auto;
+}
+.container--sm {
+  max-width: 552px;
+  margin: 0 auto;
+}
+.page-content__wrap {
+  padding: 240px 0;
+}
+
+// 버튼 설정
+.general-btn--text {
+  color: $cg-800;
+  font: {
+    size: 18px;
+    weight: 400;
+  }
+}
+
+.round-btn {
+  background-color: $primary-light1;
+  padding: 8px;
+  border-radius: 50px;
+  display: inline-block;
+  svg {
+    display: block;
+  }
+}
+
+.cta-btn--block {
+  background-color: $primary-light1;
+  color: $cg-900;
+  font-size: 18px;
+  border: none;
+  border-radius: 6px;
+  padding: 8px;
+  cursor: pointer;
+}
+
+// 제목 및 글 폰트 설정
+.page-content__title {
+  font: {
+    size: 32px;
+    weight: 700;
+  }
+  color: $cg-900;
+}
+.page-content__title {
+  text-align: center;
+}
+
+// form 설정
+.post-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 40px;
+  &__sub-text {
+    display: flex;
+    align-items: baseline;
+    gap: 0 8px;
+    border-left: 2px solid $primary;
+    padding-left: 16px;
+    h3 {
+      font-size: 24px;
+      color: $cg-700;
+    }
+    span {
+      font-size: 14px;
+      color: $cg-600;
+    }
+  }
+  &__input-wrap {
+    margin-top: 24px;
+  }
+}
+.input__background {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+}
+.input-wrap {
+  display: grid;
+  grid-template-columns: 120px 1fr;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  input {
+    border: 1px solid $primary-light3;
+    font-size: 16px;
+    padding: 8px;
+    color: $cg-800;
+    border-radius: 6px;
+    font-family: 'Pretendard Variable';
+    &::placeholder {
+      color: $cg-400;
+    }
+    &:focus-visible {
+      outline: none;
+      border: 1px solid $primary-dark1;
+    }
+  }
+}

@@ -1,0 +1,29 @@
+// 변수
+$primary-light1: #ee7b17;
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  padding: 12px 0;
+}
+.nav {
+  display: flex;
+  gap: 80px;
+  &__menu {
+    display: flex;
+    align-items: center;
+    gap: 24px;
+  }
+  &__auth {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+  }
+}
+.divider {
+  font: {
+    size: 16px;
+    weight: 700;
+  }
+  color: $primary-light1;
+}
