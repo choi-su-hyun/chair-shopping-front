@@ -2,6 +2,8 @@ import React, { useContext, useState } from 'react';
 import './css/App.scss';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Context } from './context/context';
+import { Provider } from 'react-redux';
+import store from './redux/store';
 
 // Component
 import Header from './components/Header';
@@ -9,6 +11,7 @@ import Main from './pages/Main';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Footer from './components/Footer';
+import Subscribers from './components/exercise/Subscribers';
 
 export interface counterProps {
   increase: (num: number) => void;
@@ -28,9 +31,7 @@ function App() {
     <div className="App">
       <BrowserRouter>
         <Header />
-        <div>{isCounter}</div>
-        <div>{user.name}</div>
-        <Context.Provider value={user2}>
+        <Provider store={store}>
           <Routes>
             <Route
               path="/main"
@@ -38,8 +39,10 @@ function App() {
             ></Route>
             <Route path="/login" element={<Login />}></Route>
             <Route path="/signup" element={<SignUp />}></Route>
+            <Route path="/exercise" element={<Subscribers />}></Route>
           </Routes>
-        </Context.Provider>
+          <Subscribers />
+        </Provider>
         <Footer />
       </BrowserRouter>
     </div>
