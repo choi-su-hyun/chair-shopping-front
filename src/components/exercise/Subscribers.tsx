@@ -4,14 +4,12 @@ import { addSubscriber } from '../../redux/subscriber/action';
 import { initStateType } from '../../redux/subscriber/reducer';
 
 type propsType = {
-  count: initStateType;
+  count: number;
   addSubscriber: Function;
-};
-type test = {
-  count: initStateType;
+  // children?: any;
 };
 
-const Subscribers = ({ count, addSubscriber }: any) => {
+const Subscribers = ({ count, addSubscriber }: propsType) => {
   return (
     <div>
       <h2>구독자 수 : {count}</h2>
@@ -20,15 +18,18 @@ const Subscribers = ({ count, addSubscriber }: any) => {
   );
 };
 
-const mapStateToProps = (state: test) => {
+const mapStateToProps = (state: any) => {
   return {
-    count: state.count,
+    count: state.subscriber.count,
   };
 };
-const mapDispatchToProps = (dispatch: any) => {
-  return {
-    addSubscriber: () => dispatch(addSubscriber()),
-  };
+// const mapDispatchToProps = (dispatch: any) => {
+//   return {
+//     addSubscriber: () => dispatch(addSubscriber()),
+//   };
+// };
+const mapDispatchToProps = {
+  addSubscriber: addSubscriber,
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Subscribers);

@@ -12,6 +12,8 @@ import Login from './pages/Login';
 import SignUp from './pages/SignUp';
 import Footer from './components/Footer';
 import Subscribers from './components/exercise/Subscribers';
+import Display from './components/exercise/Display';
+import Views from './components/exercise/Views';
 
 export interface counterProps {
   increase: (num: number) => void;
@@ -42,6 +44,8 @@ function App() {
             <Route path="/exercise" element={<Subscribers />}></Route>
           </Routes>
           <Subscribers />
+          <Display />
+          <Views />
         </Provider>
         <Footer />
       </BrowserRouter>
