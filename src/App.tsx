@@ -43,9 +43,6 @@ function App() {
             <Route path="/signup" element={<SignUp />}></Route>
             <Route path="/exercise" element={<Subscribers />}></Route>
           </Routes>
-          <Subscribers />
-          <Display />
-          <Views />
         </Provider>
         <Footer />
       </BrowserRouter>

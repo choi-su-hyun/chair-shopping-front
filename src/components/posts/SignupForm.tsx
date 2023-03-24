@@ -1,4 +1,13 @@
 import React, { useState } from 'react';
+import { registerUser } from '../../api/user';
+
+export type signupDataType = {
+  user_id: string;
+  user_password: string;
+  user_name: string;
+  user_email: string;
+  user_phone: string;
+};
 
 const SignupForm = () => {
   const [userId, setUserId] = useState('');
@@ -26,14 +35,15 @@ const SignupForm = () => {
     e.preventDefault();
     console.log('submit!');
 
-    const body = {
+    const userData = {
       user_id: userId,
       user_password: password,
       user_name: name,
       user_email: email,
       user_phone: phone,
     };
-    console.log(body);
+    console.log(userData);
+    registerUser(userData);
   };
 
   return (
@@ -45,7 +55,7 @@ const SignupForm = () => {
             <span>(로그인을 위해 생성할 계정정보를 입력하세요)</span>
           </div>
           <div className="input__background">
-            <div className="input-wrap">
+            <div className="input-wrap--has-label">
               <label htmlFor="">아이디</label>
               <input
                 type="text"
@@ -53,7 +63,7 @@ const SignupForm = () => {
                 placeholder="아이디를 입력해주세요"
               />
             </div>
-            <div className="input-wrap">
+            <div className="input-wrap--has-label">
               <label htmlFor="">비밀번호</label>
               <input
                 type="password"
@@ -61,7 +71,7 @@ const SignupForm = () => {
                 placeholder="비밀번호를 입력해주세요"
               />
             </div>
-            <div className="input-wrap">
+            <div className="input-wrap--has-label">
               <label htmlFor="">비밀번호 확인</label>
               <input
                 type="password"
@@ -78,7 +88,7 @@ const SignupForm = () => {
             <span>(회원 관리를 위해 사용됩니다)</span>
           </div>
           <div className="input__background">
-            <div className="input-wrap">
+            <div className="input-wrap--has-label">
               <label htmlFor="">이름</label>
               <input
                 type="text"
@@ -86,7 +96,7 @@ const SignupForm = () => {
                 placeholder="이름을 입력해주세요"
               />
             </div>
-            <div className="input-wrap">
+            <div className="input-wrap--has-label">
               <label htmlFor="">이메일</label>
               <input
                 type="email"
@@ -94,7 +104,7 @@ const SignupForm = () => {
                 placeholder="이메일을 입력해주세요"
               />
             </div>
-            <div className="input-wrap">
+            <div className="input-wrap--has-label">
               <label htmlFor="">전화번호</label>
               <input
                 type="text"

@@ -76,7 +76,7 @@ $primary-light3: #f5b175;
 .post-form {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 24px;
   margin-top: 40px;
   &__sub-text {
     display: flex;
@@ -103,7 +103,7 @@ $primary-light3: #f5b175;
   gap: 16px;
   margin-top: 24px;
 }
-.input-wrap {
+.input-wrap--has-label {
   display: grid;
   grid-template-columns: 120px 1fr;
   justify-content: space-between;
@@ -123,5 +123,25 @@ $primary-light3: #f5b175;
       outline: none;
       border: 1px solid $primary-dark1;
     }
+  }
+}
+.input-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+.input--only-input {
+  border: 1px solid $primary-light3;
+  font-size: 16px;
+  padding: 8px;
+  color: $cg-800;
+  border-radius: 6px;
+  font-family: 'Pretendard Variable';
+  &::placeholder {
+    color: $cg-400;
+  }
+  &:focus-visible {
+    outline: none;
+    border: 1px solid $primary-dark1;
   }
 }
