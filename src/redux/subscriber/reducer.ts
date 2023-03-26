@@ -11,6 +11,7 @@ const initState: initStateType = {
 const subscriberReducer = (state = initState, action: actionType) => {
   switch (action.type) {
     case ADD_SUBSCRIBER:
+      console.log('subscriber로 확인');
       return {
         ...state,
         count: state.count + 1,

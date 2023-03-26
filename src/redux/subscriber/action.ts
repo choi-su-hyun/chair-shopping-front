@@ -5,6 +5,7 @@ export type actionType = {
 };
 
 export const addSubscriber = () => {
+  console.log('확인해보자.');
   return {
     type: ADD_SUBSCRIBER,
   };

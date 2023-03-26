@@ -15,9 +15,16 @@ async function registerUser(userData: signupDataType) {
 //로그인 api
 async function loginUser(userData: loginDataType) {
   try {
-    const loginData = await instance.post('users/login-process', userData);
-    console.log('data 값', loginData.data);
-    return loginData.data;
+    const loginResponsedData = await instance.post(
+      'users/login-process',
+      userData,
+    );
+    // console.log('data 값', loginResponsedData);
+    const result = {
+      successStatus: true,
+      loginResponsedData: loginResponsedData,
+    };
+    return result;
   } catch (error: any) {
     if (error.response.data.message === 'ID_NOTHING') {
       const result = {

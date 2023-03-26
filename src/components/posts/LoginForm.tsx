@@ -8,11 +8,17 @@ import { userAuthInitStateType } from '../../redux/userAuth/reducer';
 export type loginDataType = {
   [key: string]: string;
 };
+export type loginHasTokenDataType = {
+  // [key: string]: string;
+  user_name: string;
+  user_token: string;
+};
+
 type importedUserAuthInitStateType = {
   userAuth: userAuthInitStateType;
 };
 
-const LoginForm = () => {
+const LoginForm = (props: any) => {
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
 
@@ -22,14 +28,22 @@ const LoginForm = () => {
   const onPassword = (e: React.ChangeEvent<any>) => {
     setPassword(e.target.value);
   };
-  const onSubmitHandler = (e: React.ChangeEvent<any>) => {
+  const onSubmitHandler = async (e: React.ChangeEvent<any>) => {
     e.preventDefault();
     const userData: loginDataType = {
       user_id: userId,
       user_password: password,
     };
-    const loginData = loginUser(userData).then();
-    console.log('loginData 값', loginData);
+    const result: any = await loginUser(userData);
+    console.log('loginData 값', result.loginResponsedData);
+
+    const loginHasTokenData: loginHasTokenDataType = {
+      user_name: result.loginResponsedData.data.nickName,
+      user_token: result.loginResponsedData.data.token,
+    };
+    console.log('loginHasTokenData 값', loginHasTokenData);
+    changeUserData(loginHasTokenData);
+    console.log(props);
   };
   return (
     <div>
@@ -58,13 +72,15 @@ const LoginForm = () => {
 
 const mapStateToProps = ({ userAuth }: importedUserAuthInitStateType) => {
   return {
-    user_idx: userAuth.user_idx,
+    user_name: userAuth.user_name,
     user_token: userAuth.user_token,
   };
 };
 
 const mapDispatchToProps = {
-  changeUserData,
+  changeUserData: (loginHasTokenData: loginHasTokenDataType) => {
+    changeUserData(loginHasTokenData);
+  },
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);
