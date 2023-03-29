@@ -1,10 +1,18 @@
 import React, { useState } from 'react';
+
+//api
 import { loginUser } from '../../api/user';
+
+//redux
 import { connect } from 'react-redux';
-import { changeUserData } from '../../redux/userAuth/action';
+
+//action
+// import { changeUserData } from '../../redux/userAuth/action';
+import { fetchUserData } from '../../redux/userAuth/action';
 
 import { userAuthInitStateType } from '../../redux/userAuth/reducer';
 
+//type
 export type loginDataType = {
   [key: string]: string;
 };
@@ -13,11 +21,11 @@ export type loginHasTokenDataType = {
   user_name: string;
   user_token: string;
 };
-
 type importedUserAuthInitStateType = {
   userAuth: userAuthInitStateType;
 };
 
+//component
 const LoginForm = (props: any) => {
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
@@ -28,23 +36,27 @@ const LoginForm = (props: any) => {
   const onPassword = (e: React.ChangeEvent<any>) => {
     setPassword(e.target.value);
   };
-  const onSubmitHandler = async (e: React.ChangeEvent<any>) => {
+
+  const onSubmitHandler = (e: React.ChangeEvent<any>) => {
     e.preventDefault();
+
     const userData: loginDataType = {
       user_id: userId,
       user_password: password,
     };
-    const result: any = await loginUser(userData);
-    console.log('loginData 값', result.loginResponsedData);
+    // const result: any = await loginUser(userData);
+    // console.log('loginData 값', result.loginResponsedData);
 
-    const loginHasTokenData: loginHasTokenDataType = {
-      user_name: result.loginResponsedData.data.nickName,
-      user_token: result.loginResponsedData.data.token,
-    };
-    console.log('loginHasTokenData 값', loginHasTokenData);
-    changeUserData(loginHasTokenData);
-    console.log(props);
+    // const loginHasTokenData: loginHasTokenDataType = {
+    //   user_name: result.loginResponsedData.data.nickName,
+    //   user_token: result.loginResponsedData.data.token,
+    // };
+
+    // console.log('loginHasTokenData 값', loginHasTokenData);
+    console.log('props 값', props);
+    props.fetchUserData(userData);
   };
+
   return (
     <div>
       <form className="post-form">
@@ -77,10 +89,18 @@ const mapStateToProps = ({ userAuth }: importedUserAuthInitStateType) => {
   };
 };
 
-const mapDispatchToProps = {
-  changeUserData: (loginHasTokenData: loginHasTokenDataType) => {
-    changeUserData(loginHasTokenData);
-  },
+// const mapDispatchToProps = {
+//   fetchUserData: (userData: any) => {
+//     fetchUserData(userData);
+//   },
+//   // fetchUserData,
+//   // changeUserData,
+// };
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    fetchUserData: (userData: loginDataType) =>
+      dispatch(fetchUserData(userData)),
+  };
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(LoginForm);

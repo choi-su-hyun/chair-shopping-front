@@ -1,1 +1,1 @@
-export const SAVE_USER_IDX = 'SAVE_USER_IDX';
+export const SAVE_STATUS = 'SAVE_STATUS';
