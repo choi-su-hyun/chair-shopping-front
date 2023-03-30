@@ -32,8 +32,8 @@ function App() {
   return (
     <div className="App">
       <BrowserRouter>
-        <Header />
         <Provider store={store}>
+          <Header />
           <Routes>
             <Route
               path="/main"
@@ -43,7 +43,6 @@ function App() {
             <Route path="/signup" element={<SignUp />}></Route>
             <Route path="/exercise" element={<Subscribers />}></Route>
           </Routes>
-          <Views />
         </Provider>
         <Footer />
       </BrowserRouter>
