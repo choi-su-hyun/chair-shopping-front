@@ -45,9 +45,9 @@ const Header = (props: any) => {
                   <UserCart />
                 </Link>
                 <div className={style.divider}>|</div>
-                <Link to="/signup" className="round-btn">
+                <button className="round-btn">
                   <UserLogout />
-                </Link>
+                </button>
               </div>
             )}
           </nav>
