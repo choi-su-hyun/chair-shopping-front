@@ -1,9 +1,11 @@
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useEffect } from 'react';
 import './css/App.scss';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Context } from './context/context';
 import { Provider } from 'react-redux';
 import store from './redux/store';
+import { connect } from 'react-redux';
+import { saveCookieData } from './redux/userAuth/action';
 
 // Component
 import Header from './components/Header';
@@ -19,7 +21,7 @@ export interface counterProps {
   increase: (num: number) => void;
 }
 
-function App() {
+function App(props: any) {
   const user: { name: string } = useContext(Context);
   const user2: { name: string } = {
     name: 'provider로 받아보자',
@@ -28,6 +30,9 @@ function App() {
   const increaseHandler = (num: number) => {
     setIsCounter((current: number) => current + num);
   };
+  useEffect(() => {
+    props.saveCookieData();
+  });
 
   return (
     <div className="App">
@@ -49,5 +54,10 @@ function App() {
     </div>
   );
 }
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    saveCookieData: () => dispatch(saveCookieData()),
+  };
+};
 
-export default App;
+export default connect(null, mapDispatchToProps)(App);

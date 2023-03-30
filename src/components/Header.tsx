@@ -3,12 +3,23 @@ import { Link } from 'react-router-dom';
 import logo from '../assets/logo-default.png';
 import style from '../css/Header.module.scss';
 import { connect } from 'react-redux';
+import { deleteCookie } from '../utils/cookie';
+import { saveCookieData } from '../redux/userAuth/action';
+import { useNavigate } from 'react-router-dom';
+
+//svg component
 import { ReactComponent as UserLogin } from '../assets/userLogin.svg';
 import { ReactComponent as UserSignUp } from '../assets/user-sign-up.svg';
 import { ReactComponent as UserCart } from '../assets/user-cart.svg';
 import { ReactComponent as UserLogout } from '../assets/user-logout.svg';
 
 const Header = (props: any) => {
+  let navigate = useNavigate();
+  const logoutStart = () => {
+    deleteCookie('user_name');
+    deleteCookie('user_token');
+    window.location.href = '/';
+  };
   return (
     <header>
       <div className="container">
@@ -45,7 +56,7 @@ const Header = (props: any) => {
                   <UserCart />
                 </Link>
                 <div className={style.divider}>|</div>
-                <button className="round-btn">
+                <button className="round-btn" onClick={logoutStart}>
                   <UserLogout />
                 </button>
               </div>
@@ -62,4 +73,11 @@ const mapStateToProps = (state: any) => {
     user_token: state.userAuth.user_token,
   };
 };
-export default connect(mapStateToProps)(Header);
+const mapDispatchToProps = (dispatch: any) => {
+  return {
+    saveCookieData: () => {
+      saveCookieData();
+    },
+  };
+};
+export default connect(mapStateToProps, mapDispatchToProps)(Header);

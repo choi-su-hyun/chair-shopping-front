@@ -2,7 +2,7 @@ import { SAVE_STATUS } from './type';
 import { loginHasTokenDataType } from '../../components/posts/LoginForm';
 import { loginDataType } from '../../components/posts/LoginForm';
 import { loginUser } from '../../api/user';
-import { setCookie } from '../../utils/cookie';
+import { setCookie, getCookie } from '../../utils/cookie';
 
 export type userAuthActionType = {
   type: string;
@@ -44,6 +44,18 @@ export const fetchUserData = (userData: loginDataType) => {
     setCookie('user_token', loginHasTokenData.user_token);
 
     console.log('loginHasTokenData 값', loginHasTokenData);
+    dispatch(changeUserData(loginHasTokenData));
+  };
+};
+
+export const saveCookieData = () => {
+  return (dispatch: any) => {
+    const loginHasTokenData = {
+      user_name: getCookie('user_name'),
+      user_token: getCookie('user_token'),
+    };
+    console.log('쿠키 값 나왔는지 확인', loginHasTokenData);
+
     dispatch(changeUserData(loginHasTokenData));
   };
 };

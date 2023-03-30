@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { getCookie } from '../../utils/cookie';
 
 //api
 import { loginUser } from '../../api/user';
@@ -53,7 +54,7 @@ const LoginForm = (props: any) => {
     // };
 
     // console.log('loginHasTokenData 값', loginHasTokenData);
-    console.log('props 값', props);
+    // console.log('props 값', props);
     props.fetchUserData(userData);
   };
 
