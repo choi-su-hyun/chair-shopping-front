@@ -3,6 +3,7 @@ import { Context } from '../context/context';
 import { counterProps } from '../App';
 import style from '../css/Main.module.scss';
 import { Link } from 'react-router-dom';
+import ProductList from '../components/posts/ProductList';
 
 type example = (num: number) => void;
 
@@ -27,6 +28,9 @@ function Main({ increase }: { increase: (num: number) => void }) {
             편안하게 해드릴게요.
           </p>
         </div>
+      </section>
+      <section>
+        <ProductList />
       </section>
       <section>
         <div className="container">

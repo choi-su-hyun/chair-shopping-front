@@ -41,7 +41,7 @@ function App(props: any) {
           <Header />
           <Routes>
             <Route
-              path="/main"
+              path="/"
               element={<Main increase={increaseHandler} />}
             ></Route>
             <Route path="/login" element={<Login />}></Route>
