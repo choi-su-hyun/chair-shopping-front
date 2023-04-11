@@ -1,0 +1,51 @@
+// 변수
+$cg-900: #29333d;
+$cg-800: #3d4d5c;
+$cg-700: #52677a;
+$cg-600: #668099;
+$cg-400: #c2ccd6;
+$primary-dark1: #934b0b;
+$primary: #c2630f;
+$primary-light1: #ee7b17;
+$primary-light3: #f5b175;
+$secondary_light1: #d2c093;
+
+.product_item {
+  display: flex;
+  gap: 24px;
+  &__category {
+    display: inline-block;
+    padding: 4px;
+    border-radius: 4px;
+    color: white;
+    background-color: $secondary_light1;
+    font: {
+      size: 14px;
+      weight: 700;
+    }
+  }
+  &__title {
+    color: $cg-700;
+    font: {
+      size: 20px;
+      weight: 700;
+    }
+  }
+  &__price_wrap {
+    display: flex;
+  }
+  &__price_number {
+    color: $primary;
+    font: {
+      size: 20px;
+      weight: 700;
+    }
+  }
+  &__price_degree {
+    color: $primary-light3;
+    font: {
+      size: 16px;
+      weight: 400;
+    }
+  }
+}
