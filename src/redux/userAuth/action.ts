@@ -43,7 +43,7 @@ export const fetchUserData = (userData: loginDataType) => {
     setCookie('user_name', loginHasTokenData.user_name);
     setCookie('user_token', loginHasTokenData.user_token);
 
-    console.log('loginHasTokenData 값', loginHasTokenData);
+    // console.log('loginHasTokenData 값', loginHasTokenData);
     dispatch(changeUserData(loginHasTokenData));
   };
 };
@@ -54,7 +54,7 @@ export const saveCookieData = () => {
       user_name: getCookie('user_name'),
       user_token: getCookie('user_token'),
     };
-    console.log('쿠키 값 나왔는지 확인', loginHasTokenData);
+    // console.log('쿠키 값 나왔는지 확인', loginHasTokenData);
 
     dispatch(changeUserData(loginHasTokenData));
   };

@@ -151,3 +151,10 @@ $primary-light3: #f5b175;
 .product_item {
   display: flex;
 }
+.input-wrap--include-label {
+  display: grid;
+  grid-template-columns: 160px 1fr;
+  label {
+    margin-top: 4px;
+  }
+}

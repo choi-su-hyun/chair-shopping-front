@@ -16,6 +16,7 @@ import Footer from './components/Footer';
 import Subscribers from './components/exercise/Subscribers';
 import Display from './components/exercise/Display';
 import Views from './components/exercise/Views';
+import Admin from './pages/Admin';
 
 export interface counterProps {
   increase: (num: number) => void;
@@ -44,6 +45,7 @@ function App(props: any) {
               path="/"
               element={<Main increase={increaseHandler} />}
             ></Route>
+            <Route path="/admin-create" element={<Admin />}></Route>
             <Route path="/login" element={<Login />}></Route>
             <Route path="/signup" element={<SignUp />}></Route>
             <Route path="/exercise" element={<Subscribers />}></Route>

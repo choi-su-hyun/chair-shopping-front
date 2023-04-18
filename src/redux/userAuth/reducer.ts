@@ -13,7 +13,7 @@ const initialState: userAuthInitStateType = {
 const userAuthReducer = (state = initialState, action: userAuthActionType) => {
   switch (action.type) {
     case SAVE_STATUS:
-      console.log('reducer 보자');
+      // console.log('reducer 보자');
       return {
         ...state,
         user_name: action.payload.user_name,

@@ -3,6 +3,7 @@ $cg-900: #29333d;
 $cg-800: #3d4d5c;
 $cg-700: #52677a;
 $cg-600: #668099;
+$cg-500: #a3b3c2;
 $cg-400: #c2ccd6;
 $primary-dark1: #934b0b;
 $primary: #c2630f;
@@ -45,6 +46,14 @@ $secondary_light1: #d2c093;
     color: $primary-light3;
     font: {
       size: 16px;
+      weight: 400;
+    }
+  }
+  &__for_discounted_price {
+    color: $cg-500;
+    text-decoration: line-through;
+    font: {
+      size: 14px;
       weight: 400;
     }
   }

@@ -20,7 +20,7 @@ const ProductItem = ({ item }: any) => {
                 {items.product_price}{' '}
                 <span className={style.product_item__price_degree}>원</span>
               </p>
-              <p>
+              <p className={style.product_item__for_discounted_price}>
                 {items.product_price} <span>원</span>
               </p>
             </div>
