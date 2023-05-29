@@ -1,5 +1,9 @@
 // 변수
+$cg-800: #3d4d5c;
+$cg-600: #668099;
+$cg-400: #c2ccd6;
 $primary-light1: #ee7b17;
+$primary-dark1: #934b0b;
 
 .header {
   display: flex;
@@ -26,4 +30,13 @@ $primary-light1: #ee7b17;
     weight: 700;
   }
   color: $primary-light1;
+}
+
+//admin 헤더
+.admin_header_notice {
+  display: flex;
+  justify-content: center;
+  background-color: $cg-400;
+  color: $cg-800;
+  font-size: 18px;
 }

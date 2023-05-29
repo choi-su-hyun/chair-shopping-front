@@ -17,6 +17,7 @@ $primary-dark1: #934b0b;
 $primary: #c2630f;
 $primary-light1: #ee7b17;
 $primary-light3: #f5b175;
+$secondary: #b4974c;
 
 /* container */
 .container {
@@ -29,6 +30,9 @@ $primary-light3: #f5b175;
 }
 .page-content__wrap {
   padding: 240px 0;
+  &--sm {
+    padding: 80px 0;
+  }
 }
 
 // 버튼 설정
@@ -38,6 +42,10 @@ $primary-light3: #f5b175;
     size: 18px;
     weight: 400;
   }
+  outline: none;
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
 }
 
 .round-btn {
@@ -50,6 +58,9 @@ $primary-light3: #f5b175;
   cursor: pointer;
   svg {
     display: block;
+  }
+  &--admin {
+    background-color: $secondary;
   }
 }
 
@@ -69,9 +80,24 @@ $primary-light3: #f5b175;
     size: 32px;
     weight: 700;
   }
+  margin-bottom: 80px;
   color: $cg-900;
+  text-align: center;
+  &--sm {
+    font: {
+      size: 24px;
+      weight: 700;
+    }
+    color: $cg-800;
+    margin-bottom: 32px;
+  }
 }
-.page-content__title {
+.page-content__paragraph {
+  font: {
+    size: 18px;
+    weight: 400;
+  }
+  color: $cg-700;
   text-align: center;
 }
 

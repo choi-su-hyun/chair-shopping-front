@@ -1,9 +1,14 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, ReactEventHandler } from 'react';
 import { getCategoryData } from '../../api/admin';
 
-const AdminCreate = () => {
+const AdminCreateForm = () => {
   const [categoryData, setCategoryData] = useState([]);
-  const [password, setPassword] = useState('');
+  const [productName, setProductName] = useState('');
+  const [productDescription, setProductDescription] = useState('');
+  const [price, setPrice] = useState('');
+  const [discountRate, setDiscountRate] = useState('');
+  const [thumnail, setThumnail] = useState('');
+
   useEffect(() => {
     getCategoryData()
       .then((response: any) => {
@@ -14,6 +19,23 @@ const AdminCreate = () => {
         console.log(error);
       });
   }, []);
+
+  const productNameHandler = (e: React.ChangeEvent<any>) => {
+    setProductName(e.target.value);
+  };
+  const productDescriptionHandler = (e: React.ChangeEvent<any>) => {
+    setProductDescription(e.target.value);
+  };
+  const priceHandler = (e: React.ChangeEvent<any>) => {
+    setPrice(e.target.value);
+  };
+  const discountRateHandler = (e: React.ChangeEvent<any>) => {
+    setDiscountRate(e.target.value);
+  };
+  const thumnailHandler = (e: React.ChangeEvent<any>) => {
+    setThumnail(e.target.value);
+  };
+
   const onSubmitHandler = (e: any) => {
     e.preventDefault();
     console.log('세상은 뭘까?');
@@ -29,6 +51,7 @@ const AdminCreate = () => {
                 className="input--only-input"
                 type="text"
                 placeholder="상품 이름"
+                onChange={productNameHandler}
               />
             </div>
             <div className="input-wrap--include-label">
@@ -48,6 +71,7 @@ const AdminCreate = () => {
               <textarea
                 className="input--only-input"
                 placeholder="상품 설명"
+                onChange={productDescriptionHandler}
               ></textarea>
             </div>
             <div className="input-wrap--include-label">
@@ -56,6 +80,7 @@ const AdminCreate = () => {
                 className="input--only-input"
                 type="number"
                 placeholder="가격"
+                onChange={priceHandler}
               />
             </div>
             <div className="input-wrap--include-label">
@@ -64,6 +89,7 @@ const AdminCreate = () => {
                 className="input--only-input"
                 type="number"
                 placeholder="할인률"
+                onChange={discountRateHandler}
               />
             </div>
             <div className="input-wrap--include-label">
@@ -72,6 +98,7 @@ const AdminCreate = () => {
                 className="input--only-input"
                 type="file"
                 placeholder="대표 이미지"
+                onChange={thumnailHandler}
               />
             </div>
           </div>
@@ -84,4 +111,4 @@ const AdminCreate = () => {
   );
 };
 
-export default AdminCreate;
+export default AdminCreateForm;

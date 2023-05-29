@@ -1,19 +1,21 @@
 import React from 'react';
-import AdminCreate from '../components/posts/AdminCreate';
 
-const Admin = () => {
+//component
+import AdminLoginForm from '../components/posts/AdminLoginForm';
+
+const AdminLogin = () => {
   return (
     <div>
       <div className="container--sm">
         <div className="page-content__wrap">
           <h1 className="page-content__title page-content__title--center">
-            상품 추가
+            관리자 로그인
           </h1>
-          <AdminCreate />
+          <AdminLoginForm />
         </div>
       </div>
     </div>
   );
 };
 
-export default Admin;
+export default AdminLogin;

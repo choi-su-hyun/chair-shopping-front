@@ -5,7 +5,8 @@ import { Context } from './context/context';
 import { Provider } from 'react-redux';
 import store from './redux/store';
 import { connect } from 'react-redux';
-import { saveCookieData } from './redux/userAuth/action';
+import { recieveCookieUserData } from './redux/userAuth/action';
+import { recieveCookieAdminData } from './redux/adminAuth/action';
 
 // Component
 import Header from './components/Header';
@@ -16,7 +17,12 @@ import Footer from './components/Footer';
 import Subscribers from './components/exercise/Subscribers';
 import Display from './components/exercise/Display';
 import Views from './components/exercise/Views';
-import Admin from './pages/Admin';
+import Admin from './pages/AdminMain';
+import HeaderAdmin from './components/HeaderAdmin';
+import AdminLogin from './pages/AdminLogin';
+import AdminMain from './pages/AdminMain';
+import AdminCreate from './pages/AdminCreate';
+import NotFound from './pages/NotFound';
 
 export interface counterProps {
   increase: (num: number) => void;
@@ -32,7 +38,8 @@ function App(props: any) {
     setIsCounter((current: number) => current + num);
   };
   useEffect(() => {
-    props.saveCookieData();
+    props.recieveCookieUserData();
+    props.recieveCookieAdminData();
   });
 
   return (
@@ -45,10 +52,15 @@ function App(props: any) {
               path="/"
               element={<Main increase={increaseHandler} />}
             ></Route>
-            <Route path="/admin-create" element={<Admin />}></Route>
             <Route path="/login" element={<Login />}></Route>
             <Route path="/signup" element={<SignUp />}></Route>
             <Route path="/exercise" element={<Subscribers />}></Route>
+            <Route path="/*" element={<NotFound />}></Route>
+
+            {/* 관리자 페이지 */}
+            <Route path="/admin" element={<AdminLogin />}></Route>
+            <Route path="/admin-dashboard" element={<AdminMain />}></Route>
+            <Route path="/admin-create" element={<AdminCreate />}></Route>
           </Routes>
         </Provider>
         <Footer />
@@ -58,7 +70,8 @@ function App(props: any) {
 }
 const mapDispatchToProps = (dispatch: any) => {
   return {
-    saveCookieData: () => dispatch(saveCookieData()),
+    recieveCookieUserData: () => dispatch(recieveCookieUserData()),
+    recieveCookieAdminData: () => dispatch(recieveCookieAdminData()),
   };
 };
 

@@ -48,7 +48,7 @@ export const fetchUserData = (userData: loginDataType) => {
   };
 };
 
-export const saveCookieData = () => {
+export const recieveCookieUserData = () => {
   return (dispatch: any) => {
     const loginHasTokenData = {
       user_name: getCookie('user_name'),
