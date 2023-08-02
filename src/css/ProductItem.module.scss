@@ -10,6 +10,7 @@ $primary: #c2630f;
 $primary-light1: #ee7b17;
 $primary-light3: #f5b175;
 $secondary_light1: #d2c093;
+$red: #eb5757;
 
 .product_item {
   display: flex;
@@ -24,6 +25,36 @@ $secondary_light1: #d2c093;
       size: 14px;
       weight: 700;
     }
+  }
+  &__thumnail {
+    width: 360px;
+    height: 270px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  &__discount_rate {
+    font: {
+      size: 20px;
+      weight: 700;
+    }
+    color: white;
+    background-color: $red;
+    position: absolute;
+    left: 0;
+    top: 0;
+    padding: 12px;
+    border-radius: 0 0 8px 0;
+  }
+  &__discount_degree {
+    font: {
+      size: 16px;
+      weight: 700;
+    }
+  }
+  &__thumnail_wrap {
+    position: relative;
+    border-radius: 8px;
+    overflow: hidden;
   }
   &__title {
     color: $cg-700;

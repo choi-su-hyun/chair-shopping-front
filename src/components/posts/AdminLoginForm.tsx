@@ -61,19 +61,19 @@ const AdminLoginForm = (props: any) => {
       <form className="post-form">
         <div className="input-wrap">
           <input
-            className="input--only-input"
+            className="input--only-input admin"
             type="text"
             placeholder="아이디"
             onChange={onAdminIdHandler}
           />
           <input
-            className="input--only-input"
+            className="input--only-input admin"
             type="password"
             placeholder="비밀번호"
             onChange={onPasswordHandler}
           />
         </div>
-        <button className="cta-btn--block" onClick={onSubmitHandler}>
+        <button className="cta-btn--block admin" onClick={onSubmitHandler}>
           로그인
         </button>
       </form>

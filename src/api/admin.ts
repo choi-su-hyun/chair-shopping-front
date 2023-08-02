@@ -54,4 +54,17 @@ async function loginAdmin(userData: loginDataType) {
   }
 }
 
-export { getCategoryData, createCategory, loginAdmin };
+//상품 생성 요청
+async function createProduct(productData: any) {
+  try {
+    await post.post('admin/product-create-process', productData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export { getCategoryData, createCategory, loginAdmin, createProduct };

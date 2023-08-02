@@ -8,8 +8,16 @@ const ProductItem = ({ item }: any) => {
       {item.map((items: any) => {
         return (
           <div key={items.idx}>
-            <div>
-              <div>{items.product_discount}</div>
+            <div className={style.product_item__thumnail_wrap}>
+              <div className={style.product_item__discount_rate}>
+                {items.product_discount}
+                <span className={style.product_item__discount_degree}>%</span>
+              </div>
+              <img
+                className={style.product_item__thumnail}
+                src={process.env.REACT_APP_API_URL + items.image_thumnail_path}
+                alt=""
+              />
             </div>
             <div className={style.product_item__category}>
               {items.category_name}

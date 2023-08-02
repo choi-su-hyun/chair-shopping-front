@@ -5,6 +5,9 @@ import style from '../css/Main.module.scss';
 import { Link } from 'react-router-dom';
 import ProductList from '../components/posts/ProductList';
 
+//svg component
+import { ReactComponent as Chevron_right } from '../assets/chevron-right.svg';
+
 type example = (num: number) => void;
 
 function Main({ increase }: { increase: (num: number) => void }) {
@@ -29,8 +32,18 @@ function Main({ increase }: { increase: (num: number) => void }) {
           </p>
         </div>
       </section>
-      <section>
-        <ProductList />
+      <section className={style.product_list_wrap}>
+        <div className="container">
+          <h2 className="page-content__title">요즘 많이 찾는 의자</h2>
+          <div className="container__side-layout">
+            <h3 className="page-content__sub-title">인기 의자</h3>
+            <Link to={'/'} className="general-btn--right-pictogram">
+              더보기
+              <Chevron_right />
+            </Link>
+          </div>
+          <ProductList />
+        </div>
       </section>
       <section>
         <div className="container">

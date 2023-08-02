@@ -18,6 +18,8 @@ $primary: #c2630f;
 $primary-light1: #ee7b17;
 $primary-light3: #f5b175;
 $secondary: #b4974c;
+$secondary-light1: #d2c093;
+$red: #eb5757;
 
 /* container */
 .container {
@@ -34,6 +36,11 @@ $secondary: #b4974c;
     padding: 80px 0;
   }
 }
+.container__side-layout {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 32px;
+}
 
 // 버튼 설정
 .general-btn--text {
@@ -46,6 +53,15 @@ $secondary: #b4974c;
   border: none;
   background-color: transparent;
   cursor: pointer;
+}
+
+.general-btn--right-pictogram {
+  display: flex;
+  align-items: center;
+  font: {
+    size: 20px;
+    weight: 400;
+  }
 }
 
 .round-btn {
@@ -72,6 +88,9 @@ $secondary: #b4974c;
   border-radius: 6px;
   padding: 8px;
   cursor: pointer;
+}
+.cta-btn--block.admin {
+  background-color: $secondary;
 }
 
 // 제목 및 글 폰트 설정
@@ -100,6 +119,12 @@ $secondary: #b4974c;
   color: $cg-700;
   text-align: center;
 }
+.page-content__sub-title {
+  font: {
+    size: 24px;
+    weight: 700;
+  }
+}
 
 // form 설정
 .post-form {
@@ -126,6 +151,7 @@ $secondary: #b4974c;
     margin-top: 24px;
   }
 }
+
 .input__background {
   display: flex;
   flex-direction: column;
@@ -154,6 +180,7 @@ $secondary: #b4974c;
     }
   }
 }
+
 .input-wrap {
   display: flex;
   flex-direction: column;
@@ -174,6 +201,10 @@ $secondary: #b4974c;
     border: 1px solid $primary-dark1;
   }
 }
+.input--only-input.admin {
+  border: 1px solid $secondary-light1;
+}
+
 .product_item {
   display: flex;
 }

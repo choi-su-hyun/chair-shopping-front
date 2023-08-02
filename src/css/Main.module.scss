@@ -27,6 +27,7 @@ $primary-light3: #f5b175;
     color: $cg-900;
     margin-top: 32px;
   }
+  margin-bottom: 120px;
 }
 
 //아래쪽 banner
@@ -38,6 +39,7 @@ $primary-light3: #f5b175;
   display: block;
   border-radius: 8px;
   padding: 32px 32px 75px;
+  margin: 80px 0;
   &__title {
     font-size: 24px;
     color: $cg-900;
