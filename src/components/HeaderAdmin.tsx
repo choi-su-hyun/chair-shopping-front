@@ -18,7 +18,7 @@ const HeaderAdmin = (props: any) => {
   const logoutStart = () => {
     deleteCookie('admin_name');
     deleteCookie('admin_token');
-    window.location.href = '/';
+    window.location.href = '/admin';
   };
   return (
     <div className="container">
