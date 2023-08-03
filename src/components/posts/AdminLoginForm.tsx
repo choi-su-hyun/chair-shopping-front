@@ -31,6 +31,7 @@ const AdminLoginForm = (props: any) => {
   const navigate = useNavigate();
   const [adminId, setAdminId] = useState('');
   const [password, setPassword] = useState('');
+  const [loginStatus, setLoginStatus] = useState('');
 
   const onAdminIdHandler = (e: React.ChangeEvent<any>) => {
     setAdminId(e.target.value);
@@ -47,7 +48,9 @@ const AdminLoginForm = (props: any) => {
       admin_password: password,
     };
 
-    console.log(props.fetchAdminData(adminData));
+    props.fetchAdminData(adminData);
+    setLoginStatus(props.admin_message);
+    console.log('props', props);
   };
 
   useEffect(() => {
@@ -72,6 +75,9 @@ const AdminLoginForm = (props: any) => {
             placeholder="비밀번호"
             onChange={onPasswordHandler}
           />
+          <div className="notice__wrap">
+            <span className="notice__text">{loginStatus}</span>
+          </div>
         </div>
         <button className="cta-btn--block admin" onClick={onSubmitHandler}>
           로그인
@@ -85,6 +91,7 @@ const mapStateToProps = ({ adminAuth }: importedAdminAuthInitStateType) => {
   return {
     admin_id: adminAuth.admin_id,
     admin_token: adminAuth.admin_token,
+    admin_message: adminAuth.admin_message,
   };
 };
 

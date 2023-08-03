@@ -215,3 +215,16 @@ $red: #eb5757;
     margin-top: 4px;
   }
 }
+
+//안내 문구
+.notice {
+  display: flex;
+  justify-content: center;
+  &__text {
+    font: {
+      size: 14px;
+      weight: 400;
+    }
+    color: $red;
+  }
+}
