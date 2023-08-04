@@ -1,4 +1,4 @@
-import { SAVE_ADMIN_STATUS } from './type';
+import { SAVE_ADMIN_STATUS, SAVE_NOTICE_FAIL } from './type';
 
 import { loginHasTokenDataType } from '../../components/posts/LoginForm';
 import { loginDataType } from '../../components/posts/LoginForm';

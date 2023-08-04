@@ -49,8 +49,6 @@ const AdminLoginForm = (props: any) => {
     };
 
     props.fetchAdminData(adminData);
-    setLoginStatus(props.admin_message);
-    console.log('props', props);
   };
 
   useEffect(() => {
@@ -76,7 +74,7 @@ const AdminLoginForm = (props: any) => {
             onChange={onPasswordHandler}
           />
           <div className="notice__wrap">
-            <span className="notice__text">{loginStatus}</span>
+            <span className="notice__text">{props.admin_message}</span>
           </div>
         </div>
         <button className="cta-btn--block admin" onClick={onSubmitHandler}>

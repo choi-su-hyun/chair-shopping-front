@@ -1,1 +1,2 @@
 export const SAVE_ADMIN_STATUS = 'SAVE_ADMIN_STATUS';
+export const SAVE_NOTICE_FAIL = 'SAVE_NOTICE_FAIL';
