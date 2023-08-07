@@ -36,11 +36,6 @@ $red: #eb5757;
     padding: 80px 0;
   }
 }
-.container__side-layout {
-  display: flex;
-  justify-content: space-between;
-  margin-bottom: 32px;
-}
 
 // 버튼 설정
 .general-btn--text {
@@ -99,7 +94,6 @@ $red: #eb5757;
     size: 32px;
     weight: 700;
   }
-  margin-bottom: 80px;
   color: $cg-900;
   text-align: center;
   &--sm {
@@ -108,7 +102,6 @@ $red: #eb5757;
       weight: 700;
     }
     color: $cg-800;
-    margin-bottom: 32px;
   }
 }
 .page-content__paragraph {

@@ -32,12 +32,12 @@ function Main({ increase }: { increase: (num: number) => void }) {
           </p>
         </div>
       </section>
-      <section className={style.product_list_wrap}>
+      <section className={style.product_list_section}>
         <div className="container">
           <h2 className="page-content__title">요즘 많이 찾는 의자</h2>
-          <div className="container__side-layout">
+          <div className={style.container__side_layout}>
             <h3 className="page-content__sub-title">인기 의자</h3>
-            <Link to={'/'} className="general-btn--right-pictogram">
+            <Link to={'/product'} className="general-btn--right-pictogram">
               더보기
               <Chevron_right />
             </Link>
