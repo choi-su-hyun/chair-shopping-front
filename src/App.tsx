@@ -23,6 +23,7 @@ import AdminLogin from './pages/AdminLogin';
 import AdminMain from './pages/AdminMain';
 import AdminCreate from './pages/AdminCreate';
 import NotFound from './pages/NotFound';
+import ProductPage from './pages/ProductPage';
 
 export interface counterProps {
   increase: (num: number) => void;
@@ -55,6 +56,7 @@ function App(props: any) {
             <Route path="/login" element={<Login />}></Route>
             <Route path="/signup" element={<SignUp />}></Route>
             <Route path="/exercise" element={<Subscribers />}></Route>
+            <Route path="/product" element={<ProductPage />}></Route>
             <Route path="/*" element={<NotFound />}></Route>
 
             {/* 관리자 페이지 */}

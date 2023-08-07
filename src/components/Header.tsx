@@ -41,7 +41,7 @@ const Header = (props: any) => {
                 <Link to="/main" className="general-btn--text">
                   회사소개
                 </Link>
-                <Link to="/main" className="general-btn--text">
+                <Link to="/product" className="general-btn--text">
                   모든 의자
                 </Link>
               </div>

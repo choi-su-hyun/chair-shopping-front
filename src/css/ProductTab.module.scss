@@ -1,0 +1,33 @@
+$cg-700: #52677a;
+$cg-600: #668099;
+
+.product_tab {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 40px;
+  button {
+    font: {
+      size: 16px;
+      weight: 400;
+    }
+    color: $cg-700;
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    padding: 8px 16px;
+  }
+}
+.product_not_exist {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 400px;
+  h2 {
+    font: {
+      size: 24px;
+      weight: 700;
+    }
+    color: $cg-600;
+  }
+}
