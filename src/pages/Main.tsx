@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom';
 import ProductList from '../components/posts/ProductList';
 
 //svg component
-import { ReactComponent as Chevron_right } from '../assets/chevron-right.svg';
+import { ReactComponent as ChevronRight } from '../assets/chevron-right.svg';
 
 type example = (num: number) => void;
 
@@ -39,7 +39,7 @@ function Main({ increase }: { increase: (num: number) => void }) {
             <h3 className="page-content__sub-title">인기 의자</h3>
             <Link to={'/product'} className="general-btn--right-pictogram">
               더보기
-              <Chevron_right />
+              <ChevronRight />
             </Link>
           </div>
           <ProductList />
