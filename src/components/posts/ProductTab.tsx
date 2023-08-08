@@ -13,6 +13,7 @@ import { ReactComponent as ProductNotExist } from '../../assets/product-not-exis
 const ProductTab = () => {
   const [category, setCategory] = useState([]);
   const [productResult, setProductResult] = useState([]);
+  const [currentTab, setCurrentTab] = useState(1);
   useEffect(() => {
     getCategorys()
       .then((response: any) => {
@@ -23,15 +24,15 @@ const ProductTab = () => {
         console.log(error);
       });
 
-    getProductList()
-      .then((response: any) => {
-        // console.log('productList 값', response);
-        setProductResult(response.data.contents);
-        // console.log('product state 값', productResult);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    // getProductList()
+    //   .then((response: any) => {
+    //     // console.log('productList 값', response);
+    //     setProductResult(response.data.contents);
+    //     // console.log('product state 값', productResult);
+    //   })
+    //   .catch((error) => {
+    //     console.log(error);
+    //   });
   }, []);
 
   const tabButton = (e: React.ChangeEvent<any>) => {
@@ -43,27 +44,38 @@ const ProductTab = () => {
       console.log(response);
       setProductResult(response);
     });
+    setCurrentTab(categoryName);
   };
+  console.log('current 값', currentTab);
   //   console.log('category 값', category);
   return (
     <div>
-      <div className={style.product_tab}>
-        {category.map((item: any) => {
-          return (
-            <button key={item.idx} onClick={tabButton} value={item.idx}>
-              {item.category_name}
-            </button>
-          );
-        })}
+      <div>
+        <ul className={style.product_tab}>
+          {category.map((item: any) => {
+            return (
+              <li
+                key={item.idx}
+                className={currentTab == item.idx ? style.active_tab : ''}
+              >
+                <button onClick={tabButton} value={item.idx}>
+                  {item.category_name}
+                </button>
+              </li>
+            );
+          })}
+        </ul>
       </div>
-      {productResult[0] ? (
-        <ProductItem item={productResult} />
-      ) : (
-        <div className={style.product_not_exist}>
-          <ProductNotExist />
-          <h2>상품이 없어요</h2>
-        </div>
-      )}
+      <div className={style.product_tab__content}>
+        {productResult[0] ? (
+          <ProductItem item={productResult} />
+        ) : (
+          <div className={style.product_not_exist}>
+            <ProductNotExist />
+            <h2>상품이 없어요</h2>
+          </div>
+        )}
+      </div>
     </div>
   );
 };
