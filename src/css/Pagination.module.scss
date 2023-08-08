@@ -1,0 +1,35 @@
+$primary-dark1: #934b0b;
+$primary-light1: #ee7b17;
+$cg-600: #668099;
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin-top: 80px;
+  nav {
+    display: flex;
+    gap: 8px;
+  }
+  button {
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    font-size: 16px;
+  }
+  &__arrow {
+    color: $primary-dark1;
+    font-size: 16px;
+    &:disabled {
+      color: $cg-600;
+      cursor: not-allowed;
+    }
+  }
+  .pagination__page_btn {
+    list-style: none;
+  }
+}
+
+.active_page {
+  color: $primary-light1;
+}

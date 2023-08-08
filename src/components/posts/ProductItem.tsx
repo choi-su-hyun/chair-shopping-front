@@ -5,7 +5,7 @@ import { useState } from 'react';
 import Pagination from '../Pagination';
 
 const ProductItem = ({ item }: any) => {
-  const [limit, setLimit] = useState(3);
+  const [limit, setLimit] = useState(9);
   const [page, setPage] = useState(1);
   const offset = (page - 1) * limit;
   console.log(item);
@@ -62,13 +62,13 @@ const ProductItem = ({ item }: any) => {
             </div>
           );
         })}
-        <Pagination
-          total={item.length}
-          limit={limit}
-          page={page}
-          setPage={setPage}
-        />
       </div>
+      <Pagination
+        total={item.length}
+        limit={limit}
+        page={page}
+        setPage={setPage}
+      />
     </div>
   );
 };
