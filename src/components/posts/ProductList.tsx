@@ -9,13 +9,12 @@ const ProductList = () => {
       .then((response: any) => {
         // console.log('productList 값', response);
         setProductResult(response.data.contents);
-        console.log('product state 값', productResult);
+        // console.log('product state 값', productResult);
       })
       .catch((error) => {
         console.log(error);
       });
   }, []);
-
   return (
     <div className="container">
       <ProductItem item={productResult} />
