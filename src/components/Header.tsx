@@ -35,7 +35,7 @@ const Header = (props: any) => {
             </Link>
             <nav className={style.nav}>
               <div className={style.nav__menu}>
-                <Link to="/main" className="general-btn--text">
+                <Link to="/" className="general-btn--text">
                   홈
                 </Link>
                 <Link to="/main" className="general-btn--text">

@@ -1,0 +1,19 @@
+.detail_page {
+  margin-top: 80px;
+}
+
+.detail_main {
+  display: grid;
+  grid-template-columns: 0.6fr 0.4fr;
+  gap: 24px;
+  img {
+    width: 100%;
+    max-height: 364px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  &__table {
+    display: grid;
+    grid-template-columns: 80px 1fr;
+  }
+}

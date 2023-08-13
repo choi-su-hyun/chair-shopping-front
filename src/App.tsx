@@ -24,6 +24,7 @@ import AdminMain from './pages/AdminMain';
 import AdminCreate from './pages/AdminCreate';
 import NotFound from './pages/NotFound';
 import ProductPage from './pages/ProductPage';
+import DetailPage from './pages/DetailPage';
 
 export interface counterProps {
   increase: (num: number) => void;
@@ -42,7 +43,6 @@ function App(props: any) {
     props.recieveCookieUserData();
     props.recieveCookieAdminData();
   });
-
   return (
     <div className="App">
       <BrowserRouter>
@@ -55,8 +55,8 @@ function App(props: any) {
             ></Route>
             <Route path="/login" element={<Login />}></Route>
             <Route path="/signup" element={<SignUp />}></Route>
-            <Route path="/exercise" element={<Subscribers />}></Route>
             <Route path="/product" element={<ProductPage />}></Route>
+            <Route path="/product/:id" element={<DetailPage />}></Route>
             <Route path="/*" element={<NotFound />}></Route>
 
             {/* 관리자 페이지 */}

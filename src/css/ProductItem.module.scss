@@ -20,7 +20,8 @@ $red: #eb5757;
     padding: 4px;
     border-radius: 4px;
     color: white;
-    background-color: $secondary_light1;
+    background-color: $primary-dark1;
+    margin-top: 24px;
     font: {
       size: 14px;
       weight: 700;
@@ -44,6 +45,7 @@ $red: #eb5757;
     top: 0;
     padding: 12px;
     border-radius: 0 0 8px 0;
+    box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.15);
   }
   &__discount_degree {
     font: {
@@ -58,6 +60,7 @@ $red: #eb5757;
   }
   &__title {
     color: $cg-700;
+    margin-top: 8px;
     font: {
       size: 20px;
       weight: 700;
@@ -65,6 +68,8 @@ $red: #eb5757;
   }
   &__price_wrap {
     display: flex;
+    margin-top: 16px;
+    align-items: baseline;
   }
   &__price_number {
     color: $primary;
@@ -83,9 +88,10 @@ $red: #eb5757;
   &__for_discounted_price {
     color: $cg-500;
     text-decoration: line-through;
+    margin-left: 16px;
     font: {
       size: 14px;
-      weight: 400;
+      weight: 700;
     }
   }
 }
