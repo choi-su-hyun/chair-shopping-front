@@ -33,20 +33,22 @@ const ProductItem = ({ item }: any) => {
                     alt=""
                   />
                 </div>
-                <div className={style.product_item__category}>
-                  {items.category_name}
-                </div>
-                <h5 className={style.product_item__title}>
-                  {items.product_name}
-                </h5>
-                <div className={style.product_item__price_wrap}>
-                  <p className={style.product_item__price_number}>
-                    {addComma(items.product_price)}{' '}
-                    <span className={style.product_item__price_degree}>원</span>
-                  </p>
-                  <p className={style.product_item__for_discounted_price}>
-                    {addComma(items.product_price)} <span>원</span>
-                  </p>
+                <div className={style.product_item__content_wrap}>
+                  <div className="category">{items.category_name}</div>
+                  <h5 className={style.product_item__title}>
+                    {items.product_name}
+                  </h5>
+                  <div className={style.product_item__price_wrap}>
+                    <p className={style.product_item__price_number}>
+                      {addComma(items.product_price)}{' '}
+                      <span className={style.product_item__price_degree}>
+                        원
+                      </span>
+                    </p>
+                    <p className={style.product_item__for_discounted_price}>
+                      {addComma(items.product_price)} <span>원</span>
+                    </p>
+                  </div>
                 </div>
               </Link>
             </div>

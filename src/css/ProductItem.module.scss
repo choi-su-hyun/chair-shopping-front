@@ -13,8 +13,9 @@ $secondary_light1: #d2c093;
 $red: #eb5757;
 
 .product_item {
-  display: flex;
-  gap: 24px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 56px 24px;
   &__category {
     display: inline-block;
     padding: 4px;
@@ -33,24 +34,27 @@ $red: #eb5757;
     object-fit: cover;
     border-radius: 8px;
   }
-  &__discount_rate {
-    font: {
-      size: 20px;
-      weight: 700;
+
+  &__discount {
+    &_rate {
+      font: {
+        size: 20px;
+        weight: 700;
+      }
+      color: white;
+      background-color: $red;
+      position: absolute;
+      left: 0;
+      top: 0;
+      padding: 12px;
+      border-radius: 0 0 8px 0;
+      box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.15);
     }
-    color: white;
-    background-color: $red;
-    position: absolute;
-    left: 0;
-    top: 0;
-    padding: 12px;
-    border-radius: 0 0 8px 0;
-    box-shadow: 2px 2px 4px 0px rgba(0, 0, 0, 0.15);
-  }
-  &__discount_degree {
-    font: {
-      size: 16px;
-      weight: 700;
+    &_degree {
+      font: {
+        size: 16px;
+        weight: 700;
+      }
     }
   }
   &__thumnail_wrap {
@@ -66,23 +70,25 @@ $red: #eb5757;
       weight: 700;
     }
   }
-  &__price_wrap {
-    display: flex;
-    margin-top: 16px;
-    align-items: baseline;
-  }
-  &__price_number {
-    color: $primary;
-    font: {
-      size: 20px;
-      weight: 700;
+  &__price {
+    &_wrap {
+      display: flex;
+      margin-top: 16px;
+      align-items: baseline;
     }
-  }
-  &__price_degree {
-    color: $primary-light3;
-    font: {
-      size: 16px;
-      weight: 400;
+    &_number {
+      color: $primary;
+      font: {
+        size: 20px;
+        weight: 700;
+      }
+    }
+    &_degree {
+      color: $primary-light3;
+      font: {
+        size: 16px;
+        weight: 400;
+      }
     }
   }
   &__for_discounted_price {
@@ -93,5 +99,8 @@ $red: #eb5757;
       size: 14px;
       weight: 700;
     }
+  }
+  &__content_wrap {
+    margin-top: 24px;
   }
 }

@@ -12,14 +12,17 @@ $cg-900: #29333d;
 $cg-800: #3d4d5c;
 $cg-700: #52677a;
 $cg-600: #668099;
+$cg-500: #a3b3c2;
 $cg-400: #c2ccd6;
 $cg-300: #e1e6eb;
+$primary-dark2: #643207;
 $primary-dark1: #934b0b;
 $primary: #c2630f;
 $primary-light1: #ee7b17;
 $primary-light3: #f5b175;
 $secondary: #b4974c;
 $secondary-light1: #d2c093;
+$secondary-dark1: #6c5a2d;
 $red: #eb5757;
 
 /* container */
@@ -86,7 +89,28 @@ $red: #eb5757;
   cursor: pointer;
 }
 .cta-btn--block.admin {
+  background-color: $secondary-dark1;
+  color: white;
+}
+.block-btn.admin {
+  font-size: 18px;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  padding: 8px;
   background-color: $secondary;
+  cursor: pointer;
+}
+.block-link {
+  display: inline-block;
+}
+.only-picto-btn {
+  display: flex;
+  align-items: center;
+  background-color: transparent;
+  outline: none;
+  border: none;
+  cursor: pointer;
 }
 
 // 제목 및 글 폰트 설정
@@ -210,6 +234,60 @@ $red: #eb5757;
   }
 }
 
+.input__tag {
+  background-color: $cg-300;
+  display: flex;
+  gap: 8px;
+  padding: 8px;
+  border-radius: 6px;
+  &-item {
+    display: inline-block;
+    background-color: white;
+    padding: 4px 8px;
+    font-size: 16px;
+    color: $cg-700;
+    border-radius: 4px;
+    box-shadow: 2px 2px 8px 0px rgba(0, 0, 0, 0.15);
+  }
+}
+
+.input-wrap__2-input {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 40px;
+  background-color: white;
+  padding: 8px 16px;
+  border-radius: 6px;
+  &-wrap {
+    background-color: $cg-300;
+    padding: 8px;
+  }
+  input {
+    width: 320px;
+  }
+}
+.input-wrap--sm {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  label {
+    margin: 0;
+  }
+}
+.input-wrap--option-notice {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $cg-300;
+  padding: 8px;
+  border-radius: 6px;
+}
+.form-btn-wrap {
+  display: flex;
+  justify-content: center;
+}
+
 //안내 문구
 .notice {
   display: flex;
@@ -220,5 +298,18 @@ $red: #eb5757;
       weight: 400;
     }
     color: $red;
+  }
+}
+
+//카테고리
+.category {
+  display: inline-block;
+  padding: 4px;
+  border-radius: 4px;
+  color: white;
+  background-color: $primary-dark1;
+  font: {
+    size: 14px;
+    weight: 700;
   }
 }
