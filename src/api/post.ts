@@ -69,4 +69,20 @@ const getProductDetail = async (productIdx: any) => {
   }
 };
 
-export { getProductList, getCategorys, getCategorysProduct, getProductDetail };
+//상세페이지 옵션 리스트 요청
+const getProductOption = async (productIdx: any) => {
+  try {
+    const result = await instance.post('post/product-option-list', productIdx);
+    return result.data.contents;
+  } catch (error) {
+    console.log(error);
+  }
+};
+
+export {
+  getProductList,
+  getCategorys,
+  getCategorysProduct,
+  getProductDetail,
+  getProductOption,
+};
