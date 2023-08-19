@@ -33,8 +33,14 @@ const ProductTab = () => {
     //   .catch((error) => {
     //     console.log(error);
     //   });
+    const categoryId = {
+      category_idx: currentTab,
+    };
+    getCategorysProduct(categoryId).then((response: any) => {
+      console.log(response);
+      setProductResult(response);
+    });
   }, []);
-
   const tabButton = (e: React.ChangeEvent<any>) => {
     const categoryName = e.target.value;
     const categoryData = {
@@ -46,7 +52,6 @@ const ProductTab = () => {
     });
     setCurrentTab(categoryName);
   };
-  console.log('current 값', currentTab);
   //   console.log('category 값', category);
   return (
     <div>
