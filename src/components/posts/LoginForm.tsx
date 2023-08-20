@@ -1,16 +1,8 @@
 import React, { useState } from 'react';
 import { getCookie } from '../../utils/cookie';
-
-//api
 import { loginUser } from '../../api/user';
-
-//redux
 import { connect } from 'react-redux';
-
-//action
-// import { changeUserData } from '../../redux/userAuth/action';
 import { fetchUserData } from '../../redux/userAuth/action';
-
 import { userAuthInitStateType } from '../../redux/userAuth/reducer';
 
 //type
@@ -26,19 +18,28 @@ type importedUserAuthInitStateType = {
   userAuth: userAuthInitStateType;
 };
 
+// 1. PascalCase
+// 2. camelCase
+// 3. UPPER_SNAKE
+// 4. kebap-case
+
+// 1. cashing ( optional )
+// 2. 한번에 동일한 요청이 여러번 가는 경우를 방지해줌
+// 3. 마치 상태관리자 처럼 사용할 수 있음
+
 //component
 const LoginForm = (props: any) => {
   const [userId, setUserId] = useState('');
   const [password, setPassword] = useState('');
 
-  const onUserIdHandler = (e: React.ChangeEvent<any>) => {
+  const onUserIdHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserId(e.target.value);
   };
-  const onPassword = (e: React.ChangeEvent<any>) => {
+  const onPassword = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
 
-  const onSubmitHandler = (e: React.ChangeEvent<any>) => {
+  const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const userData: loginDataType = {
@@ -60,24 +61,24 @@ const LoginForm = (props: any) => {
 
   return (
     <div>
-      <form className="post-form">
+      <form className="post-form" onSubmit={onSubmitHandler}>
         <div className="input-wrap">
           <input
+            required
             className="input--only-input"
             type="text"
             placeholder="아이디"
             onChange={onUserIdHandler}
           />
           <input
+            required
             className="input--only-input"
             type="password"
             placeholder="비밀번호"
             onChange={onPassword}
           />
         </div>
-        <button className="cta-btn--block" onClick={onSubmitHandler}>
-          로그인
-        </button>
+        <button className="cta-btn--block">로그인</button>
       </form>
     </div>
   );
