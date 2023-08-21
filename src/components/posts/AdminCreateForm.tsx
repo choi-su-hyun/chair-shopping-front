@@ -4,9 +4,10 @@ import { createProduct } from '../../api/admin';
 import { addComma } from '../../utils/addComma';
 
 import { ReactComponent as CloseBtn } from '../../assets/close-btn.svg';
+import useCategoryList from '../../hooks/use-category-list';
 
 const AdminCreateForm = () => {
-  const [categoryData, setCategoryData] = useState([]);
+  const { categoryList } = useCategoryList();
   const [selectedCategory, setSelectedCategory] = useState(1);
   const [productName, setProductName] = useState('');
   const [productDescription, setProductDescription] = useState('');
@@ -16,17 +17,6 @@ const AdminCreateForm = () => {
   const [thumnail, setThumnail] = useState('');
   const [detailImage, setDetailImage] = useState('');
   const inventoryInput = useRef<HTMLInputElement>(null);
-
-  useEffect(() => {
-    getCategoryData()
-      .then((response: any) => {
-        setCategoryData(response.data.content);
-        // console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
 
   const productNameHandler = (e: React.ChangeEvent<any>) => {
     setProductName(e.target.value);
@@ -133,7 +123,7 @@ const AdminCreateForm = () => {
             <div className="input-wrap--include-label">
               <label htmlFor="">상품 카테고리</label>
               <select name="" id="" onChange={productCategoryHandler}>
-                {categoryData.map((items: any) => {
+                {categoryList.map((items: any) => {
                   return (
                     <option key={items.idx} value={items.idx}>
                       {items.category_name}
