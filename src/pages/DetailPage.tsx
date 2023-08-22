@@ -2,25 +2,28 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { getProductDetail, getProductOption } from '../api/post';
 import style from '../css/detail.module.scss';
+import { IProductData, IProductOptionDB } from '../types/product';
 
 const DetailPage = () => {
-  let [productData, setProductData] = useState<any>();
-  let [productOption, setProductOption] = useState<any>([{ 옵션: '선택' }]);
+  let [productData, setProductData] = useState<IProductData>();
+  let [productOption, setProductOption] = useState<IProductOptionDB[]>([
+    { option_name: '선택', inventory: 0 },
+  ]);
   let { id } = useParams();
   useEffect(() => {
     const productIdx = {
       idx: id,
     };
     getProductDetail(productIdx)
-      .then((response) => {
+      .then((response: [IProductData]) => {
         setProductData(response[0]);
-        console.log('response 값', response);
+        // console.log('response 값', response);
       })
       .catch((error: any) => {
         console.log(error);
       });
 
-    getProductOption(productIdx).then((response) => {
+    getProductOption(productIdx).then((response: [IProductOptionDB]) => {
       setProductOption(response);
     });
   }, [id]);

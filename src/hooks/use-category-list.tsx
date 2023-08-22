@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import Category from '../types/category';
+import { Category } from '../types/category';
 import { getCategoryData } from '../api/admin';
 import useErrorHandler from './error-handler';
 
@@ -10,7 +10,7 @@ const useCategoryList = () => {
   const getCategoryListAndParse = async () => {
     try {
       const axiosGetReponseForCategoryList = await getCategoryData();
-      const catagoryList = axiosGetReponseForCategoryList?.data?.contents;
+      const catagoryList = axiosGetReponseForCategoryList?.data?.content;
       if (!Array.isArray(categoryList)) {
         return;
       }
@@ -27,7 +27,6 @@ const useCategoryList = () => {
   useEffect(() => {
     getCategoryListAndParse();
   }, []);
-
   return { categoryList, setCategoryList };
 };
 
