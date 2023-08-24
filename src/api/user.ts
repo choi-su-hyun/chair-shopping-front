@@ -1,9 +1,9 @@
 import { instance } from './index';
-import { signupDataType } from '../components/posts/SignupForm';
-import { loginDataType } from '../components/posts/LoginForm';
+import { ISignupData } from '../types/user';
+import { ILoginData, ILoginAxiosResult } from '../types/user';
 
 //회원가입 api
-async function registerUser(userData: signupDataType) {
+async function registerUser(userData: ISignupData) {
   try {
     const requestData = await instance.post('users/signup-process', userData);
     return requestData;
@@ -13,7 +13,7 @@ async function registerUser(userData: signupDataType) {
 }
 
 //로그인 api
-async function loginUser(userData: loginDataType) {
+async function loginUser(userData: ILoginData): Promise<ILoginAxiosResult> {
   try {
     const loginResponsedData = await instance.post(
       'users/login-process',
@@ -40,6 +40,10 @@ async function loginUser(userData: loginDataType) {
       };
       return result;
     }
+    return {
+      successStatus: false,
+      message: '에러 발생',
+    };
   }
 }
 
