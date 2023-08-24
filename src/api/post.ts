@@ -17,17 +17,7 @@ const getProductList = async () => {
 
 //상품 카테고리 탭 리스트 요청
 const getCategorys = async () => {
-  try {
-    return await instance.get('post/product-category-tab');
-  } catch (error: any) {
-    console.log(error);
-    if (error.message === 'DB_ERROR') {
-      return {
-        message: 'database에서 문제가 발생했습니다.',
-        error,
-      };
-    }
-  }
+  return await instance.get('post/product-category-tab');
 };
 
 //특정 카테고리의 상품 리스트 요청
