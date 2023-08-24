@@ -1,5 +1,6 @@
 import { instance, post } from './index';
-import { loginDataType } from '../components/posts/LoginForm';
+import { IAdminLoginData } from '../types/administrator';
+import { IAdminLoginAxiosResult } from '../types/administrator';
 
 interface CustomError extends Error {
   // name: string;
@@ -13,17 +14,19 @@ interface CustomError extends Error {
   };
 }
 
-//category 리스트 받기
-const getCategoryData = async () => {
-  return await instance.get('admin/category-data');
-};
+// //category 리스트 받기
+// const getCategoryData = async () => {
+//   return await instance.get('admin/category-data');
+// };
 //category 생성 요청
 const createCategory = async () => {
   return await instance.post('admin/category-create-process');
 };
 
 //admin 로그인 요청
-async function loginAdmin(userData: loginDataType) {
+async function loginAdmin(
+  userData: IAdminLoginData,
+): Promise<IAdminLoginAxiosResult> {
   try {
     const loginResponsedData = await instance.post(
       'admin/admin-login-process',
@@ -51,6 +54,10 @@ async function loginAdmin(userData: loginDataType) {
       };
       return result;
     }
+    return {
+      successStatus: false,
+      message: '에러 발생',
+    };
   }
 }
 
@@ -67,4 +74,4 @@ async function createProduct(productData: any) {
   }
 }
 
-export { getCategoryData, createCategory, loginAdmin, createProduct };
+export { createCategory, loginAdmin, createProduct };
