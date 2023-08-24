@@ -1,16 +1,16 @@
 import { SAVE_STATUS } from './type';
-import { userAuthActionType } from './action';
+import {
+  ILoginWithTokenData,
+  ILoginAction,
+  ILoginInitState,
+} from '../../types/user';
 
-export type userAuthInitStateType = {
-  user_name: string;
-  user_token: string;
-};
-
-const initialState: userAuthInitStateType = {
+const initialState: ILoginInitState = {
   user_name: '',
   user_token: '',
+  user_message: '',
 };
-const userAuthReducer = (state = initialState, action: userAuthActionType) => {
+const userAuthReducer = (state = initialState, action: ILoginAction) => {
   switch (action.type) {
     case SAVE_STATUS:
       // console.log('reducer 보자');
@@ -18,6 +18,7 @@ const userAuthReducer = (state = initialState, action: userAuthActionType) => {
         ...state,
         user_name: action.payload.user_name,
         user_token: action.payload.user_token,
+        user_message: action.payload.user_message,
       };
     default:
       return state;
