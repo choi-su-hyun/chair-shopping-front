@@ -3,18 +3,19 @@ import style from '../../css/ProductItem.module.scss';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
 import { addComma } from '../../utils/addComma';
+import { IProductData } from '../../types/product';
 
 import Pagination from '../Pagination';
 
-const ProductItem = ({ item }: any) => {
-  const [limit, setLimit] = useState(9);
-  const [page, setPage] = useState(1);
+const ProductItem = ({ item }: { item: IProductData[] }) => {
+  const [limit, setLimit] = useState<number>(9);
+  const [page, setPage] = useState<number>(1);
   const offset = (page - 1) * limit;
-
+  console.log('item 값', item);
   return (
     <div>
       <div className={style.product_item}>
-        {item.slice(offset, offset + limit).map((items: any) => {
+        {item.slice(offset, offset + limit).map((items: IProductData) => {
           return (
             <div key={items.idx}>
               <Link className="block-link" to={`/product/${items.idx}`}>
@@ -26,7 +27,9 @@ const ProductItem = ({ item }: any) => {
                     </span>
                   </div>
                   <img
-                    className={style.product_item__thumnail}
+                    className={style['product_item__thumnail']}
+                    width={360}
+                    height={270}
                     src={
                       process.env.REACT_APP_API_URL + items.image_thumnail_path
                     }

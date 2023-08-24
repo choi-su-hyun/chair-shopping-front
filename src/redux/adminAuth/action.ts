@@ -1,51 +1,42 @@
 import { SAVE_ADMIN_STATUS } from './type';
 
-import { loginHasTokenDataType } from '../../components/posts/LoginForm';
-import { loginDataType } from '../../components/posts/LoginForm';
 import { loginAdmin } from '../../api/admin';
 import { setCookie, getCookie } from '../../utils/cookie';
-
-//type
-export type adminLoginResponseDataType = {
-  admin_id: string | undefined;
-  admin_token: string | undefined;
-  admin_message: string | undefined;
-};
-
-export type adminLoginCookieType = {
-  admin_id: string | undefined;
-  admin_token: string | undefined;
-};
-
-export type adminActionType = {
-  type: string;
-  payload: adminLoginResponseDataType;
-};
+import { ThunkDispatch } from 'redux-thunk';
+import { AnyAction } from 'redux';
+import { RootState } from '../../redux/rootReducer';
+import {
+  IAdminLoginAxiosResult,
+  IAdminInitState,
+  IAdminLoginData,
+} from '../../types/administrator';
 
 //action
-const saveAdminData = (adminLoginData: adminLoginResponseDataType) => {
+const saveAdminData = (adminLoginData: IAdminInitState) => {
   return {
     type: SAVE_ADMIN_STATUS,
     payload: adminLoginData,
   };
 };
 
-export const fetchAdminData = (administratorData: loginDataType) => {
-  return async (dispatch: any) => {
-    const result: any = await loginAdmin(administratorData);
-    console.log('result 값', result);
-    console.log('result.message 값', result.message);
+export const fetchAdminData = (administratorData: IAdminLoginData) => {
+  return async (dispatch: ThunkDispatch<RootState, undefined, AnyAction>) => {
+    const result: IAdminLoginAxiosResult = await loginAdmin(administratorData);
+    // console.log('result 값', result);
+    // console.log('result.message 값', result.message);
     if (result.successStatus) {
       const adminLoginData = {
-        admin_id: result.loginResponsedData.data.adminId,
-        admin_token: result.loginResponsedData.data.token,
-        admin_message: result.message,
+        admin_id: result.loginResponsedData?.data.adminId,
+        admin_token: result.loginResponsedData?.data.token,
+        admin_message: result.loginResponsedData?.data.message,
       };
       setCookie('admin_nickname', adminLoginData.admin_id);
       setCookie('admin_token', adminLoginData.admin_token);
       dispatch(saveAdminData(adminLoginData));
     } else {
-      const adminLoginData: any = {
+      const adminLoginData: IAdminInitState = {
+        admin_id: '',
+        admin_token: '',
         admin_message: result.message,
       };
       dispatch(saveAdminData(adminLoginData));
@@ -54,8 +45,8 @@ export const fetchAdminData = (administratorData: loginDataType) => {
 };
 
 export const recieveCookieAdminData = () => {
-  return async (dispatch: any) => {
-    const cookieData: adminLoginResponseDataType = {
+  return async (dispatch: ThunkDispatch<RootState, undefined, AnyAction>) => {
+    const cookieData: IAdminInitState = {
       admin_id: getCookie('admin_nickname'),
       admin_token: getCookie('admin_token'),
       admin_message: '',

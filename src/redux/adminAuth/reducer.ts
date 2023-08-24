@@ -1,19 +1,14 @@
 import { SAVE_ADMIN_STATUS } from './type';
 
-import { adminActionType } from './action';
+import { IAdminAction } from '../../types/administrator';
+import { IAdminInitState } from '../../types/administrator';
 
-export type adminInitStateType = {
-  admin_id: string | undefined;
-  admin_token: string | undefined;
-  admin_message: string | undefined;
-};
-
-const adminInitState = {
+const adminInitState: IAdminInitState = {
   admin_id: '',
   admin_token: '',
   admin_message: '',
 };
-const adminReducer = (state = adminInitState, action: adminActionType) => {
+const adminReducer = (state = adminInitState, action: IAdminAction) => {
   switch (action.type) {
     case SAVE_ADMIN_STATUS:
       return {

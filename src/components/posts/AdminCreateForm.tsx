@@ -1,30 +1,35 @@
 import React, { useState, useEffect, ReactEventHandler, useRef } from 'react';
-import { getCategoryData } from '../../api/admin';
 import { createProduct } from '../../api/admin';
 import { addComma } from '../../utils/addComma';
 
 import { ReactComponent as CloseBtn } from '../../assets/close-btn.svg';
 import useCategoryList from '../../hooks/use-category-list';
+import { IProductOptionData } from '../../types/product';
 
 const AdminCreateForm = () => {
   const { categoryList } = useCategoryList();
-  const [selectedCategory, setSelectedCategory] = useState(1);
-  const [productName, setProductName] = useState('');
-  const [productDescription, setProductDescription] = useState('');
-  const [price, setPrice] = useState('');
-  const [discountRate, setDiscountRate] = useState('');
-  const [option, setOption] = useState([{ optionName: '', inventory: '' }]);
-  const [thumnail, setThumnail] = useState('');
-  const [detailImage, setDetailImage] = useState('');
+  const [selectedCategory, setSelectedCategory] = useState<string>('1');
+  const [productName, setProductName] = useState<string>('');
+  const [productDescription, setProductDescription] = useState<string>('');
+  const [price, setPrice] = useState<string>('');
+  const [discountRate, setDiscountRate] = useState<string>('');
+  const [option, setOption] = useState<IProductOptionData[]>([
+    { optionName: '', inventory: undefined },
+  ]);
+  const [thumnail, setThumnail] = useState<File | null>(null);
+  const [detailImage, setDetailImage] = useState<File | null>(null);
   const inventoryInput = useRef<HTMLInputElement>(null);
 
-  const productNameHandler = (e: React.ChangeEvent<any>) => {
+  const productNameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setProductName(e.target.value);
   };
-  const productCategoryHandler = (e: React.ChangeEvent<any>) => {
+  const productCategoryHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    console.log('value 확인', typeof e.target.value);
     setSelectedCategory(e.target.value);
   };
-  const productDescriptionHandler = (e: React.ChangeEvent<any>) => {
+  const productDescriptionHandler = (
+    e: React.ChangeEvent<HTMLTextAreaElement>,
+  ) => {
     setProductDescription(e.target.value);
   };
   const priceHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -35,9 +40,9 @@ const AdminCreateForm = () => {
     setDiscountRate(e.target.value);
   };
 
-  const addOptionHandler = (e: any) => {
+  const addOptionHandler = (e: React.MouseEvent<HTMLButtonElement>) => {
     e.preventDefault();
-    setOption([...option, { optionName: '', inventory: '' }]);
+    setOption([...option, { optionName: '', inventory: undefined }]);
   };
   const removeOptionHandler = (index: number) => {
     const filteredOption = [...option];
@@ -48,10 +53,10 @@ const AdminCreateForm = () => {
     e: React.ChangeEvent<HTMLInputElement>,
     index: number,
   ) => {
-    const list: any = [...option];
+    const list: IProductOptionData[] = [...option];
     list[index][e.target.id] = e.target.value;
     setOption(list);
-    console.log(option);
+    // console.log(option);
   };
   const activeEnterFirstInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
@@ -59,31 +64,37 @@ const AdminCreateForm = () => {
       if (inventoryInput.current) {
         inventoryInput.current.focus();
       }
-      console.log('엔터가 눌렸는지 확인');
     }
-    console.log('함수가 작동하는지 확인');
-    console.log(option);
   };
   const activeEnter = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
-      addOptionHandler(e);
+      setOption([...option, { optionName: '', inventory: undefined }]);
+      e.preventDefault();
     }
-    console.log(e);
-    console.log('작동 여부 확인');
   };
 
-  const thumnailHandler = (e: React.ChangeEvent<any>) => {
+  const thumnailHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files === null) {
+      return;
+    }
     setThumnail(e.target.files[0]);
   };
-  const detailImageHandler = (e: React.ChangeEvent<any>) => {
+  const detailImageHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    if (e.target.files === null) {
+      return;
+    }
     setDetailImage(e.target.files[0]);
   };
 
-  const onSubmitHandler = (e: any) => {
+  const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData();
-    formData.append('product_image', thumnail);
-    formData.append('product_detail_image', detailImage);
+    if (thumnail !== null) {
+      formData.append('product_image', thumnail);
+    }
+    if (detailImage !== null) {
+      formData.append('product_detail_image', detailImage);
+    }
     formData.append(
       'data',
       JSON.stringify({
@@ -109,7 +120,11 @@ const AdminCreateForm = () => {
   return (
     <div>
       <div>
-        <form className="post-form" encType="multipart/form-data">
+        <form
+          className="post-form"
+          encType="multipart/form-data"
+          onSubmit={onSubmitHandler}
+        >
           <div className="input-wrap">
             <div className="input-wrap--include-label">
               <label htmlFor="">상품 이름</label>
@@ -123,13 +138,14 @@ const AdminCreateForm = () => {
             <div className="input-wrap--include-label">
               <label htmlFor="">상품 카테고리</label>
               <select name="" id="" onChange={productCategoryHandler}>
-                {categoryList.map((items: any) => {
-                  return (
-                    <option key={items.idx} value={items.idx}>
-                      {items.category_name}
-                    </option>
-                  );
-                })}
+                {categoryList !== undefined &&
+                  categoryList.map((items: any) => {
+                    return (
+                      <option key={items.idx} value={items.idx}>
+                        {items.category_name}
+                      </option>
+                    );
+                  })}
               </select>
             </div>
             <div className="input-wrap--include-label">
@@ -239,9 +255,7 @@ const AdminCreateForm = () => {
               />
             </div>
           </div>
-          <button className="cta-btn--block admin" onClick={onSubmitHandler}>
-            상품 추가
-          </button>
+          <button className="cta-btn--block admin">상품 추가</button>
         </form>
       </div>
     </div>

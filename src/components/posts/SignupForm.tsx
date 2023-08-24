@@ -1,41 +1,34 @@
 import React, { useState } from 'react';
 import { registerUser } from '../../api/user';
-
-export type signupDataType = {
-  user_id: string;
-  user_password: string;
-  user_name: string;
-  user_email: string;
-  user_phone: string;
-};
+import { ISignupData } from '../../types/user';
 
 const SignupForm = () => {
-  const [userId, setUserId] = useState('');
-  const [password, setPassword] = useState('');
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [phone, setPhone] = useState('');
+  const [userId, setUserId] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
+  const [name, setName] = useState<string>('');
+  const [email, setEmail] = useState<string>('');
+  const [phone, setPhone] = useState<string>('');
 
-  const onUserIdHandler = (e: React.ChangeEvent<any>) => {
+  const onUserIdHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserId(e.target.value);
   };
-  const onPasswordHandler = (e: React.ChangeEvent<any>) => {
+  const onPasswordHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
-  const onNameHandler = (e: React.ChangeEvent<any>) => {
+  const onNameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setName(e.target.value);
   };
-  const onEmailHandler = (e: React.ChangeEvent<any>) => {
+  const onEmailHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
-  const onPhoneHandler = (e: React.ChangeEvent<any>) => {
+  const onPhoneHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPhone(e.target.value);
   };
-  const onSubmitHandler = (e: React.ChangeEvent<any>) => {
+  const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     console.log('submit!');
 
-    const userData = {
+    const userData: ISignupData = {
       user_id: userId,
       user_password: password,
       user_name: name,

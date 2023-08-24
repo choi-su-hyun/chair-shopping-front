@@ -1,29 +1,19 @@
 import React, { useEffect, useState } from 'react';
 import style from '../../css/ProductTab.module.scss';
-import {
-  getProductList,
-  getCategorys,
-  getCategorysProduct,
-} from '../../api/post';
+import { getProductList, getCategorysProduct } from '../../api/post';
+import { IProductData } from '../../types/product';
 import ProductItem from './ProductItem';
-
-//svg component
+import useCategoryList from '../../hooks/use-category-list';
 import { ReactComponent as ProductNotExist } from '../../assets/product-not-exist-img.svg';
+import { ICategoryObject } from '../../types/category';
+// interface test {
 
+// }
 const ProductTab = () => {
-  const [category, setCategory] = useState([]);
-  const [productResult, setProductResult] = useState([]);
-  const [currentTab, setCurrentTab] = useState(1);
+  const { categoryList } = useCategoryList();
+  const [productResult, setProductResult] = useState<IProductData[]>([]);
+  const [currentTab, setCurrentTab] = useState<string>('1');
   useEffect(() => {
-    getCategorys()
-      .then((response: any) => {
-        // console.log('category 리스트', response.data.contents);
-        setCategory(response.data.contents);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-
     // getProductList()
     //   .then((response: any) => {
     //     // console.log('productList 값', response);
@@ -36,19 +26,24 @@ const ProductTab = () => {
     const categoryId = {
       category_idx: currentTab,
     };
-    getCategorysProduct(categoryId).then((response: any) => {
+    getCategorysProduct(categoryId).then((response: IProductData[]) => {
       console.log(response);
-      setProductResult(response);
+      if (response !== undefined) {
+        setProductResult(response);
+      }
+      return;
     });
   }, []);
-  const tabButton = (e: React.ChangeEvent<any>) => {
-    const categoryName = e.target.value;
+  const tabButton = (e: React.MouseEvent<HTMLButtonElement>) => {
+    const categoryName = e.currentTarget.value;
     const categoryData = {
       category_idx: categoryName,
     };
-    getCategorysProduct(categoryData).then((response: any) => {
+    getCategorysProduct(categoryData).then((response: IProductData[]) => {
       console.log(response);
-      setProductResult(response);
+      if (response !== undefined) {
+        setProductResult(response);
+      }
     });
     setCurrentTab(categoryName);
   };
@@ -57,18 +52,19 @@ const ProductTab = () => {
     <div>
       <div>
         <ul className={style.product_tab}>
-          {category.map((item: any) => {
-            return (
-              <li
-                key={item.idx}
-                className={currentTab == item.idx ? style.active_tab : ''}
-              >
-                <button onClick={tabButton} value={item.idx}>
-                  {item.category_name}
-                </button>
-              </li>
-            );
-          })}
+          {categoryList !== undefined &&
+            categoryList.map((item: ICategoryObject) => {
+              return (
+                <li
+                  key={item.idx}
+                  className={currentTab == item.idx ? style.active_tab : ''}
+                >
+                  <button onClick={tabButton} value={item.idx}>
+                    {item.category_name}
+                  </button>
+                </li>
+              );
+            })}
         </ul>
       </div>
       <div className={style.product_tab__content}>

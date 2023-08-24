@@ -1,49 +1,36 @@
 import React, { useEffect, useState } from 'react';
-import { getCookie } from '../../utils/cookie';
 import { useNavigate } from 'react-router-dom';
 
-//api
-import { loginUser } from '../../api/user';
-import { loginAdmin } from '../../api/admin';
-
-//redux
 import { connect } from 'react-redux';
-
-//action
 import { fetchAdminData } from '../../redux/adminAuth/action';
+import {
+  IAdminLoginData,
+  IStateAndDispatchInProps,
+} from '../../types/administrator';
+import { RootState } from '../../redux/rootReducer';
+import { ThunkDispatch } from 'redux-thunk';
+import { AnyAction } from 'redux';
+import { Matching } from 'react-redux';
 
-//type
-import { adminInitStateType } from '../../redux/adminAuth/reducer';
-export type loginDataType = {
-  [key: string]: string;
-};
-export type loginHasTokenDataType = {
-  // [key: string]: string;
-  user_name: string;
-  user_token: string;
-};
-type importedAdminAuthInitStateType = {
-  adminAuth: adminInitStateType;
-};
+// type DispatchProps = ReturnType<typeof mapDispatchToProps>;
+// type CombinedProps = Matching<DispatchProps, IStateAndDispatchInProps>;
 
-//component
-const AdminLoginForm = (props: any) => {
+const AdminLoginForm = (props: IStateAndDispatchInProps) => {
   const navigate = useNavigate();
-  const [adminId, setAdminId] = useState('');
-  const [password, setPassword] = useState('');
-  const [loginStatus, setLoginStatus] = useState('');
+  const [adminId, setAdminId] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
 
-  const onAdminIdHandler = (e: React.ChangeEvent<any>) => {
+  const onAdminIdHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setAdminId(e.target.value);
   };
-  const onPasswordHandler = (e: React.ChangeEvent<any>) => {
+  const onPasswordHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPassword(e.target.value);
   };
 
-  const onSubmitHandler = (e: React.ChangeEvent<any>) => {
+  const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const adminData: loginDataType = {
+    const adminData: IAdminLoginData = {
       admin_id: adminId,
       admin_password: password,
     };
@@ -55,11 +42,11 @@ const AdminLoginForm = (props: any) => {
     if (props.admin_token !== '' && props.admin_token !== undefined) {
       navigate('/admin-dashboard');
     }
-  });
+  }, [props.admin_token]);
 
   return (
     <div>
-      <form className="post-form">
+      <form className="post-form" onSubmit={onSubmitHandler}>
         <div className="input-wrap">
           <input
             className="input--only-input admin"
@@ -77,15 +64,13 @@ const AdminLoginForm = (props: any) => {
             <span className="notice__text">{props.admin_message}</span>
           </div>
         </div>
-        <button className="cta-btn--block admin" onClick={onSubmitHandler}>
-          로그인
-        </button>
+        <button className="cta-btn--block admin">로그인</button>
       </form>
     </div>
   );
 };
 
-const mapStateToProps = ({ adminAuth }: importedAdminAuthInitStateType) => {
+const mapStateToProps = ({ adminAuth }: RootState) => {
   return {
     admin_id: adminAuth.admin_id,
     admin_token: adminAuth.admin_token,
@@ -100,9 +85,11 @@ const mapStateToProps = ({ adminAuth }: importedAdminAuthInitStateType) => {
 //   // fetchUserData,
 //   // changeUserData,
 // };
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (
+  dispatch: ThunkDispatch<RootState, undefined, AnyAction>,
+) => {
   return {
-    fetchAdminData: (adminData: loginDataType) =>
+    fetchAdminData: (adminData: IAdminLoginData) =>
       dispatch(fetchAdminData(adminData)),
   };
 };

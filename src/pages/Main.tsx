@@ -4,8 +4,6 @@ import { counterProps } from '../App';
 import style from '../css/Main.module.scss';
 import { Link } from 'react-router-dom';
 import ProductList from '../components/posts/ProductList';
-
-//svg component
 import { ReactComponent as ChevronRight } from '../assets/chevron-right.svg';
 
 type example = (num: number) => void;
