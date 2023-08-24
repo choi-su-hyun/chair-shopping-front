@@ -1,9 +1,10 @@
-type Category = string;
-
 // interface Product extends Partial<Category> {
 //   productName: string;
 // }
-
+interface ICategoryObject {
+  idx: string;
+  category_name: string;
+}
 interface ISumString {
   prevString: string;
   nextString: string;
@@ -17,6 +18,4 @@ const sumStringAndRemoveBlank = ({ prevString, nextString }: ISumString) => {
 
 sumStringAndRemoveBlank({ prevString: 'a', nextString: 'b' });
 
-type CategoryName = string;
-
-export type { Category };
+export type { ICategoryObject };
