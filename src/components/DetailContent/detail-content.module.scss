@@ -1,0 +1,13 @@
+@import '../../css/index.scss';
+
+.detail-tab {
+  a {
+    color: $primary-light3;
+    font: {
+      size: 18px;
+      weight: 700;
+    }
+    padding: 12px 24px;
+    display: inline-block;
+  }
+}

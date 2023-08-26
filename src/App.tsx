@@ -9,22 +9,22 @@ import { recieveCookieUserData } from './redux/userAuth/action';
 import { recieveCookieAdminData } from './redux/adminAuth/action';
 
 // Component
-import Header from './components/Header';
-import Main from './pages/Main';
+import Header from './components/Header/Header';
+import Main from './pages/Main/Main';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
-import Footer from './components/Footer';
+import Footer from './components/Footer/Footer';
 import Subscribers from './components/exercise/Subscribers';
 import Display from './components/exercise/Display';
 import Views from './components/exercise/Views';
 import Admin from './pages/AdminMain';
-import HeaderAdmin from './components/HeaderAdmin';
+import HeaderAdmin from './components/Header/HeaderAdmin';
 import AdminLogin from './pages/AdminLogin';
 import AdminMain from './pages/AdminMain';
 import AdminCreate from './pages/AdminCreate';
 import NotFound from './pages/NotFound';
-import ProductPage from './pages/ProductPage';
-import DetailPage from './pages/DetailPage';
+import ProductPage from './pages/ProductPage/ProductPage';
+import DetailPage from './pages/DetailPage/DetailPage';
 
 export interface counterProps {
   increase: (num: number) => void;
