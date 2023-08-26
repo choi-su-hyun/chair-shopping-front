@@ -1,3 +1,5 @@
+import React from 'react';
+
 interface IProductData {
   idx: number;
   category_idx: number;
@@ -12,6 +14,7 @@ interface IProductData {
 }
 
 interface IProductOptionDB {
+  idx: number | null;
   option_name: string;
   inventory: number;
 }
@@ -20,5 +23,20 @@ interface IProductOptionData {
   optionName: string;
   inventory: number | undefined;
 }
+interface IProductPagination {
+  total: number;
+  limit: number;
+  page: number;
+  setPage: React.Dispatch<React.SetStateAction<number>>;
+}
+interface IProductIdx {
+  idx: string | undefined;
+}
 
-export type { IProductData, IProductOptionDB, IProductOptionData };
+export type {
+  IProductData,
+  IProductOptionDB,
+  IProductOptionData,
+  IProductPagination,
+  IProductIdx,
+};

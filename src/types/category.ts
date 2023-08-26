@@ -18,4 +18,8 @@ const sumStringAndRemoveBlank = ({ prevString, nextString }: ISumString) => {
 
 sumStringAndRemoveBlank({ prevString: 'a', nextString: 'b' });
 
-export type { ICategoryObject };
+interface ICategoryId {
+  category_idx: string;
+}
+
+export type { ICategoryObject, ICategoryId };
