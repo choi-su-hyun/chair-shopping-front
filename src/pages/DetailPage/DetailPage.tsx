@@ -1,13 +1,16 @@
 import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
-import { getProductDetail, getProductOption } from '../api/post';
-import style from '../css/detail.module.scss';
-import { IProductData, IProductOptionDB } from '../types/product';
+import { getProductDetail, getProductOption } from '../../api/post';
+import style from './detail.module.scss';
+import { IProductData, IProductOptionDB } from '../../types/product';
+import DetailContent from '../../components/DetailContent/DetailContent';
+import { addComma } from '../../utils/addComma';
+import { discountPrice } from '../../utils/discountPrice';
 
 const DetailPage = () => {
   let [productData, setProductData] = useState<IProductData>();
   let [productOption, setProductOption] = useState<IProductOptionDB[]>([
-    { option_name: '선택', inventory: 0 },
+    { idx: null, option_name: '선택', inventory: 0 },
   ]);
   let { id } = useParams();
   useEffect(() => {
@@ -73,7 +76,7 @@ const DetailPage = () => {
               <div className={style.detail_main__table}>
                 <h4>색상</h4>
                 <select>
-                  {productOption.map((item: any) => {
+                  {productOption.map((item: IProductOptionDB) => {
                     return (
                       <option key={item.idx} value={item.option_name}>
                         {item.option_name} ({item.inventory})
@@ -84,16 +87,22 @@ const DetailPage = () => {
               </div>
               <div className={style.detail_main__price_wrap}>
                 <span className={style.detail_main__discount}>
-                  {productData.product_price} 원
+                  {addComma(productData.product_price)} 원
                 </span>
                 <span className={style.detail_main__price}>
-                  {productData.product_price}
+                  {addComma(
+                    discountPrice(
+                      productData.product_price,
+                      productData.product_discount,
+                    ),
+                  )}
                   <span className={style.detail_main__price_degree}>원</span>
                 </span>
               </div>
             </div>
           </div>
         </div>
+        <DetailContent image={productData.image_detail_path} />
       </div>
     </div>
   );

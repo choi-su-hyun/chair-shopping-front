@@ -1,16 +1,4 @@
-// 변수
-$cg-900: #29333d;
-$cg-800: #3d4d5c;
-$cg-700: #52677a;
-$cg-600: #668099;
-$cg-500: #a3b3c2;
-$cg-400: #c2ccd6;
-$primary-dark1: #934b0b;
-$primary: #c2630f;
-$primary-light1: #ee7b17;
-$primary-light3: #f5b175;
-$secondary_light1: #d2c093;
-$red: #eb5757;
+@import '../../../css/index.scss';
 
 .product_item {
   display: grid;

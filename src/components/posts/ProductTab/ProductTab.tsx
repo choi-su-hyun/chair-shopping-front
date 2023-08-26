@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
-import style from '../../css/ProductTab.module.scss';
-import { getProductList, getCategorysProduct } from '../../api/post';
-import { IProductData } from '../../types/product';
-import ProductItem from './ProductItem';
-import useCategoryList from '../../hooks/use-category-list';
-import { ReactComponent as ProductNotExist } from '../../assets/product-not-exist-img.svg';
-import { ICategoryObject } from '../../types/category';
+import style from './ProductTab.module.scss';
+import { getProductList, getCategorysProduct } from '../../../api/post';
+import { IProductData } from '../../../types/product';
+import ProductItem from '../ProductItem/ProductItem';
+import useCategoryList from '../../../hooks/use-category-list';
+import { ReactComponent as ProductNotExist } from '../../../assets/product-not-exist-img.svg';
+import { ICategoryObject } from '../../../types/category';
 // interface test {
 
 // }

@@ -1,9 +1,4 @@
-// 변수
-$cg-800: #3d4d5c;
-$cg-600: #668099;
-$cg-400: #c2ccd6;
-$primary-light1: #ee7b17;
-$primary-dark1: #934b0b;
+@import '../../css/index.scss';
 
 .header {
   display: flex;

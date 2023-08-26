@@ -1,10 +1,10 @@
 import React, { useContext } from 'react';
-import { Context } from '../context/context';
-import { counterProps } from '../App';
-import style from '../css/Main.module.scss';
+import { Context } from '../../context/context';
+import { counterProps } from '../../App';
+import style from './Main.module.scss';
 import { Link } from 'react-router-dom';
-import ProductList from '../components/posts/ProductList';
-import { ReactComponent as ChevronRight } from '../assets/chevron-right.svg';
+import ProductList from '../../components/posts/ProductList';
+import { ReactComponent as ChevronRight } from '../../assets/chevron-right.svg';
 
 type example = (num: number) => void;
 

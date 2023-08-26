@@ -1,19 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../assets/logo-default.png';
-import style from '../css/Header.module.scss';
-import { connect } from 'react-redux';
-import { deleteCookie } from '../utils/cookie';
-import { recieveCookieUserData } from '../redux/userAuth/action';
+import logo from '../../assets/logo-default.png';
+import style from './Header.module.scss';
+import { deleteCookie } from '../../utils/cookie';
 import { useNavigate } from 'react-router-dom';
 
-//svg component
-import { ReactComponent as UserLogin } from '../assets/userLogin.svg';
-import { ReactComponent as UserSignUp } from '../assets/user-sign-up.svg';
-import { ReactComponent as UserCart } from '../assets/user-cart.svg';
-import { ReactComponent as AdminLogout } from '../assets/user-logout.svg';
+import { ReactComponent as AdminLogout } from '../../assets/user-logout.svg';
 
-const HeaderAdmin = (props: any) => {
+const HeaderAdmin = () => {
   let navigate = useNavigate();
   const logoutStart = () => {
     deleteCookie('admin_name');
@@ -49,16 +43,4 @@ const HeaderAdmin = (props: any) => {
   );
 };
 
-const mapStateToProps = (state: any) => {
-  return {
-    user_token: state.userAuth.user_token,
-  };
-};
-const mapDispatchToProps = (dispatch: any) => {
-  return {
-    recieveCookieUserData: () => {
-      recieveCookieUserData();
-    },
-  };
-};
-export default connect(mapStateToProps, mapDispatchToProps)(HeaderAdmin);
+export default HeaderAdmin;

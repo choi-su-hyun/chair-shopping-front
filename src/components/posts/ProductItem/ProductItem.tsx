@@ -1,16 +1,18 @@
 import React from 'react';
-import style from '../../css/ProductItem.module.scss';
+import style from './ProductItem.module.scss';
 import { Link } from 'react-router-dom';
 import { useState } from 'react';
-import { addComma } from '../../utils/addComma';
-import { IProductData } from '../../types/product';
+import { addComma } from '../../../utils/addComma';
+import { IProductData } from '../../../types/product';
+import { discountPrice } from '../../../utils/discountPrice';
 
-import Pagination from '../Pagination';
+import Pagination from '../../Pagination/Pagination';
 
 const ProductItem = ({ item }: { item: IProductData[] }) => {
   const [limit, setLimit] = useState<number>(9);
   const [page, setPage] = useState<number>(1);
   const offset = (page - 1) * limit;
+
   console.log('item 값', item);
   return (
     <div>
@@ -43,7 +45,12 @@ const ProductItem = ({ item }: { item: IProductData[] }) => {
                   </h5>
                   <div className={style.product_item__price_wrap}>
                     <p className={style.product_item__price_number}>
-                      {addComma(items.product_price)}{' '}
+                      {addComma(
+                        discountPrice(
+                          items.product_price,
+                          items.product_discount,
+                        ),
+                      )}{' '}
                       <span className={style.product_item__price_degree}>
                         원
                       </span>

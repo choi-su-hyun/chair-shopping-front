@@ -1,22 +1,23 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import logo from '../assets/logo-default.png';
-import style from '../css/Header.module.scss';
+import logo from '../../assets/logo-default.png';
+import style from './Header.module.scss';
 import { connect } from 'react-redux';
-import { deleteCookie } from '../utils/cookie';
-import { recieveCookieUserData } from '../redux/userAuth/action';
+import { deleteCookie } from '../../utils/cookie';
+import { recieveCookieUserData } from '../../redux/userAuth/action';
 import { useNavigate } from 'react-router-dom';
 
-//svg component
-import { ReactComponent as UserLogin } from '../assets/userLogin.svg';
-import { ReactComponent as UserSignUp } from '../assets/user-sign-up.svg';
-import { ReactComponent as UserCart } from '../assets/user-cart.svg';
-import { ReactComponent as UserLogout } from '../assets/user-logout.svg';
+import { ReactComponent as UserLogin } from '../../assets/userLogin.svg';
+import { ReactComponent as UserSignUp } from '../../assets/user-sign-up.svg';
+import { ReactComponent as UserCart } from '../../assets/user-cart.svg';
+import { ReactComponent as UserLogout } from '../../assets/user-logout.svg';
 
-//component
 import HeaderAdmin from './HeaderAdmin';
+import { IHeaderProps } from '../../types/common';
+import { RootState } from '../../redux/rootReducer';
+import { Dispatch } from 'redux';
 
-const Header = (props: any) => {
+const Header = (props: IHeaderProps) => {
   let navigate = useNavigate();
   const logoutStart = () => {
     deleteCookie('user_name');
@@ -75,13 +76,13 @@ const Header = (props: any) => {
   );
 };
 
-const mapStateToProps = (state: any) => {
+const mapStateToProps = (state: RootState) => {
   return {
     user_token: state.userAuth.user_token,
     admin_token: state.adminAuth.admin_token,
   };
 };
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = () => {
   return {
     recieveCookieUserData: () => {
       recieveCookieUserData();

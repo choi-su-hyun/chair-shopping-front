@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
-import style from '../css/Pagination.module.scss';
+import style from './Pagination.module.scss';
+import { IProductPagination } from '../../types/product';
 
-const Pagination = ({ total, limit, page, setPage }: any) => {
+const Pagination = ({ total, limit, page, setPage }: IProductPagination) => {
   const numPages = Math.ceil(total / limit);
   return (
     <div className={style.pagination}>

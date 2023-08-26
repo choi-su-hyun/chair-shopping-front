@@ -1,8 +1,4 @@
-$primary: #c2630f;
-$cg-700: #52677a;
-$cg-600: #668099;
-$cg-400: #c2ccd6;
-$cg-300: #e1e6eb;
+@import '../../../css/App.scss';
 
 .product_tab {
   display: flex;
@@ -50,7 +46,7 @@ $cg-300: #e1e6eb;
   align-items: center;
   justify-content: center;
   &::after {
-    background: url(../assets/active-tab-img.svg);
+    background: url(../../../assets/active-tab-img.svg);
     content: '';
     height: 18px;
     width: 32px;

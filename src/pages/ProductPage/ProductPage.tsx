@@ -1,7 +1,7 @@
 import React from 'react';
-import ProductList from '../components/posts/ProductList';
-import ProductTab from '../components/posts/ProductTab';
-import style from '../css/ProductPage.module.scss';
+import ProductList from '../../components/posts/ProductList';
+import ProductTab from '../../components/posts/ProductTab/ProductTab';
+import style from './ProductPage.module.scss';
 
 const ProductPage = () => {
   return (

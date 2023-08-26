@@ -1,6 +1,6 @@
 import React from 'react';
-import logoLight from '../assets/logo-light.png';
-import style from '../css/Footer.module.scss';
+import logoLight from '../../assets/logo-light.png';
+import style from './Footer.module.scss';
 
 export default function Footer() {
   return (
