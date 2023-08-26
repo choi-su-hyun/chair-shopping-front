@@ -39,6 +39,7 @@ async function loginAdmin(
     };
     return result;
   } catch (error: unknown) {
+    console.log('error 값', error);
     const customErr = error as CustomError;
     if (customErr.response?.data.message === 'ID_NOTHING') {
       const result = {

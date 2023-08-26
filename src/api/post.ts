@@ -1,4 +1,6 @@
 import { instance, post } from './index';
+import { ICategoryId } from '../types/category';
+import { IProductIdx } from '../types/product';
 
 //상품 리스트 요청
 const getProductList = async () => {
@@ -21,11 +23,11 @@ const getCategorys = async () => {
 };
 
 //특정 카테고리의 상품 리스트 요청
-const getCategorysProduct = async (categoryName: any) => {
+const getCategorysProduct = async (categoryId: ICategoryId) => {
   try {
     const result = await instance.post(
       'post/product-category-data',
-      categoryName,
+      categoryId,
     );
     return result.data.contents;
   } catch (error: any) {
@@ -40,7 +42,7 @@ const getCategorysProduct = async (categoryName: any) => {
 };
 
 //상세페이지 정보 요청
-const getProductDetail = async (productIdx: any) => {
+const getProductDetail = async (productIdx: IProductIdx) => {
   try {
     const result = await instance.post(
       'post/product-detail-data-process',
@@ -60,7 +62,7 @@ const getProductDetail = async (productIdx: any) => {
 };
 
 //상세페이지 옵션 리스트 요청
-const getProductOption = async (productIdx: any) => {
+const getProductOption = async (productIdx: IProductIdx) => {
   try {
     const result = await instance.post('post/product-option-list', productIdx);
     return result.data.contents;
