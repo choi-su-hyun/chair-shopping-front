@@ -1,4 +1,4 @@
-import { instance } from './index';
+import { instance, post } from './index';
 import { ISignupData } from '../types/user';
 import { ILoginData, ILoginAxiosResult } from '../types/user';
 

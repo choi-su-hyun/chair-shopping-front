@@ -1,5 +1,4 @@
 import React from 'react';
-import ProductList from '../../components/posts/ProductList';
 import ProductTab from '../../components/posts/ProductTab/ProductTab';
 import style from './ProductPage.module.scss';
 

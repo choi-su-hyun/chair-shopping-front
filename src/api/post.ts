@@ -71,10 +71,16 @@ const getProductOption = async (productIdx: IProductIdx) => {
   }
 };
 
+//카트에 담기 api
+async function insertToCart(cartData: any) {
+  return await post.post('post-auth/insert-to-cart-process', cartData);
+}
+
 export {
   getProductList,
   getCategorys,
   getCategorysProduct,
   getProductDetail,
   getProductOption,
+  insertToCart,
 };
