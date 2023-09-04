@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { registerUser } from '../../api/user';
 import { ISignupData } from '../../types/user';
+import { useNavigate } from 'react-router-dom';
+import { checkEmail, checkPhoneNum } from '../../utils/textChecker';
 
 const SignupForm = () => {
   const [userId, setUserId] = useState<string>('');
@@ -8,6 +10,7 @@ const SignupForm = () => {
   const [name, setName] = useState<string>('');
   const [email, setEmail] = useState<string>('');
   const [phone, setPhone] = useState<string>('');
+  const navigate = useNavigate();
 
   const onUserIdHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserId(e.target.value);
@@ -19,10 +22,20 @@ const SignupForm = () => {
     setName(e.target.value);
   };
   const onEmailHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setEmail(e.target.value);
+    if (checkEmail(e.target.value)) {
+      setEmail(e.target.value);
+      // console.log('올바름');
+    } else {
+      // console.log('올바르지 않음');
+    }
   };
   const onPhoneHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setPhone(e.target.value);
+    if (checkPhoneNum(e.target.value)) {
+      setPhone(e.target.value);
+      // console.log('올바름');
+    } else {
+      // console.log('올바르지 않음');
+    }
   };
   const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -37,6 +50,7 @@ const SignupForm = () => {
     };
     console.log(userData);
     registerUser(userData);
+    navigate('/login');
   };
 
   return (
@@ -54,6 +68,7 @@ const SignupForm = () => {
                 type="text"
                 onChange={onUserIdHandler}
                 placeholder="아이디를 입력해주세요"
+                required
               />
             </div>
             <div className="input-wrap--has-label">
@@ -62,6 +77,7 @@ const SignupForm = () => {
                 type="password"
                 onChange={onPasswordHandler}
                 placeholder="비밀번호를 입력해주세요"
+                required
               />
             </div>
             <div className="input-wrap--has-label">
@@ -70,6 +86,7 @@ const SignupForm = () => {
                 type="password"
                 onChange={onPasswordHandler}
                 placeholder="비밀번호 확인란입니다"
+                required
               />
             </div>
           </div>
@@ -87,6 +104,7 @@ const SignupForm = () => {
                 type="text"
                 onChange={onNameHandler}
                 placeholder="이름을 입력해주세요"
+                required
               />
             </div>
             <div className="input-wrap--has-label">
@@ -95,6 +113,7 @@ const SignupForm = () => {
                 type="email"
                 onChange={onEmailHandler}
                 placeholder="이메일을 입력해주세요"
+                required
               />
             </div>
             <div className="input-wrap--has-label">
@@ -103,6 +122,7 @@ const SignupForm = () => {
                 type="text"
                 onChange={onPhoneHandler}
                 placeholder="'-'를 제외한 전화번호를 입력해주세요"
+                required
               />
             </div>
           </div>
