@@ -3,8 +3,6 @@ import { Link } from 'react-router-dom';
 import logo from '../../assets/logo-default.png';
 import style from './Header.module.scss';
 import { connect } from 'react-redux';
-import { deleteCookie } from '../../utils/cookie';
-import { recieveCookieUserData } from '../../redux/userAuth/action';
 import { useNavigate } from 'react-router-dom';
 
 import { ReactComponent as UserLogin } from '../../assets/userLogin.svg';
@@ -16,13 +14,20 @@ import HeaderAdmin from './HeaderAdmin';
 import { IHeaderProps } from '../../types/common';
 import { RootState } from '../../redux/rootReducer';
 import { Dispatch } from 'redux';
+import { ThunkDispatch } from 'redux-thunk';
+import { AnyAction } from 'redux';
+import { recieveCookieUserData } from '../../redux/userAuth/action';
+import { removeCookie } from '../../utils/reactCookie';
 
 const Header = (props: IHeaderProps) => {
   let navigate = useNavigate();
+
   const logoutStart = () => {
-    deleteCookie('user_name');
-    deleteCookie('user_token');
-    window.location.href = '/';
+    removeCookie('user_name', { path: '/' });
+    removeCookie('user_token', { path: '/' });
+    props.recieveCookieUserData();
+    navigate('/');
+    // window.location.href = '/';
   };
   return (
     <header>
@@ -39,7 +44,7 @@ const Header = (props: IHeaderProps) => {
                 <Link to="/" className="general-btn--text">
                   홈
                 </Link>
-                <Link to="/main" className="general-btn--text">
+                <Link to="/abcd/ab" className="general-btn--text">
                   회사소개
                 </Link>
                 <Link to="/product" className="general-btn--text">
@@ -82,10 +87,12 @@ const mapStateToProps = (state: RootState) => {
     admin_token: state.adminAuth.admin_token,
   };
 };
-const mapDispatchToProps = () => {
+const mapDispatchToProps = (
+  dispatch: ThunkDispatch<RootState, undefined, AnyAction>,
+) => {
   return {
     recieveCookieUserData: () => {
-      recieveCookieUserData();
+      dispatch(recieveCookieUserData());
     },
   };
 };

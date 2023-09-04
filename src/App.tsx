@@ -42,7 +42,13 @@ function App(props: any) {
   useEffect(() => {
     props.recieveCookieUserData();
     props.recieveCookieAdminData();
-  });
+    // const testData2 = testGetCookie('user_name');
+    // console.log('testData2', testData2);
+    // const testData = getCookie('test_name');
+    // console.log('testData', testData);
+    // const testData3 = getCookie('user_name');
+    // console.log('testData3', testData3);
+  }, []);
   return (
     <div className="App">
       <BrowserRouter>

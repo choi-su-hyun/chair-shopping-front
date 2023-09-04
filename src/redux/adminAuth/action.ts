@@ -1,7 +1,7 @@
 import { SAVE_ADMIN_STATUS } from './type';
 
 import { loginAdmin } from '../../api/admin';
-import { setCookie, getCookie } from '../../utils/cookie';
+import { setCookie, getCookie } from '../../utils/reactCookie';
 import { ThunkDispatch } from 'redux-thunk';
 import { AnyAction } from 'redux';
 import { RootState } from '../../redux/rootReducer';
@@ -11,7 +11,6 @@ import {
   IAdminLoginData,
 } from '../../types/administrator';
 
-//action
 const saveAdminData = (adminLoginData: IAdminInitState) => {
   return {
     type: SAVE_ADMIN_STATUS,
@@ -22,16 +21,24 @@ const saveAdminData = (adminLoginData: IAdminInitState) => {
 export const fetchAdminData = (administratorData: IAdminLoginData) => {
   return async (dispatch: ThunkDispatch<RootState, undefined, AnyAction>) => {
     const result: IAdminLoginAxiosResult = await loginAdmin(administratorData);
-    // console.log('result 값', result);
-    // console.log('result.message 값', result.message);
+    console.log('result 값', result);
+    console.log('result.message 값', result.message);
     if (result.successStatus) {
       const adminLoginData = {
         admin_id: result.loginResponsedData?.data.adminId,
         admin_token: result.loginResponsedData?.data.token,
         admin_message: result.loginResponsedData?.data.message,
       };
-      setCookie('admin_nickname', adminLoginData.admin_id);
-      setCookie('admin_token', adminLoginData.admin_token);
+      var date = new Date();
+      date.setMinutes(date.getMinutes() + 60);
+      setCookie('admin_nickname', adminLoginData.admin_id, {
+        path: '/',
+        expires: date,
+      });
+      setCookie('admin_token', adminLoginData.admin_token, {
+        path: '/',
+        expires: date,
+      });
       dispatch(saveAdminData(adminLoginData));
     } else {
       const adminLoginData: IAdminInitState = {
@@ -47,8 +54,8 @@ export const fetchAdminData = (administratorData: IAdminLoginData) => {
 export const recieveCookieAdminData = () => {
   return async (dispatch: ThunkDispatch<RootState, undefined, AnyAction>) => {
     const cookieData: IAdminInitState = {
-      admin_id: getCookie('admin_nickname'),
-      admin_token: getCookie('admin_token'),
+      admin_id: getCookie('admin_nickname') || '',
+      admin_token: getCookie('admin_token') || '',
       admin_message: '',
     };
     dispatch(saveAdminData(cookieData));

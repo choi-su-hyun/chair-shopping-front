@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { ILoginData, IStateAndDispatchInProps } from '../../types/user';
 import { connect } from 'react-redux';
 import { fetchUserData } from '../../redux/userAuth/action';
@@ -6,6 +6,9 @@ import { ThunkDispatch } from 'redux-thunk';
 import { RootState } from '../../redux/rootReducer';
 import { AnyAction } from 'redux';
 import { Matching } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useCookies } from 'react-cookie';
+import { setCookie as testSetCookie } from '../../utils/cookie';
 
 // type IMapDispatchToProps = ReturnType<typeof mapDispatchToProps>;
 // type CombinedProps = Matching<IMapDispatchToProps, IStateAndDispatchInProps>;
@@ -13,6 +16,9 @@ import { Matching } from 'react-redux';
 const LoginForm = (props: IStateAndDispatchInProps) => {
   const [userId, setUserId] = useState<string>('');
   const [password, setPassword] = useState<string>('');
+  const navigate = useNavigate();
+  const [cookies, setCookie] = useCookies(['test_name']);
+  const [cookies2, setCookie2] = useCookies(['user_name']);
 
   const onUserIdHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserId(e.target.value);
@@ -21,16 +27,16 @@ const LoginForm = (props: IStateAndDispatchInProps) => {
     setPassword(e.target.value);
   };
 
-  const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     const userData: ILoginData = {
       user_id: userId,
       user_password: password,
     };
-    props.fetchUserData(userData);
+    await props.fetchUserData(userData);
+    navigate('/');
   };
-  console.log('props 값', props);
 
   return (
     <div>

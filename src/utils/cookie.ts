@@ -6,8 +6,11 @@
 // 	document.cookie = `todo_id=${value}`;
 // }
 type cookieOptionType = {
-  [key: string]: string | number;
+  [key: string]: string | number | boolean | undefined | any;
+  path?: string;
   expires?: any;
+  secure?: boolean;
+  httpOnly?: boolean;
 };
 
 function setCookie(
@@ -17,9 +20,10 @@ function setCookie(
 ) {
   options = {
     path: '/', // 경로 지정
+    // httpOnly: true,
     ...options, // 아규먼트로 옵션을 넘겨줬을경우 전개연산자로 추가 갱신
   };
-
+  console.log('name', name, 'options', options);
   if (options.expires instanceof Date) {
     options.expires = options.expires.toUTCString(); // 생 Date 객체라면 형식에 맞게 인코딩
   }
@@ -32,8 +36,12 @@ function setCookie(
     let optionValue = options[optionKey];
     if (!optionValue) {
       // 밸류가 없다면
-      updatedCookie += '=' + optionValue;
+      updatedCookie += '=' + '';
+      continue;
     }
+    updatedCookie += '=' + optionValue;
+    console.log('optionKey', optionKey);
+    console.log('updatedCookie', updatedCookie);
     // if (optionValue !== true) {
     //   // 밸류가 없다면
     //   updatedCookie += '=' + optionValue;
@@ -41,6 +49,12 @@ function setCookie(
   }
 
   document.cookie = updatedCookie; // 새로 갱신
+
+  // //쿠키 생성
+  // if (!document.cookie) {
+  //   setCookie('expires', date.toUTCString());
+  //   console.log('new Cookie created !');
+  // }
 }
 
 function getCookie(name: string) {
@@ -57,6 +71,7 @@ function getCookie(name: string) {
 function deleteCookie(name: string) {
   // 해당 쿠키 요소만 삭제
   setCookie(name, '', {
+    path: '/',
     'max-age': -1,
   });
 }
