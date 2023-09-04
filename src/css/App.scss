@@ -84,10 +84,23 @@ code {
   border-radius: 6px;
   padding: 8px;
   cursor: pointer;
-}
-.cta-btn--block.admin {
-  background-color: $secondary-dark1;
-  color: white;
+  &.have-icon {
+    display: flex;
+    gap: 12px;
+    padding: 16px 24px;
+    align-items: center;
+    font: {
+      weight: 700;
+    }
+    svg {
+      width: 20px;
+      height: 20px;
+    }
+  }
+  &.admin {
+    background-color: $secondary-dark1;
+    color: white;
+  }
 }
 .block-btn.admin {
   font-size: 18px;
@@ -111,33 +124,35 @@ code {
 }
 
 // 제목 및 글 폰트 설정
-.page-content__title {
-  font: {
-    size: 32px;
-    weight: 700;
+.page-content {
+  &__title {
+    font: {
+      size: 32px;
+      weight: 700;
+    }
+    color: $cg-900;
+    text-align: center;
+    &--sm {
+      font: {
+        size: 24px;
+        weight: 700;
+      }
+      color: $cg-800;
+    }
   }
-  color: $cg-900;
-  text-align: center;
-  &--sm {
+  &____paragraph {
+    font: {
+      size: 18px;
+      weight: 400;
+    }
+    color: $cg-700;
+    text-align: center;
+  }
+  &__sub-title {
     font: {
       size: 24px;
       weight: 700;
     }
-    color: $cg-800;
-  }
-}
-.page-content__paragraph {
-  font: {
-    size: 18px;
-    weight: 400;
-  }
-  color: $cg-700;
-  text-align: center;
-}
-.page-content__sub-title {
-  font: {
-    size: 24px;
-    weight: 700;
   }
 }
 
