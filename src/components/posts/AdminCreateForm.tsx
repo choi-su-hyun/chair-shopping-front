@@ -1,7 +1,6 @@
 import React, { useState, useEffect, ReactEventHandler, useRef } from 'react';
 import { createProduct } from '../../api/admin';
 import { addComma } from '../../utils/addComma';
-
 import { ReactComponent as CloseBtn } from '../../assets/close-btn.svg';
 import useCategoryList from '../../hooks/use-category-list';
 import { IProductOptionData } from '../../types/product';
@@ -58,6 +57,7 @@ const AdminCreateForm = () => {
     setOption(list);
     // console.log(option);
   };
+
   const activeEnterFirstInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       e.preventDefault();

@@ -58,7 +58,7 @@ export const recieveCookieUserData = () => {
       user_token: getCookie('user_token') || '',
       user_message: '',
     };
-    console.log('쿠키 값 나왔는지 확인', loginHasTokenData);
+    // console.log('쿠키 값 나왔는지 확인', loginHasTokenData);
 
     dispatch(changeUserData(loginHasTokenData));
   };

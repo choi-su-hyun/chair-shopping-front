@@ -13,7 +13,7 @@ const ProductItem = ({ item }: { item: IProductData[] }) => {
   const [page, setPage] = useState<number>(1);
   const offset = (page - 1) * limit;
 
-  console.log('item 값', item);
+  // console.log('item 값', item);
   return (
     <div>
       <div className={style.product_item}>
