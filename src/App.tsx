@@ -7,6 +7,8 @@ import store from './redux/store';
 import { connect } from 'react-redux';
 import { recieveCookieUserData } from './redux/userAuth/action';
 import { recieveCookieAdminData } from './redux/adminAuth/action';
+import { useSelector } from 'react-redux';
+import { RootState } from './redux/rootReducer';
 
 // Component
 import Header from './components/Header/Header';
@@ -25,6 +27,8 @@ import AdminCreate from './pages/AdminCreate';
 import NotFound from './pages/NotFound';
 import ProductPage from './pages/ProductPage/ProductPage';
 import DetailPage from './pages/DetailPage/DetailPage';
+import CartPage from './pages/CartPage/CartPage';
+import AlertPopup from './components/AlertPopup/AlertPopup';
 
 export interface counterProps {
   increase: (num: number) => void;
@@ -39,6 +43,9 @@ function App(props: any) {
   const increaseHandler = (num: number) => {
     setIsCounter((current: number) => current + num);
   };
+  const popupController = useSelector(
+    (state: RootState) => state.popup.popupController,
+  );
   useEffect(() => {
     props.recieveCookieUserData();
     props.recieveCookieAdminData();
@@ -63,6 +70,7 @@ function App(props: any) {
             <Route path="/signup" element={<SignUp />}></Route>
             <Route path="/product" element={<ProductPage />}></Route>
             <Route path="/product/:id" element={<DetailPage />}></Route>
+            <Route path="/cart" element={<CartPage />}></Route>
             <Route path="/*" element={<NotFound />}></Route>
 
             {/* 관리자 페이지 */}
@@ -72,6 +80,7 @@ function App(props: any) {
           </Routes>
         </Provider>
         <Footer />
+        {popupController && <AlertPopup />}
       </BrowserRouter>
     </div>
   );
