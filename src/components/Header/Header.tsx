@@ -64,7 +64,7 @@ const Header = (props: IHeaderProps) => {
               )}
               {props.user_token && (
                 <div className={style.nav__auth}>
-                  <Link to="/login" className="round-btn">
+                  <Link to="/cart" className="round-btn">
                     <UserCart />
                   </Link>
                   <div className={style.divider}>|</div>

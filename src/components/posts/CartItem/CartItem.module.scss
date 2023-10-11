@@ -1,0 +1,114 @@
+@import '../../../css/index.scss';
+
+.cart-table {
+  &__header {
+    background-color: $primary-light3;
+    display: grid;
+    grid-template-columns: 20px 1fr 180px 120px 120px;
+    gap: 32px;
+    padding: 16px;
+    border-radius: 6px;
+    h2 {
+      font: {
+        size: 18px;
+      }
+      text-align: center;
+      color: $cg-900;
+    }
+  }
+  &__content {
+    display: grid;
+    grid-template-columns: 20px 1fr 180px 120px 120px;
+    gap: 32px;
+    padding: 40px 16px;
+    align-items: center;
+    justify-content: center;
+    border-bottom: 2px solid $secondary;
+    img {
+      width: 168px;
+      height: 168px;
+      border-radius: 8px;
+      object-fit: cover;
+    }
+  }
+  &__product-info {
+    display: flex;
+    gap: 32px;
+    align-items: center;
+    h4 {
+      font-size: 18px;
+      color: $cg-800;
+      margin-top: 8px;
+    }
+  }
+  &__remain-part {
+    display: flex;
+    justify-content: center;
+  }
+  &__option-and-qty {
+    color: $cg-700;
+    span {
+      font: {
+        size: 16px;
+        weight: 700;
+      }
+    }
+  }
+  &__price {
+    font: {
+      size: 18px;
+      weight: 700;
+    }
+    color: $primary;
+    &-wrap {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 16px;
+      margin-top: 8px;
+    }
+    &-degree {
+      font: {
+        size: 16px;
+        weight: 400;
+      }
+      color: $primary-light3;
+      margin-left: 4px;
+    }
+    &.product-price {
+      font: {
+        size: 20px;
+      }
+    }
+  }
+  &__first-cost {
+    font: {
+      size: 14px;
+      weight: 700;
+    }
+    color: $cg-500;
+    text-decoration: line-through;
+    &-degree {
+      font: {
+        size: 14px;
+        weight: 400;
+      }
+      margin-left: 4px;
+    }
+  }
+  &__delivery-cost {
+    font: {
+      size: 20px;
+      weight: 700;
+    }
+    color: $cg-600;
+    &-degree {
+      font: {
+        size: 16px;
+        weight: 400;
+      }
+      color: $cg-500;
+      margin-left: 4px;
+    }
+  }
+}
