@@ -1,0 +1,60 @@
+@import '../../css/index.scss';
+
+.popup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  width: 100%;
+  height: 100vh;
+  z-index: 5;
+  &__back {
+    background-color: rgba(0, 0, 0, 0.25);
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+  }
+  &__content-wrap {
+    position: relative;
+    z-index: 2;
+    background-color: white;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0px 8px 24px 0px rgba(0, 0, 0, 0.25);
+  }
+  &__content {
+    padding: 40px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    h3 {
+      font-size: 24px;
+      color: $cg-800;
+    }
+    p {
+      font-size: 16px;
+      color: $cg-600;
+      margin-top: 16px;
+    }
+  }
+  &__btn-wrap {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 24px;
+    gap: 40px;
+    button {
+      flex: 1 1 40%;
+    }
+  }
+}
+.popup-block-scroll {
+  overflow: hidden;
+}

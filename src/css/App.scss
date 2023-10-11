@@ -49,6 +49,10 @@ code {
   border: none;
   background-color: transparent;
   cursor: pointer;
+  &.block-btn {
+    background-color: $secondary-light2;
+    border-radius: 6px;
+  }
 }
 
 .general-btn--right-pictogram {
@@ -100,6 +104,16 @@ code {
   &.admin {
     background-color: $secondary-dark1;
     color: white;
+  }
+}
+.cta-btn {
+  &--open-size {
+    background-color: $primary-light1;
+    color: $cg-900;
+    font-size: 18px;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
   }
 }
 .block-btn.admin {
