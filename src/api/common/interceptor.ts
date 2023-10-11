@@ -4,7 +4,7 @@ import {
   AxiosRequestConfig,
   AxiosResponse,
 } from 'axios';
-import { getCookie } from '../../utils/cookie';
+import { getCookie } from '../../utils/reactCookie';
 
 export function setInterceptor(instance: AxiosInstance): AxiosInstance {
   // 요청 인터셉터 추가하기
