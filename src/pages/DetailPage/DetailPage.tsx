@@ -13,9 +13,9 @@ import useInsertCart from '../../hooks/insert-to-cart';
 const DetailPage = () => {
   let [productData, setProductData] = useState<IProductData>();
   let [productOption, setProductOption] = useState<IProductOptionDB[]>([
-    { idx: null, option_name: '선택', inventory: 0 },
+    { idx: 0, option_name: '선택', inventory: 0 },
   ]);
-  const [selectedOption, setSelectedOption] = useState<string>('');
+  const [selectedOption, setSelectedOption] = useState<number>(0);
   const [quantity, setQuantity] = useState<number>(1);
   const { insertProduct, noticeOptionState } = useInsertCart(
     productData,
@@ -25,7 +25,7 @@ const DetailPage = () => {
   let { id } = useParams();
 
   const selectedOptionHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    setSelectedOption(e.target.value);
+    setSelectedOption(parseInt(e.target.value));
   };
   const quantityHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     console.log(e.target.value);
@@ -100,10 +100,10 @@ const DetailPage = () => {
                   onChange={selectedOptionHandler}
                   className={style['detail-main__select-bar']}
                 >
-                  <option value="">옵션을 선택하세요</option>
+                  <option value="0">옵션을 선택하세요</option>
                   {productOption.map((item: IProductOptionDB) => {
                     return (
-                      <option key={item.idx} value={item.option_name}>
+                      <option key={item.idx} value={item.idx}>
                         {item.option_name} ({item.inventory})
                       </option>
                     );
