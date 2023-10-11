@@ -71,9 +71,31 @@ const getProductOption = async (productIdx: IProductIdx) => {
   }
 };
 
-//카트에 담기 api
+//장바구니에 담기 api
 async function insertToCart(cartData: any) {
   return await post.post('post-auth/insert-to-cart-process', cartData);
+}
+
+//장바구니 내용 가져오기
+async function getCartList() {
+  return await post.get('post-auth/get-cart-list-process');
+}
+
+//장바구니의 특정 상품 수량 추가하기
+async function increasCartInventory(productId: IProductIdx) {
+  return await post.post('post-auth/increase-cart-inventory', productId);
+}
+
+//장바구니 비우기 요청
+async function deleteCart() {
+  return await post.delete('post-auth/delete-cart');
+}
+
+//선택한 장바구니 비우기 요청
+async function deleteSelectedCart(selectedData: Array<string>) {
+  return await post.delete('post-auth/delete-selected-cart', {
+    data: { selectedData: selectedData },
+  });
 }
 
 export {
@@ -83,4 +105,8 @@ export {
   getProductDetail,
   getProductOption,
   insertToCart,
+  getCartList,
+  increasCartInventory,
+  deleteCart,
+  deleteSelectedCart,
 };
