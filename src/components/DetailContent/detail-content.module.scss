@@ -2,6 +2,15 @@
 
 .detail-content {
   height: auto;
+  &__title {
+    font-size: 20px;
+    color: $cg-700;
+    margin-top: 80px;
+    margin-bottom: 40px;
+    text-align: center;
+    padding: 8px;
+    border-bottom: 1px solid $secondary-light1;
+  }
 }
 .detail-tab {
   // position: -webkit-sticky;
@@ -12,6 +21,7 @@
   border-bottom: 2px solid $secondary-light1;
   margin-top: 120px;
   margin-bottom: 16px;
+  z-index: 10;
   button {
     color: $primary-light3;
     font: {
