@@ -5,12 +5,17 @@ import { IcartData } from '../../types/product';
 import cartEmpty from '../../assets/cart-empty-img.png';
 import { Link } from 'react-router-dom';
 import CartItem from '../../components/posts/CartItem/CartItem';
+import { useQuery } from 'react-query';
 
 const CartPage = () => {
   const [cartData, setCartData] = useState<IcartData[]>();
   const [receivedSelectedData, setReceivedSelectedData] = useState<
     Array<string>
   >([]);
+  // const { data } = useQuery({
+  //   queryKey: ['get-test'],
+  //   queryFn: () => getCartList().then((response) => response),
+  // });
   const doGetCartList = () => {
     getCartList()
       .then((response) => {
@@ -33,6 +38,7 @@ const CartPage = () => {
     doGetCartList();
   };
 
+  // console.log('data', data);
   useEffect(() => {
     doGetCartList();
   }, []);
