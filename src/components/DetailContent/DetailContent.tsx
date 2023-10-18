@@ -1,6 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import style from './detail-content.module.scss';
 import useIntersectionObserver from '../../hooks/intersection-observer';
+import ReviewItem from '../../components/posts/ReviewItem/ReviewItem';
+import ReviewCreate from '../posts/ReviewCreate/ReviewCreate';
 
 const DetailContent = ({ image }: { image: string }) => {
   const productInfoRef = useRef<HTMLDivElement>(null);
@@ -61,17 +63,16 @@ const DetailContent = ({ image }: { image: string }) => {
             alt=""
             height={1200}
           />
-          새로운 글
         </div>
         <div
           ref={productReviewRef}
           // ref={(el) => (tabRef.current[1] = el)}
           id="contents-2"
-          style={{ height: '800px' }}
         >
-          두번째 글
+          <h3 className={style['detail-content__title']}>상품 리뷰</h3>
+          <ReviewCreate />
+          <ReviewItem />
         </div>
-        <div id="test">세번째 글</div>
       </div>
     </div>
   );

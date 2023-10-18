@@ -1,0 +1,73 @@
+@import '../../../css/index.scss';
+
+.review-form {
+  position: relative;
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 840px;
+}
+.star {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  &--off {
+    fill: $cg-400;
+  }
+  &--on {
+    fill: $primary-light1;
+  }
+}
+.notice {
+  &-text {
+    display: block;
+    color: $red;
+    margin-top: 16px;
+  }
+  &--off {
+    display: none;
+  }
+  &--on {
+    display: block;
+  }
+}
+.review-result {
+  &--on {
+    display: flex;
+    position: absolute;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    width: 320px;
+    // height: 64px;
+    top: 50%;
+    left: 50%;
+    // margin-top: -50%;
+    // margin-left: -50%;
+    transform: translate(-50%, -50%);
+    background-color: white;
+    box-shadow: 0px 4px 24px 0px rgba(0, 0, 0, 0.15);
+    padding: 24px;
+    border-radius: 4px;
+    animation: appear-for-3seconds 3s forwards;
+    span {
+      font-size: 16px;
+      color: $cg-700;
+    }
+  }
+  &--off {
+    display: none;
+  }
+  &.result-on {
+  }
+}
+
+@keyframes appear-for-3seconds {
+  from {
+    opacity: 100;
+  }
+  to {
+    opacity: 0;
+  }
+}

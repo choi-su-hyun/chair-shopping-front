@@ -98,6 +98,18 @@ async function deleteSelectedCart(selectedData: Array<string>) {
   });
 }
 
+//리뷰 리스트 요청
+async function getReviewList(productData?: { productId: string }) {
+  return await instance.get('post/get-review-list-process', {
+    params: productData,
+  });
+}
+
+//사용자별 리뷰 작성 요청
+async function createReview(reviewData: any) {
+  return await post.post('post-auth/create-review-process', reviewData);
+}
+
 export {
   getProductList,
   getCategorys,
@@ -109,4 +121,6 @@ export {
   increasCartInventory,
   deleteCart,
   deleteSelectedCart,
+  getReviewList,
+  createReview,
 };

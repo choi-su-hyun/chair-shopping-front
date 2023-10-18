@@ -1,0 +1,64 @@
+@import '../../../css/index.scss';
+
+.review {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  padding: 16px 24px;
+  border-top: 1px solid $cg-400;
+}
+.info-wrap {
+  display: flex;
+  justify-content: space-between;
+  &__title-and-user {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+    font-size: 16px;
+    color: $cg-500;
+    h4 {
+      font-size: 18px;
+      color: $cg-800;
+    }
+    span {
+      font-size: 14px;
+      color: $cg-600;
+    }
+  }
+  &__date-wrap {
+    span {
+      font-size: 14px;
+      color: $cg-500;
+    }
+  }
+}
+.text-content-wrap {
+  width: 100%;
+  p {
+    font-size: 16px;
+    color: $cg-600;
+    margin-top: 16px;
+  }
+}
+.image-wrap {
+  img {
+    width: 160px;
+    height: 120px;
+    border-radius: 6px;
+    object-fit: cover;
+  }
+}
+.star {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  &-wrap {
+    margin-top: 24px;
+  }
+  &--off {
+    fill: $cg-400;
+  }
+  &--on {
+    fill: $primary-light1;
+  }
+}
