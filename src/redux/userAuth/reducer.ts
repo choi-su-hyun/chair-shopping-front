@@ -8,6 +8,7 @@ import {
 const initialState: ILoginInitState = {
   user_name: '',
   user_token: '',
+  user_refreshToken: '',
   user_message: '',
 };
 const userAuthReducer = (state = initialState, action: ILoginAction) => {
@@ -18,6 +19,7 @@ const userAuthReducer = (state = initialState, action: ILoginAction) => {
         ...state,
         user_name: action.payload.user_name,
         user_token: action.payload.user_token,
+        user_refreshToken: action.payload.user_refreshToken,
         user_message: action.payload.user_message,
       };
     default:

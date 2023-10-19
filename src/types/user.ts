@@ -15,6 +15,7 @@ interface ILoginAction {
 interface ILoginInitState {
   user_name: string | undefined;
   user_token: string | undefined;
+  user_refreshToken: string | undefined;
   user_message: string | undefined;
 }
 interface ILoginAxiosResult {

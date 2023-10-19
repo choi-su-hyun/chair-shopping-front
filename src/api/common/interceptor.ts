@@ -13,7 +13,11 @@ export function setInterceptor(instance: AxiosInstance): AxiosInstance {
       // 요청이 전달되기 전에 작업 수행
       // console.log(config);
       const tokenValue = getCookie('user_token');
+      const refreshTokenValue = getCookie('user_refreshToken');
       config.headers.authorization = tokenValue;
+      config.headers.refresh = refreshTokenValue;
+
+      console.log();
       return config;
     },
     function (error: AxiosError) {

@@ -7,8 +7,8 @@ import { RootState } from '../../redux/rootReducer';
 import { AnyAction } from 'redux';
 import { Matching } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { useCookies } from 'react-cookie';
-import { setCookie as testSetCookie } from '../../utils/cookie';
+// import { useCookies } from 'react-cookie';
+// import { setCookie as testSetCookie } from '../../utils/cookie';
 
 // type IMapDispatchToProps = ReturnType<typeof mapDispatchToProps>;
 // type CombinedProps = Matching<IMapDispatchToProps, IStateAndDispatchInProps>;
@@ -17,8 +17,8 @@ const LoginForm = (props: IStateAndDispatchInProps) => {
   const [userId, setUserId] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const navigate = useNavigate();
-  const [cookies, setCookie] = useCookies(['test_name']);
-  const [cookies2, setCookie2] = useCookies(['user_name']);
+  // const [cookies, setCookie] = useCookies(['test_name']);
+  // const [cookies2, setCookie2] = useCookies(['user_name']);
 
   const onUserIdHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setUserId(e.target.value);
