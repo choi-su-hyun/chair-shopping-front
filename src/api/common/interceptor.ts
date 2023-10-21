@@ -4,6 +4,7 @@ import {
   AxiosRequestConfig,
   AxiosResponse,
 } from 'axios';
+import axios from 'axios';
 import { getCookie, setCookie, removeCookie } from '../../utils/reactCookie';
 
 export function setInterceptor(instance: AxiosInstance): AxiosInstance {
@@ -34,17 +35,22 @@ export function setInterceptor(instance: AxiosInstance): AxiosInstance {
 
       return response;
     },
-    function (error: AxiosError) {
+    async function (error: AxiosError) {
       // 2xx 외의 범위에 있는 상태 코드는 이 함수를 트리거 합니다.
       // 응답 오류가 있는 작업 수행
-      const originalConfig = error.config;
+      const originalRequest = error.config;
       const data: any = error.response?.data;
-      console.log('data', data);
       const status = error.response?.status;
+      const guideReLogin = () => {
+        window.location.href = '/login';
+        removeCookie('user_name', { path: '/' });
+        removeCookie('user_token', { path: '/' });
+        removeCookie('user_refreshToken', { path: '/' });
+      };
 
       if (status == 401) {
         if (data.message == 'expired token') {
-          instance
+          await instance
             .post(
               '/refresh',
               {},
@@ -55,7 +61,7 @@ export function setInterceptor(instance: AxiosInstance): AxiosInstance {
                 },
               },
             )
-            .then((response) => {
+            .then(async (response) => {
               console.log(
                 '인터셉터의 에러 발생 후 토큰 확인을 위한 response',
                 response,
@@ -74,21 +80,36 @@ export function setInterceptor(instance: AxiosInstance): AxiosInstance {
                   expires: dateForRefresh,
                 },
               );
-              window.location.reload();
+              if (originalRequest !== undefined && originalRequest !== null) {
+                originalRequest.headers['authorization'] =
+                  response.data.contents.accessToken;
+                originalRequest.headers['refresh'] =
+                  response.data.contents.refreshToken;
+
+                // return await axios(originalRequest);
+              }
+              // return Promise.resolve();
+              // window.location.reload();
             })
             .catch((error) => {
               console.log('interceptor error', error);
+              guideReLogin();
             });
+          if (originalRequest !== undefined && originalRequest !== null) {
+            return await axios(originalRequest);
+          }
+          // if (originalRequest != undefined) {
+          //   return axios(originalRequest).then((res) =>
+          //     console.log('재발급된 토큰을 전달한 api의 response 값 확인', res),
+          //   );
+          // }
         } else if (
-          data.message == 'All token is not include' ||
+          // data.message == 'All token is not include' ||
           data.message == 'Expired/invalid all token' ||
           data.message == 'token is not included' ||
           data.message == 'invalid token'
         ) {
-          window.location.href = '/login';
-          removeCookie('user_name', { path: '/' });
-          removeCookie('user_token', { path: '/' });
-          removeCookie('user_refreshToken', { path: '/' });
+          guideReLogin();
         } else if (data.message == 'Access token is valid') {
           window.location.reload();
         }
