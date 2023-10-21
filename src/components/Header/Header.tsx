@@ -25,6 +25,7 @@ const Header = (props: IHeaderProps) => {
   const logoutStart = () => {
     removeCookie('user_name', { path: '/' });
     removeCookie('user_token', { path: '/' });
+    removeCookie('user_refreshToken', { path: '/' });
     props.recieveCookieUserData();
     navigate('/');
     // window.location.href = '/';
