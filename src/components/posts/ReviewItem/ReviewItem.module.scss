@@ -62,3 +62,19 @@
     fill: $primary-light1;
   }
 }
+.review-bottom-wrap {
+  margin-top: 24px;
+  display: flex;
+  justify-content: space-between;
+  button {
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+    &:hover .review-edit-btn {
+      fill: $primary-light1;
+    }
+  }
+}
+.review-edit-btn {
+  fill: $cg-400;
+}

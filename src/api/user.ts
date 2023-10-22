@@ -47,4 +47,9 @@ async function loginUser(userData: ILoginData): Promise<ILoginAxiosResult> {
   }
 }
 
-export { registerUser, loginUser };
+//현재 로그인된 사용자 정보 요청
+async function getUserInfo() {
+  return post.get('post-auth/get-user-info');
+}
+
+export { registerUser, loginUser, getUserInfo };

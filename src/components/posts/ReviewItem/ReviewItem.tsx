@@ -5,13 +5,19 @@ import { useParams } from 'react-router-dom';
 import { IreviewList } from '../../../types/review';
 import { changeKrFormate } from '../../../utils/dateFormater';
 import { ReactComponent as StarIcon } from '../../../assets/star.svg';
+import { ReactComponent as EditIcon } from '../../../assets/edit-btn.svg';
 import { useQuery, useMutation } from 'react-query';
 import reviewDefaultImg from '../../../assets/review-default-img.png';
+import { getUserInfo } from '../../../api/user';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../../redux/rootReducer';
 
 const ReviewItem = () => {
   const [reviewList, setReviewList] = useState<IreviewList[]>([]);
+  const [userIndex, setUserIndex] = useState<number | null>(null);
   let { id } = useParams();
   const productData = { productId: id };
+  const isLogin = useSelector((state: RootState) => state.userAuth);
   // const testFunction = (productData) => {
   //   getReviewList(productData).then((response) => response);
   // };
@@ -36,7 +42,7 @@ const ReviewItem = () => {
       }
     },
   });
-  console.log('data', data);
+  // console.log('data', data);
   // async () => {
   //   if (productData?.productId !== undefined) {
   //     const result = await getReviewList(productData);
@@ -45,19 +51,25 @@ const ReviewItem = () => {
   //   // return new Promise();
   // },
 
-  // useEffect(() => {
-  //   if (id != undefined) {
-  //     const productData = { productId: id };
-  //     getReviewList(productData)
-  //       .then((response) => {
-  //         // console.log('response', response);
-  //         setReviewList(response.data.contents);
-  //       })
-  //       .catch((err) => {
-  //         console.log(err);
-  //       });
-  //   }
-  // }, []);
+  useEffect(() => {
+    // if (id != undefined) {
+    //   const productData = { productId: id };
+    //   getReviewList(productData)
+    //     .then((response) => {
+    //       // console.log('response', response);
+    //       setReviewList(response.data.contents);
+    //     })
+    //     .catch((err) => {
+    //       console.log(err);
+    //     });
+    // }
+    if (isLogin.user_token) {
+      getUserInfo().then((res) => {
+        console.log('res정보', res);
+        setUserIndex(res.data.contents.idx);
+      });
+    }
+  }, [isLogin.user_token]);
   // console.log('reviewList', reviewList);
   if (data == undefined) return null;
   return (
@@ -75,7 +87,7 @@ const ReviewItem = () => {
                 </div>
               </div>
               <p>{item.paragraph}</p>
-              <div className={style['star-wrap']}>
+              <div className={style['review-bottom-wrap']}>
                 <div className={style['star']}>
                   {Array(item.evaluation_star)
                     .fill(0)
@@ -91,6 +103,15 @@ const ReviewItem = () => {
                         <StarIcon key={index} className={style['star--off']} />
                       );
                     })}
+                </div>
+                <div>
+                  {item.user_idx == userIndex ? (
+                    <button>
+                      <EditIcon className={style['review-edit-btn']} />
+                    </button>
+                  ) : (
+                    ''
+                  )}
                 </div>
               </div>
             </div>
