@@ -42,7 +42,7 @@ export function setInterceptor(instance: AxiosInstance): AxiosInstance {
       const data: any = error.response?.data;
       const status = error.response?.status;
       const guideReLogin = () => {
-        window.location.href = '/login';
+        // window.location.href = '/login';
         removeCookie('user_name', { path: '/' });
         removeCookie('user_token', { path: '/' });
         removeCookie('user_refreshToken', { path: '/' });
@@ -71,12 +71,14 @@ export function setInterceptor(instance: AxiosInstance): AxiosInstance {
               var dateForRefresh = new Date();
               dateForRefresh.setDate(dateForRefresh.getDate() + 14);
               setCookie('user_token', response.data.contents.accessToken, {
+                path: '/',
                 expires: date,
               });
               setCookie(
                 'user_refreshToken',
                 response.data.contents.refreshToken,
                 {
+                  path: '/',
                   expires: dateForRefresh,
                 },
               );
@@ -93,7 +95,7 @@ export function setInterceptor(instance: AxiosInstance): AxiosInstance {
             })
             .catch((error) => {
               console.log('interceptor error', error);
-              guideReLogin();
+              // guideReLogin();
             });
           if (originalRequest !== undefined && originalRequest !== null) {
             return await axios(originalRequest);
