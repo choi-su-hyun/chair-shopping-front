@@ -3,6 +3,8 @@ import style from './detail-content.module.scss';
 import useIntersectionObserver from '../../hooks/intersection-observer';
 import ReviewItem from '../../components/posts/ReviewItem/ReviewItem';
 import ReviewCreate from '../posts/ReviewCreate/ReviewCreate';
+import { useSelector } from 'react-redux';
+import { RootState } from '../../redux/rootReducer';
 
 const DetailContent = ({ image }: { image: string }) => {
   const productInfoRef = useRef<HTMLDivElement>(null);
@@ -26,6 +28,10 @@ const DetailContent = ({ image }: { image: string }) => {
     }
     return;
   };
+
+  const isLogin = useSelector(
+    (state: RootState) => state.userAuth.user_refreshToken,
+  );
 
   useEffect(() => {
     if (productReviewEntry?.isIntersecting) {
@@ -70,7 +76,7 @@ const DetailContent = ({ image }: { image: string }) => {
           id="contents-2"
         >
           <h3 className={style['detail-content__title']}>상품 리뷰</h3>
-          <ReviewCreate />
+          {isLogin && <ReviewCreate />}
           <ReviewItem />
         </div>
       </div>
