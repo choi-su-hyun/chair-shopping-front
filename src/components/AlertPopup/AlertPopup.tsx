@@ -25,7 +25,7 @@ const AlertPopup = () => {
     }
     if (popupData.title === '장바구니에 이미 담겨있는 상품입니다.') {
       const productId: IProductIdx = {
-        idx: popupData.currentProductId,
+        productId: popupData.currentProductId,
       };
       console.log('장바구니 수량 추가');
       increasCartInventory(productId);
