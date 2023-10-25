@@ -43,6 +43,7 @@ export function setInterceptor(instance: AxiosInstance): AxiosInstance {
       const status = error.response?.status;
       const guideReLogin = () => {
         // window.location.href = '/login';
+        alert('로그인 시간이 만료되었습니다.');
         removeCookie('user_name', { path: '/' });
         removeCookie('user_token', { path: '/' });
         removeCookie('user_refreshToken', { path: '/' });
@@ -87,11 +88,7 @@ export function setInterceptor(instance: AxiosInstance): AxiosInstance {
                   response.data.contents.accessToken;
                 originalRequest.headers['refresh'] =
                   response.data.contents.refreshToken;
-
-                // return await axios(originalRequest);
               }
-              // return Promise.resolve();
-              // window.location.reload();
             })
             .catch((error) => {
               console.log('interceptor error', error);

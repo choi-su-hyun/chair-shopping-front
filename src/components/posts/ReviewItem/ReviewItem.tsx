@@ -16,11 +16,8 @@ const ReviewItem = () => {
   const [reviewList, setReviewList] = useState<IreviewList[]>([]);
   const [userIndex, setUserIndex] = useState<number | null>(null);
   let { id } = useParams();
-  const productData = { productId: id };
+  // const productData = { productId: id };
   const isLogin = useSelector((state: RootState) => state.userAuth);
-  // const testFunction = (productData) => {
-  //   getReviewList(productData).then((response) => response);
-  // };
 
   // const mutation = useMutation((): any => {
   //   getReviewList(productData).then((response) => response);
@@ -42,14 +39,6 @@ const ReviewItem = () => {
       }
     },
   });
-  // console.log('data', data);
-  // async () => {
-  //   if (productData?.productId !== undefined) {
-  //     const result = await getReviewList(productData);
-  //     return result;
-  //   }
-  //   // return new Promise();
-  // },
 
   useEffect(() => {
     // if (id != undefined) {
@@ -64,10 +53,14 @@ const ReviewItem = () => {
     //     });
     // }
     if (isLogin.user_token) {
-      getUserInfo().then((res) => {
-        console.log('res정보', res);
-        setUserIndex(res.data.contents.idx);
-      });
+      getUserInfo()
+        .then((res) => {
+          console.log('res정보', res);
+          setUserIndex(res.data.contents.idx);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   }, [isLogin.user_token]);
   // console.log('reviewList', reviewList);

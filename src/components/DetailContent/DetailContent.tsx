@@ -29,9 +29,7 @@ const DetailContent = ({ image }: { image: string }) => {
     return;
   };
 
-  const isLogin = useSelector(
-    (state: RootState) => state.userAuth.user_refreshToken,
-  );
+  const isLogin = useSelector((state: RootState) => state.userAuth.user_token);
 
   useEffect(() => {
     if (productReviewEntry?.isIntersecting) {
