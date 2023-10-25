@@ -91,4 +91,20 @@
   &__content_wrap {
     margin-top: 24px;
   }
+  &__edit-button {
+    fill: $cg-500;
+
+    &:hover {
+      fill: $primary-light1;
+    }
+  }
+  &__top-wrap {
+    display: flex;
+    justify-content: space-between;
+    button {
+      background-color: transparent;
+      border: none;
+      cursor: pointer;
+    }
+  }
 }

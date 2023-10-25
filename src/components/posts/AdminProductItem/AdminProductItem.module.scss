@@ -1,0 +1,42 @@
+@import '../../../css/index.scss';
+
+.product-list {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 24px;
+  padding: 16px 24px;
+  border-top: 1px solid $cg-400;
+  gap: 40px;
+  img {
+    width: 240px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 8px;
+  }
+  &__text-wrap {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 24px;
+    h4 {
+      font-size: 20px;
+      color: $cg-700;
+    }
+  }
+  a {
+  }
+}
+.price {
+  font-size: 18px;
+  font-weight: 700;
+  color: $primary-light1;
+  &-degree {
+    font-size: 14px;
+    color: $cg-600;
+  }
+}
+.discount {
+  font-weight: 700;
+  color: $red;
+}
