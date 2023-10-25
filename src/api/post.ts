@@ -4,17 +4,7 @@ import { IProductIdx } from '../types/product';
 
 //상품 리스트 요청
 const getProductList = async () => {
-  try {
-    return await instance.get('post/product-list');
-  } catch (error: any) {
-    console.log(error);
-    if (error.message === 'DB_ERROR') {
-      return {
-        message: 'database에서 문제가 발생했습니다.',
-        error,
-      };
-    }
-  }
+  return await instance.get('post/product-list');
 };
 
 //상품 카테고리 탭 리스트 요청
@@ -42,33 +32,23 @@ const getCategorysProduct = async (categoryId: ICategoryId) => {
 };
 
 //상세페이지 정보 요청
-const getProductDetail = async (productIdx: IProductIdx) => {
-  try {
-    const result = await instance.post(
-      'post/product-detail-data-process',
-      productIdx,
-    );
-    // console.log('result 값', result);
-    return result.data.contents;
-  } catch (error: any) {
-    console.log(error);
-    if (error.message === 'DB_ERROR') {
-      return {
-        message: 'database에서 문제가 발생했습니다.',
-        error,
-      };
-    }
-  }
+const getProductDetail = async (productIdx?: { productId?: string }) => {
+  return await instance.get('post/product-detail-data-process', {
+    params: productIdx,
+  });
 };
 
 //상세페이지 옵션 리스트 요청
 const getProductOption = async (productIdx: IProductIdx) => {
-  try {
-    const result = await instance.post('post/product-option-list', productIdx);
-    return result.data.contents;
-  } catch (error) {
-    console.log(error);
-  }
+  return await instance.get('post/product-option-list', {
+    params: productIdx,
+  });
+  // try {
+  //   const result = await instance.post('post/product-option-list', productIdx);
+  //   return result.data.contents;
+  // } catch (error) {
+  //   console.log(error);
+  // }
 };
 
 //장바구니에 담기 api
