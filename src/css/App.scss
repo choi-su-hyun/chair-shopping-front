@@ -53,6 +53,9 @@ code {
     background-color: $secondary-light2;
     border-radius: 6px;
   }
+  &:hover {
+    color: $primary-light1;
+  }
 }
 
 .general-btn--right-pictogram {
@@ -99,6 +102,16 @@ code {
     svg {
       width: 20px;
       height: 20px;
+    }
+    &.admin {
+      background-color: $secondary-dark1;
+      color: white;
+      svg {
+        fill: white;
+      }
+      &:hover {
+        background-color: $secondary;
+      }
     }
   }
   &.admin {
@@ -247,6 +260,9 @@ code {
 }
 .input--only-input.admin {
   border: 1px solid $secondary-light1;
+  &:focus-visible {
+    border: 1px solid $secondary-dark1;
+  }
 }
 
 .product_item {
