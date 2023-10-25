@@ -1,0 +1,21 @@
+@import '../../css/index.scss';
+
+.banner {
+  text-align: center;
+  background-image: url('../../assets/admin-product-edit-banner.jpg');
+  padding: 80px;
+  h1 {
+    color: white;
+    font: {
+      size: 32px;
+      weight: 700;
+    }
+  }
+}
+.title {
+  font: {
+    size: 32px;
+    weight: 700;
+  }
+  color: $primary-light3;
+}

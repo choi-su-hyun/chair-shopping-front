@@ -24,11 +24,13 @@ import HeaderAdmin from './components/Header/HeaderAdmin';
 import AdminLogin from './pages/AdminLogin';
 import AdminMain from './pages/AdminMain';
 import AdminCreate from './pages/AdminCreate';
+import AdminProductDetail from './components/posts/AdminProductDetail/AdminProductDetail';
 import NotFound from './pages/NotFound';
 import ProductPage from './pages/ProductPage/ProductPage';
 import DetailPage from './pages/DetailPage/DetailPage';
 import CartPage from './pages/CartPage/CartPage';
 import AlertPopup from './components/AlertPopup/AlertPopup';
+import AdminEditPage from './pages/AdminEditPage/AdminEditPage';
 
 export interface counterProps {
   increase: (num: number) => void;
@@ -77,6 +79,14 @@ function App(props: any) {
             <Route path="/admin" element={<AdminLogin />}></Route>
             <Route path="/admin-dashboard" element={<AdminMain />}></Route>
             <Route path="/admin-create" element={<AdminCreate />}></Route>
+            <Route
+              path="/admin-product/:id"
+              element={<AdminProductDetail />}
+            ></Route>
+            <Route
+              path="/admin-edit-product/:id"
+              element={<AdminEditPage />}
+            ></Route>
           </Routes>
         </Provider>
         <Footer />
