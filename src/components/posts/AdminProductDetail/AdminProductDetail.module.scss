@@ -1,0 +1,89 @@
+@import '../../../css/index.scss';
+
+.banner {
+  text-align: center;
+  background-image: url('../../../assets/storage-banner.jpg');
+  padding: 80px;
+  h1 {
+    color: white;
+    font: {
+      size: 32px;
+      weight: 700;
+    }
+  }
+}
+.title {
+  font: {
+    size: 32px;
+    weight: 700;
+  }
+  color: $primary-light3;
+}
+
+.product-detail {
+  margin-top: 40px;
+  background-color: $secondary-light2;
+  padding: 32px 40px;
+  border-radius: 8px;
+}
+
+.data-wrap {
+  display: flex;
+  justify-content: space-between;
+  gap: 40px;
+  border-top: 1px solid $cg-500;
+  padding-top: 16px;
+  &__title {
+    font: {
+      size: 20px;
+      weight: 700;
+    }
+    color: $cg-700;
+  }
+  &__value {
+    font: {
+      size: 18px;
+      weight: 400;
+    }
+    color: $cg-700;
+  }
+  &:not(:first-of-type) {
+    margin-top: 24px;
+  }
+}
+.thumnail-image {
+  object-fit: cover;
+  border-radius: 8px;
+  width: 320px;
+  height: 160px;
+}
+
+.top-btn-wrap {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 40px;
+}
+.edit-btn {
+  border: none;
+  background-color: transparent;
+  cursor: pointer;
+  svg {
+    fill: $cg-600;
+  }
+  &:hover svg {
+    fill: $primary-light1;
+  }
+}
+
+.option-item {
+  background-color: $cg-300;
+  padding: 4px 8px;
+  margin-top: 4px;
+  color: $cg-700;
+}
+
+.detail-bottom {
+  display: flex;
+  justify-content: center;
+  margin-top: 24px;
+}

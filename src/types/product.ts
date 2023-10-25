@@ -16,6 +16,7 @@ interface IProductOptionDB {
   idx: number;
   option_name: string;
   inventory: number;
+  productId: number;
 }
 interface IProductOptionData {
   [key: string | number]: string | number | undefined;
@@ -29,7 +30,7 @@ interface IProductPagination {
   setPage: React.Dispatch<React.SetStateAction<number>>;
 }
 interface IProductIdx {
-  idx: string | undefined;
+  productId: string | undefined;
 }
 
 interface IcartData {

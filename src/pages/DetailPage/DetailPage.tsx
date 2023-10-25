@@ -13,7 +13,7 @@ import useInsertCart from '../../hooks/insert-to-cart';
 const DetailPage = () => {
   let [productData, setProductData] = useState<IProductData>();
   let [productOption, setProductOption] = useState<IProductOptionDB[]>([
-    { idx: 0, option_name: '선택', inventory: 0 },
+    { idx: 0, option_name: '선택', inventory: 0, productId: 0 },
   ]);
   const [selectedOption, setSelectedOption] = useState<number>(0);
   const [quantity, setQuantity] = useState<number>(1);
@@ -34,19 +34,19 @@ const DetailPage = () => {
 
   useEffect(() => {
     const productIdx = {
-      idx: id,
+      productId: id,
     };
     getProductDetail(productIdx)
-      .then((response: [IProductData]) => {
-        setProductData(response[0]);
+      .then((response) => {
+        setProductData(response.data.contents[0]);
         // console.log('response 값', response);
       })
       .catch((error: any) => {
         console.log(error);
       });
 
-    getProductOption(productIdx).then((response: [IProductOptionDB]) => {
-      setProductOption(response);
+    getProductOption(productIdx).then((response) => {
+      setProductOption(response.data.contents);
     });
   }, [id]);
 
