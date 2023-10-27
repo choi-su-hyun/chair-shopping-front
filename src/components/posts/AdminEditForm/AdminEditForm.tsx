@@ -7,6 +7,9 @@ import {
 } from '../../../types/product';
 import { ICategoryObject } from '../../../types/category';
 import { ReactComponent as CloseBtn } from '../../../assets/close-btn.svg';
+import style from './AdminEditFrom.module.scss';
+import { updateProduct } from '../../../api/admin';
+import { useParams } from 'react-router-dom';
 
 const AdminEditForm = ({
   detail,
@@ -17,6 +20,8 @@ const AdminEditForm = ({
   optionData: IProductOptionDB[];
   categoryData: ICategoryObject[];
 }) => {
+  const { id } = useParams();
+  const productIdx = { productId: id };
   console.log('data 값', detail);
   const [inputs, setInputs] = useState({
     productName: detail.product_name,
@@ -29,7 +34,7 @@ const AdminEditForm = ({
       return { optionName: item.option_name, inventory: item.inventory };
     }),
   );
-  const [thumnail, setThumnail] = useState<File | null>(null);
+  const [thumnail, setThumnail] = useState<File | null>();
   const [detailImage, setDetailImage] = useState<File | null>(null);
   const inventoryInput = useRef<HTMLInputElement>(null);
   const { productName, productDescription, price, discountRate } = inputs;
@@ -99,10 +104,10 @@ const AdminEditForm = ({
   const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData();
-    if (thumnail !== null) {
+    if (thumnail != null) {
       formData.append('product_image', thumnail);
     }
-    if (detailImage !== null) {
+    if (detailImage != null) {
       formData.append('product_detail_image', detailImage);
     }
     formData.append(
@@ -126,6 +131,7 @@ const AdminEditForm = ({
       console.log(value);
     }
     // createProduct(formData);
+    updateProduct(formData, productIdx);
     console.log('formData 값', formData);
   };
 
@@ -145,7 +151,7 @@ const AdminEditForm = ({
                 type="text"
                 placeholder="상품 이름"
                 name="productName"
-                value={inputs.productName}
+                value={productName}
                 onChange={textInputHandler}
               />
             </div>
@@ -155,7 +161,7 @@ const AdminEditForm = ({
                 name=""
                 id=""
                 onChange={productCategoryHandler}
-                defaultValue={selectedCategory}
+                value={selectedCategory}
               >
                 {categoryData !== undefined &&
                   categoryData.map((items: ICategoryObject) => {
@@ -174,7 +180,7 @@ const AdminEditForm = ({
                 placeholder="상품 설명"
                 onChange={textInputHandler}
                 name="productDescription"
-                value={inputs.productDescription}
+                value={productDescription}
               ></textarea>
             </div>
             <div className="input-wrap--include-label">
@@ -196,13 +202,13 @@ const AdminEditForm = ({
                 placeholder="할인률"
                 onChange={textInputHandler}
                 name="discountRate"
-                value={inputs.discountRate}
+                value={discountRate}
               />
             </div>
             <div className="input-wrap--include-label">
               <label htmlFor="">색상</label>
               <div>
-                {optionData.map((item, index) => {
+                {option.map((item, index) => {
                   return (
                     <div key={index} className="input-wrap__2-input-wrap">
                       <div className="input-wrap__2-input">
@@ -212,7 +218,7 @@ const AdminEditForm = ({
                             className="input--only-input admin"
                             type="text"
                             id="optionName"
-                            defaultValue={item.option_name}
+                            value={item.optionName}
                             placeholder="빨강"
                             onChange={(e) => changeOptionHandler(e, index)}
                             onKeyDown={(e) => activeEnterFirstInput(e)}
@@ -224,7 +230,7 @@ const AdminEditForm = ({
                             className="input--only-input admin"
                             type="number"
                             id="inventory"
-                            defaultValue={item.inventory}
+                            value={item.inventory}
                             placeholder="20"
                             onChange={(e) => changeOptionHandler(e, index)}
                             onKeyDown={(e) => activeEnter(e)}
@@ -260,6 +266,12 @@ const AdminEditForm = ({
                 </div>
               </div>
             )}
+            <div className={style['notice-gray']}>
+              <span>
+                아래에 변경하고 싶은 새로운 이미지를 넣어주세요.(*비워두면
+                기존에 반영되어있는 그대로 반영됩니다)
+              </span>
+            </div>
             <div className="input-wrap--include-label">
               <label htmlFor="">대표 이미지</label>
               <input

@@ -1,6 +1,7 @@
 import { instance, post } from './index';
 import { IAdminLoginData } from '../types/administrator';
 import { IAdminLoginAxiosResult } from '../types/administrator';
+import { IProductIdx } from '../types/product';
 
 interface CustomError extends Error {
   // name: string;
@@ -75,4 +76,18 @@ async function createProduct(productData: any) {
   }
 }
 
-export { createCategory, loginAdmin, createProduct };
+//상품 수정 요청
+async function updateProduct(
+  productData: any,
+  productId: { productId?: string },
+) {
+  await post.put('admin/product-update-process', productData, {
+    headers: {
+      'Content-Type': 'multipart/form-data',
+    },
+    params: {
+      productId: productId,
+    },
+  });
+}
+export { createCategory, loginAdmin, createProduct, updateProduct };
