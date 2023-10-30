@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useQuery } from 'react-query';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getProductDetail, getProductOption } from '../../../api/post';
@@ -26,12 +26,13 @@ const AdminProductDetail = () => {
       );
     },
   );
+  // getOptionData.refetch();
   const goEditPage = () => {
     navigate(`/admin-edit-product/${id}`);
   };
 
-  console.log('data 값 확인중', data);
-  console.log('getOptionData 값 확인중', getOptionData);
+  // console.log('data 값 확인중', data);
+  // console.log('getOptionData 값 확인중', getOptionData);
   if (data == null || getOptionData.data == null) {
     return null;
   }
@@ -99,6 +100,7 @@ const AdminProductDetail = () => {
                 );
               })}
             </div>
+            {getOptionData.isLoading ? <div>로딩중...</div> : ''}
           </div>
           <div className={style['data-wrap']}>
             <span className={style['data-wrap__title']}>원가</span>

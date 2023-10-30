@@ -81,7 +81,7 @@ async function updateProduct(
   productData: any,
   productId: { productId?: string },
 ) {
-  await post.put('admin/product-update-process', productData, {
+  return await post.put('admin/product-update-process', productData, {
     headers: {
       'Content-Type': 'multipart/form-data',
     },

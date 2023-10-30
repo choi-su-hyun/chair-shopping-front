@@ -57,7 +57,11 @@ const AdminCreateForm = () => {
     setOption(list);
     // console.log(option);
   };
-
+  const enterBlock = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+    }
+  };
   const activeEnterFirstInput = (e: React.KeyboardEvent<HTMLInputElement>) => {
     if (e.key === 'Enter') {
       e.preventDefault();
@@ -133,6 +137,7 @@ const AdminCreateForm = () => {
                 type="text"
                 placeholder="상품 이름"
                 onChange={productNameHandler}
+                onKeyDown={enterBlock}
               />
             </div>
             <div className="input-wrap--include-label">
@@ -164,6 +169,7 @@ const AdminCreateForm = () => {
                 placeholder="가격"
                 onChange={priceHandler}
                 value={addComma(price) || ''}
+                onKeyDown={enterBlock}
               />
             </div>
             <div className="input-wrap--include-label">
@@ -173,6 +179,7 @@ const AdminCreateForm = () => {
                 type="number"
                 placeholder="할인률"
                 onChange={discountRateHandler}
+                onKeyDown={enterBlock}
               />
             </div>
             <div className="input-wrap--include-label">
@@ -191,7 +198,7 @@ const AdminCreateForm = () => {
                             value={item.optionName}
                             placeholder="빨강"
                             onChange={(e) => changeOptionHandler(e, index)}
-                            onKeyDown={(e) => activeEnterFirstInput(e)}
+                            onKeyDown={activeEnterFirstInput}
                           />
                         </div>
                         <div className="input-wrap--sm">
@@ -203,7 +210,7 @@ const AdminCreateForm = () => {
                             value={item.inventory}
                             placeholder="20"
                             onChange={(e) => changeOptionHandler(e, index)}
-                            onKeyDown={(e) => activeEnter(e)}
+                            onKeyDown={activeEnter}
                             ref={inventoryInput}
                           />
                         </div>

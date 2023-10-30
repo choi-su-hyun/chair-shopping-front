@@ -9,7 +9,8 @@ import { ICategoryObject } from '../../../types/category';
 import { ReactComponent as CloseBtn } from '../../../assets/close-btn.svg';
 import style from './AdminEditFrom.module.scss';
 import { updateProduct } from '../../../api/admin';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
+import { useMutation, useQueryClient } from 'react-query';
 
 const AdminEditForm = ({
   detail,
@@ -22,7 +23,8 @@ const AdminEditForm = ({
 }) => {
   const { id } = useParams();
   const productIdx = { productId: id };
-  console.log('data 값', detail);
+  // console.log('data 값', detail);
+  const navigate = useNavigate();
   const [inputs, setInputs] = useState({
     productName: detail.product_name,
     productDescription: detail.product_description,
@@ -41,6 +43,7 @@ const AdminEditForm = ({
   const [selectedCategory, setSelectedCategory] = useState<number>(
     detail.category_idx,
   );
+  const queryClient = useQueryClient();
   const textInputHandler = (
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
@@ -87,6 +90,11 @@ const AdminEditForm = ({
       e.preventDefault();
     }
   };
+  const enterBlock = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+    }
+  };
 
   const thumnailHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files === null) {
@@ -100,39 +108,50 @@ const AdminEditForm = ({
     }
     setDetailImage(e.target.files[0]);
   };
-
+  const mutation = useMutation(
+    async (data: any): Promise<any> => {
+      return await updateProduct(data, productIdx);
+    },
+    {
+      onSuccess: (newQueryData) => {
+        queryClient.setQueryData(
+          'getOption',
+          newQueryData.data.contents.option,
+        );
+        queryClient.setQueryData(
+          'getOpgetProductDetailtion',
+          newQueryData.data.contents.detailData,
+        );
+        // queryClient.invalidateQueries('getOption');
+      },
+    },
+  );
   const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const formData = new FormData();
-    if (thumnail != null) {
-      formData.append('product_image', thumnail);
+    try {
+      const formData = new FormData();
+      if (thumnail != null) {
+        formData.append('product_image', thumnail);
+      }
+      if (detailImage != null) {
+        formData.append('product_detail_image', detailImage);
+      }
+      formData.append(
+        'data',
+        JSON.stringify({
+          product_name: productName,
+          product_description: productDescription,
+          product_price: price,
+          product_discount_rate: discountRate,
+          product_category: selectedCategory,
+          product_option: option,
+        }),
+      );
+      mutation.mutate(formData);
+      navigate(`/admin-product/${id}`);
+    } catch (error) {
+      console.log('submit 에러', error);
     }
-    if (detailImage != null) {
-      formData.append('product_detail_image', detailImage);
-    }
-    formData.append(
-      'data',
-      JSON.stringify({
-        product_name: productName,
-        product_description: productDescription,
-        product_price: price,
-        product_discount_rate: discountRate,
-        product_category: selectedCategory,
-        product_option: option,
-      }),
-    );
-    /* key 확인하기 */
-    for (let key of formData.keys()) {
-      console.log(key);
-    }
-
-    /* value 확인하기 */
-    for (let value of formData.values()) {
-      console.log(value);
-    }
-    // createProduct(formData);
-    updateProduct(formData, productIdx);
-    console.log('formData 값', formData);
   };
 
   return (
@@ -153,6 +172,7 @@ const AdminEditForm = ({
                 name="productName"
                 value={productName}
                 onChange={textInputHandler}
+                onKeyDown={enterBlock}
               />
             </div>
             <div className="input-wrap--include-label">
@@ -192,6 +212,7 @@ const AdminEditForm = ({
                 name="price"
                 onChange={textInputHandler}
                 value={addComma(price) || ''}
+                onKeyDown={enterBlock}
               />
             </div>
             <div className="input-wrap--include-label">
@@ -203,6 +224,7 @@ const AdminEditForm = ({
                 onChange={textInputHandler}
                 name="discountRate"
                 value={discountRate}
+                onKeyDown={enterBlock}
               />
             </div>
             <div className="input-wrap--include-label">
@@ -221,7 +243,7 @@ const AdminEditForm = ({
                             value={item.optionName}
                             placeholder="빨강"
                             onChange={(e) => changeOptionHandler(e, index)}
-                            onKeyDown={(e) => activeEnterFirstInput(e)}
+                            onKeyDown={activeEnterFirstInput}
                           />
                         </div>
                         <div className="input-wrap--sm">
@@ -233,7 +255,7 @@ const AdminEditForm = ({
                             value={item.inventory}
                             placeholder="20"
                             onChange={(e) => changeOptionHandler(e, index)}
-                            onKeyDown={(e) => activeEnter(e)}
+                            onKeyDown={activeEnter}
                             ref={inventoryInput}
                           />
                         </div>
@@ -293,6 +315,7 @@ const AdminEditForm = ({
           </div>
           <button className="cta-btn--block admin">상품 추가</button>
         </form>
+        <div>{mutation.isLoading ? <p>로딩중...</p> : ''}</div>
       </div>
     </div>
   );

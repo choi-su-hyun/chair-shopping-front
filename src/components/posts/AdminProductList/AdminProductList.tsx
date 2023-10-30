@@ -11,7 +11,7 @@ const AdminProductList = () => {
       console.log(error);
     }
   });
-  console.log('data 값', data);
+  // console.log('data 값', data);
   if (data == null) return null;
   return (
     <div className="container">
