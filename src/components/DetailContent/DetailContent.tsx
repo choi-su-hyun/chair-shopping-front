@@ -3,6 +3,7 @@ import style from './detail-content.module.scss';
 import useIntersectionObserver from '../../hooks/intersection-observer';
 import ReviewItem from '../../components/posts/ReviewItem/ReviewItem';
 import ReviewCreate from '../posts/ReviewCreate/ReviewCreate';
+import ReviewAverage from '../posts/ReviewAverage/ReviewAverage';
 import { useSelector } from 'react-redux';
 import { RootState } from '../../redux/rootReducer';
 
@@ -11,7 +12,7 @@ const DetailContent = ({ image }: { image: string }) => {
   const productReviewRef = useRef<HTMLDivElement>(null);
   const productInfoEntry = useIntersectionObserver({
     ref: productInfoRef,
-    options: { threshold: 0.5 },
+    options: { threshold: 0.1 },
   });
   const productReviewEntry = useIntersectionObserver({
     ref: productReviewRef,
@@ -65,7 +66,8 @@ const DetailContent = ({ image }: { image: string }) => {
           <img
             src={process.env.REACT_APP_API_URL + image}
             alt=""
-            height={1200}
+            width="100%"
+            // minHeight="auto"
           />
         </div>
         <div
@@ -75,6 +77,7 @@ const DetailContent = ({ image }: { image: string }) => {
         >
           <h3 className={style['detail-content__title']}>상품 리뷰</h3>
           {isLogin && <ReviewCreate />}
+          <ReviewAverage />
           <ReviewItem />
         </div>
       </div>
