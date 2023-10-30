@@ -90,6 +90,13 @@ async function createReview(reviewData: any) {
   return await post.post('post-auth/create-review-process', reviewData);
 }
 
+//리뷰 평균 데이터 요청
+async function getReviewAverage(productData: { productId?: string }) {
+  return await instance.get('post/get-review-average-process', {
+    params: productData,
+  });
+}
+
 export {
   getProductList,
   getCategorys,
@@ -103,4 +110,5 @@ export {
   deleteSelectedCart,
   getReviewList,
   createReview,
+  getReviewAverage,
 };

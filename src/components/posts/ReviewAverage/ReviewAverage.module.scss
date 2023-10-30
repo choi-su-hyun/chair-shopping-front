@@ -1,0 +1,78 @@
+@import '../../../css/index.scss';
+
+.review-average-wrap {
+  display: flex;
+  gap: 24px;
+  justify-content: space-between;
+  align-items: center;
+  background-color: $secondary-light2;
+  padding: 24px;
+  margin-top: 24px;
+  margin-bottom: 16px;
+  border-radius: 8px;
+}
+.score {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font: {
+    size: 24px;
+    weight: 700;
+  }
+  color: $cg-800;
+  &-num {
+    font: {
+      size: 40px;
+      weight: 700;
+    }
+    &-degree {
+      font: {
+        size: 20px;
+        weight: 400;
+      }
+      color: $cg-500;
+      margin-left: 8px;
+    }
+  }
+}
+.review-average-left-wrap {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+}
+.review-average-right-wrap {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  color: $cg-600;
+  h6 {
+    font: {
+      size: 18px;
+      weight: 700;
+    }
+  }
+  span {
+    font: {
+      size: 18px;
+      weight: 400;
+    }
+  }
+}
+.star {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  &-wrap {
+    margin-top: 24px;
+  }
+  &--off {
+    width: 40px;
+    height: 40px;
+    fill: $cg-400;
+  }
+  &--on {
+    width: 40px;
+    height: 40px;
+    fill: $primary-light1;
+  }
+}
