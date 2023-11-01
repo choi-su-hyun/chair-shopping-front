@@ -32,9 +32,13 @@ function Main({ increase }: { increase: (num: number) => void }) {
       </section>
       <section className={style.product_list_section}>
         <div className="container">
-          <h2 className="page-content__title">요즘 많이 찾는 의자</h2>
           <div className={style.container__side_layout}>
-            <h3 className="page-content__sub-title">인기 의자</h3>
+            <div className={style['title-wrap']}>
+              <h2 className="page-content__title main-page">
+                요즘 많이 찾는 의자
+              </h2>
+              <span>Favorite Product</span>
+            </div>
             <Link to={'/product'} className="general-btn--right-pictogram">
               더보기
               <ChevronRight />

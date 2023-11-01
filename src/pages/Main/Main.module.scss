@@ -54,11 +54,32 @@ $primary-light3: #f5b175;
   display: flex;
   justify-content: space-between;
   margin-top: 80px;
+  margin-bottom: 32px;
 }
 
 .product_list_section {
   margin-top: 120px;
   > div {
     margin-top: 80px;
+  }
+}
+
+.title-wrap {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  background: linear-gradient(
+    36deg,
+    rgba(238, 123, 23, 0) 0%,
+    rgba(238, 123, 23, 0.2) 100%
+  );
+  line-height: 16px;
+  padding-right: 24px;
+  span {
+    color: $cg-400;
+    font: {
+      size: 18px;
+      weight: 700;
+    }
   }
 }
