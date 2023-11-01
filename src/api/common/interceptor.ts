@@ -42,11 +42,11 @@ export function setInterceptor(instance: AxiosInstance): AxiosInstance {
       const data: any = error.response?.data;
       const status = error.response?.status;
       const guideReLogin = () => {
-        // window.location.href = '/login';
         alert('로그인 시간이 만료되었습니다.');
         removeCookie('user_name', { path: '/' });
         removeCookie('user_token', { path: '/' });
         removeCookie('user_refreshToken', { path: '/' });
+        window.location.href = '/login';
       };
 
       if (status == 401) {
