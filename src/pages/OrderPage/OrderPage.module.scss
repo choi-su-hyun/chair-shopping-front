@@ -1,0 +1,15 @@
+@import '../../css/index.scss';
+
+.order-hero {
+  background-image: url('../../assets/order-hero.jpg');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  h1 {
+    color: white;
+    font-size: 32px;
+    line-height: 120%;
+    text-align: center;
+    padding: 80px;
+  }
+}

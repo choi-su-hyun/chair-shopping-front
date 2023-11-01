@@ -6,14 +6,19 @@ import { IcartData } from '../../../types/product';
 import React, { useEffect, useState } from 'react';
 
 const CartItem = ({
-  item,
+  items,
   transportSelectedCart,
+  countPrice,
+  pageName,
 }: {
-  item: IcartData[];
-  transportSelectedCart: any;
+  items: IcartData[];
+  transportSelectedCart?: any;
+  countPrice: number;
+  pageName: string;
 }) => {
-  // console.log('item 값', item);
+  console.log('item 값', items);
   const [selectedData, setSelectedData] = useState<Array<string>>([]);
+
   const arrangeCheckedItem = (checked: boolean, item: string) => {
     if (checked) {
       setSelectedData([...selectedData, item]);
@@ -25,29 +30,34 @@ const CartItem = ({
     arrangeCheckedItem(e.target.checked, e.target.name);
   };
   useEffect(() => {
-    transportSelectedCart(selectedData);
+    if (pageName == 'cart') {
+      transportSelectedCart(selectedData);
+    }
   }, [selectedData]);
+  // console.log('countPrice', countPrice);
 
   return (
     <div>
       <div className={style['cart-table__header']}>
-        <div>
-          <input type="checkbox" />
-        </div>
+        <div>{pageName == 'order' ? '' : <input type="checkbox" />}</div>
         <h2>상품 정보</h2>
         <h2>옵션/수량</h2>
         <h2>가격</h2>
-        <h2>배송비</h2>
+        {/* <h2>배송비</h2> */}
       </div>
-      {item.map((item, index) => {
+      {items.map((item, index) => {
         return (
           <div className={style['cart-table__content']} key={index}>
             <div>
-              <input
-                type="checkbox"
-                name={String(item.idx)}
-                onChange={selectedHandler}
-              />
+              {pageName == 'order' ? (
+                ''
+              ) : (
+                <input
+                  type="checkbox"
+                  name={String(item.idx)}
+                  onChange={selectedHandler}
+                />
+              )}
             </div>
             <div className={style['cart-table__product-info']}>
               <img
@@ -96,17 +106,34 @@ const CartItem = ({
                 <span className={style['cart-table__price-degree']}>원</span>
               </p>
             </div>
-            <div className={style['cart-table__remain-part']}>
+            {/* <div className={style['cart-table__remain-part']}>
               <p className={style['cart-table__delivery-cost']}>
                 3,000
                 <span className={style['cart-table__delivery-cost-degree']}>
                   원
                 </span>
               </p>
-            </div>
+            </div> */}
           </div>
         );
       })}
+      <div className={style['delivery-fee']}>
+        <span className={style['delivery-fee__title']}>배송비</span>
+        <span className={style['delivery-fee__price']}>
+          + {addComma(3000)}원
+        </span>
+      </div>
+      <div className={style['count-price']}>
+        <span className={style['count-price__title']}>총액</span>
+        <p className={`${style['cart-table__price']} ${style['count']}`}>
+          {addComma(countPrice + 3000)}
+          <span
+            className={`${style['cart-table__price-degree']} ${style['count']}`}
+          >
+            원
+          </span>
+        </p>
+      </div>
     </div>
   );
 };

@@ -31,6 +31,7 @@ import DetailPage from './pages/DetailPage/DetailPage';
 import CartPage from './pages/CartPage/CartPage';
 import AlertPopup from './components/AlertPopup/AlertPopup';
 import AdminEditPage from './pages/AdminEditPage/AdminEditPage';
+import OrderPage from './pages/OrderPage/OrderPage';
 
 export interface counterProps {
   increase: (num: number) => void;
@@ -73,6 +74,7 @@ function App(props: any) {
             <Route path="/product" element={<ProductPage />}></Route>
             <Route path="/product/:id" element={<DetailPage />}></Route>
             <Route path="/cart" element={<CartPage />}></Route>
+            <Route path="/order" element={<OrderPage />}></Route>
             <Route path="/*" element={<NotFound />}></Route>
 
             {/* 관리자 페이지 */}
