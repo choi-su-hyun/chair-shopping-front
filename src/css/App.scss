@@ -87,9 +87,10 @@ code {
   background-color: $primary-light1;
   color: $cg-900;
   font-size: 18px;
+  font-weight: 700;
   border: none;
   border-radius: 6px;
-  padding: 8px;
+  padding: 8px 24px;
   cursor: pointer;
   &.have-icon {
     display: flex;
@@ -119,6 +120,7 @@ code {
     color: white;
   }
 }
+
 .cta-btn {
   &--open-size {
     background-color: $primary-light1;
@@ -129,18 +131,23 @@ code {
     cursor: pointer;
   }
 }
-.block-btn.admin {
-  font-size: 18px;
-  border: none;
-  border-radius: 6px;
-  color: white;
-  padding: 8px;
-  background-color: $secondary;
-  cursor: pointer;
+
+.block-btn {
+  &.admin {
+    font-size: 18px;
+    border: none;
+    border-radius: 6px;
+    color: white;
+    padding: 8px;
+    background-color: $secondary;
+    cursor: pointer;
+  }
 }
+
 .block-link {
   display: inline-block;
 }
+
 .only-picto-btn {
   display: flex;
   align-items: center;
@@ -154,11 +161,14 @@ code {
 .page-content {
   &__title {
     font: {
-      size: 32px;
+      size: 28px;
       weight: 700;
     }
     color: $cg-900;
     text-align: center;
+    &.main-page {
+      text-align: left;
+    }
     &--sm {
       font: {
         size: 24px;
