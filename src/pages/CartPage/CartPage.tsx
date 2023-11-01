@@ -6,26 +6,37 @@ import cartEmpty from '../../assets/cart-empty-img.png';
 import { Link } from 'react-router-dom';
 import CartItem from '../../components/posts/CartItem/CartItem';
 import { useQuery } from 'react-query';
+import { addComma } from '../../utils/addComma';
+import { discountPrice } from '../../utils/discountPrice';
 
 const CartPage = () => {
   const [cartData, setCartData] = useState<IcartData[]>();
   const [receivedSelectedData, setReceivedSelectedData] = useState<
     Array<string>
   >([]);
-  // const { data } = useQuery({
-  //   queryKey: ['get-test'],
-  //   queryFn: () => getCartList().then((response) => response),
-  // });
+  const [countPrice, setCountPrice] = useState<number>(0);
+
   const doGetCartList = () => {
     getCartList()
       .then((response) => {
         // console.log('response 값', response.data.content);
         setCartData(response.data.content);
+        const data = response.data.content;
+        let sum = 0;
+        for (let item of data) {
+          let productPrice =
+            Number(discountPrice(item.product_price, item.product_discount)) *
+            item.cart_qty;
+          sum = sum + productPrice;
+        }
+        setCountPrice(sum);
       })
       .catch((err) => {
         console.log(err);
       });
   };
+  console.log('cartData', cartData);
+
   const receiveData = (data: any) => {
     setReceivedSelectedData([...data]);
   };
@@ -37,8 +48,12 @@ const CartPage = () => {
     deleteCart();
     doGetCartList();
   };
+  console.log('window', window);
+  const orderProduct = () => {
+    const { IMP } = window;
+    IMP.init('imp17611641');
+  };
 
-  // console.log('data', data);
   useEffect(() => {
     doGetCartList();
   }, []);
@@ -77,9 +92,19 @@ const CartPage = () => {
               </Link>
             </div>
           ) : (
-            <CartItem item={cartData} transportSelectedCart={receiveData} />
+            <CartItem
+              items={cartData}
+              transportSelectedCart={receiveData}
+              countPrice={countPrice}
+              pageName="cart"
+            />
           )}
         </div>
+      </div>
+      <div className={style['btn-wrap']}>
+        <Link to={'/order'} className="cta-btn--block">
+          주문하러가기
+        </Link>
       </div>
     </div>
   );
