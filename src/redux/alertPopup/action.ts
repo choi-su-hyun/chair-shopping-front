@@ -13,4 +13,10 @@ const popupOff = () => {
   };
 };
 
-export { saveNewPopup, popupOff };
+const popupOn = () => {
+  return {
+    type: POPUP_ON,
+  };
+};
+
+export { saveNewPopup, popupOff, popupOn };

@@ -20,6 +20,11 @@ const popupReducer = (state = popupInitState, action: any) => {
         currentProductId: action.payload.currentProductId,
         popupController: action.payload.popupController,
       };
+    case POPUP_ON:
+      return {
+        ...state,
+        popupController: true,
+      };
     case POPUP_OFF:
       return {
         ...state,
