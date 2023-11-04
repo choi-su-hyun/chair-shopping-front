@@ -66,6 +66,33 @@ const OrderPage = () => {
   const closePostCode = () => {
     setVisible(false);
   };
+
+  const orderProduct = () => {
+    const { IMP } = window;
+    IMP.init('imp17611641');
+
+    const data = {
+      pg: 'html5_inicis', // PG사
+      pay_method: 'card', // 결제수단
+      merchant_uid: `mid_${new Date().getTime()}`, // 주문번호
+      amount: 1000, // 결제금액
+      name: '아임포트 결제 데이터 분석', // 주문명
+      buyer_name: '홍길동', // 구매자 이름
+      buyer_tel: '01012341234', // 구매자 전화번호
+      buyer_email: 'example@example', // 구매자 이메일
+      buyer_addr: '신사동 661-16', // 구매자 주소
+      buyer_postcode: '06018',
+    };
+    IMP.request_pay(data, impOrder);
+  };
+  const impOrder = (response: any) => {
+    const { success, error_msg } = response;
+    if (success) {
+      alert('결제 성공');
+    } else {
+      alert(`결제 실패: ${error_msg}`);
+    }
+  };
   console.log('data', data);
   if (data == undefined) return null;
   return (
@@ -127,7 +154,9 @@ const OrderPage = () => {
             </div>
           </div>
           <div className={style['btn-wrap']}>
-            <button className="cta-btn--block">결제하기</button>
+            <button onClick={orderProduct} className="cta-btn--block">
+              결제하기
+            </button>
           </div>
         </div>
       </div>

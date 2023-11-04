@@ -49,10 +49,6 @@ const CartPage = () => {
     doGetCartList();
   };
   console.log('window', window);
-  const orderProduct = () => {
-    const { IMP } = window;
-    IMP.init('imp17611641');
-  };
 
   useEffect(() => {
     doGetCartList();
