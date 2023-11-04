@@ -49,12 +49,17 @@ code {
   border: none;
   background-color: transparent;
   cursor: pointer;
-  &.block-btn {
-    background-color: $secondary-light2;
-    border-radius: 6px;
-  }
   &:hover {
     color: $primary-light1;
+  }
+  &.block-btn {
+    background-color: $cg-200;
+    border-radius: 6px;
+    padding: 8px 16px;
+  }
+  &.block-btn:hover {
+    background-color: $cg-500;
+    color: $cg-800;
   }
 }
 
@@ -81,43 +86,8 @@ code {
   &--admin {
     background-color: $secondary;
   }
-}
-
-.cta-btn--block {
-  background-color: $primary-light1;
-  color: $cg-900;
-  font-size: 18px;
-  font-weight: 700;
-  border: none;
-  border-radius: 6px;
-  padding: 8px 24px;
-  cursor: pointer;
-  &.have-icon {
-    display: flex;
-    gap: 12px;
-    padding: 16px 24px;
-    align-items: center;
-    font: {
-      weight: 700;
-    }
-    svg {
-      width: 20px;
-      height: 20px;
-    }
-    &.admin {
-      background-color: $secondary-dark1;
-      color: white;
-      svg {
-        fill: white;
-      }
-      &:hover {
-        background-color: $secondary;
-      }
-    }
-  }
-  &.admin {
-    background-color: $secondary-dark1;
-    color: white;
+  &.general {
+    background-color: $cg-300;
   }
 }
 
@@ -129,6 +99,47 @@ code {
     border: none;
     border-radius: 6px;
     cursor: pointer;
+  }
+  &--block {
+    background-color: $primary-light1;
+    color: $cg-900;
+    font-size: 18px;
+    font-weight: 700;
+    border: none;
+    border-radius: 6px;
+    padding: 8px 24px;
+    cursor: pointer;
+    &:hover {
+      background-color: $primary;
+      color: $primary-light4;
+    }
+    &.have-icon {
+      display: flex;
+      gap: 12px;
+      padding: 16px 24px;
+      align-items: center;
+      font: {
+        weight: 700;
+      }
+      svg {
+        width: 20px;
+        height: 20px;
+      }
+      &.admin {
+        background-color: $secondary-dark1;
+        color: white;
+        svg {
+          fill: white;
+        }
+        &:hover {
+          background-color: $secondary;
+        }
+      }
+    }
+    &.admin {
+      background-color: $secondary-dark1;
+      color: white;
+    }
   }
 }
 
