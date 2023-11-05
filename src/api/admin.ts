@@ -49,7 +49,7 @@ async function loginAdmin(
       };
       return result;
     }
-    if (customErr.response?.data.message === 'PASSWORD_NOT_MATCHED') {
+    if (customErr.response?.data.message === 'Password not matched') {
       const result = {
         successStatus: false,
         message: '비밀번호가 일치하지 않습니다.',
@@ -58,7 +58,7 @@ async function loginAdmin(
     }
     return {
       successStatus: false,
-      message: '에러 발생',
+      message: 'Something Error',
     };
   }
 }
@@ -66,7 +66,7 @@ async function loginAdmin(
 //상품 생성 요청
 async function createProduct(productData: any) {
   try {
-    await post.post('admin/product-create-process', productData, {
+    await post.post('admin-auth/product-create-process', productData, {
       headers: {
         'Content-Type': 'multipart/form-data',
       },

@@ -1,7 +1,6 @@
 import { SAVE_STATUS } from './type';
 import {
   ILoginData,
-  ILoginWithTokenData,
   ILoginAxiosResult,
   ILoginInitState,
 } from '../../types/user';
@@ -9,7 +8,7 @@ import { loginUser } from '../../api/user';
 import { RootState } from '../../redux/rootReducer';
 import { ThunkDispatch } from 'redux-thunk';
 import { AnyAction } from 'redux';
-import { getCookie, setCookie } from '../../utils/reactCookie';
+import { getCookie, setCookie, removeCookie } from '../../utils/reactCookie';
 
 const changeUserData = (loginHasTokenData: ILoginInitState) => {
   return {
@@ -29,6 +28,11 @@ export const fetchUserData = (userData: ILoginData) => {
         user_refreshToken: result.loginResponsedData?.data.refreshToken,
         user_message: result.loginResponsedData?.data.message,
       };
+      if (getCookie('admin_refreshToken') !== undefined) {
+        removeCookie('admin_name', { path: '/' });
+        removeCookie('admin_token', { path: '/' });
+        removeCookie('admin_refreshToken', { path: '/' });
+      }
       var date = new Date();
       date.setMinutes(date.getMinutes() + 60);
       var dateForRefresh = new Date();

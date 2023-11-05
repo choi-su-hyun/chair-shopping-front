@@ -6,6 +6,7 @@ interface IAdminLoginData {
 interface IAdminInitState {
   admin_id: string | undefined;
   admin_token: string | undefined;
+  admin_refreshToken: string | undefined;
   admin_message: string | undefined;
 }
 interface IAdminFailMessageState {

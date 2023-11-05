@@ -3,11 +3,6 @@ import { AxiosResponse } from 'axios';
 interface ILoginData {
   [key: string]: string;
 }
-interface ILoginWithTokenData {
-  // [key: string]: string;
-  user_name: string | undefined;
-  user_token: string | undefined;
-}
 interface ILoginAction {
   type: string;
   payload: ILoginInitState;
@@ -39,7 +34,6 @@ interface ISignupData {
 
 export type {
   ILoginData,
-  ILoginWithTokenData,
   ILoginAction,
   ILoginInitState,
   ILoginAxiosResult,

@@ -1,9 +1,5 @@
 import { SAVE_STATUS } from './type';
-import {
-  ILoginWithTokenData,
-  ILoginAction,
-  ILoginInitState,
-} from '../../types/user';
+import { ILoginAction, ILoginInitState } from '../../types/user';
 
 const initialState: ILoginInitState = {
   user_name: '',
