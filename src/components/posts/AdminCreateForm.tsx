@@ -4,6 +4,7 @@ import { addComma } from '../../utils/addComma';
 import { ReactComponent as CloseBtn } from '../../assets/close-btn.svg';
 import useCategoryList from '../../hooks/use-category-list';
 import { IProductOptionData } from '../../types/product';
+import { useNavigate } from 'react-router-dom';
 
 const AdminCreateForm = () => {
   const { categoryList } = useCategoryList();
@@ -18,6 +19,7 @@ const AdminCreateForm = () => {
   const [thumnail, setThumnail] = useState<File | null>(null);
   const [detailImage, setDetailImage] = useState<File | null>(null);
   const inventoryInput = useRef<HTMLInputElement>(null);
+  const navigate = useNavigate();
 
   const productNameHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     setProductName(e.target.value);
@@ -90,7 +92,7 @@ const AdminCreateForm = () => {
     setDetailImage(e.target.files[0]);
   };
 
-  const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
+  const onSubmitHandler = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData();
     if (thumnail !== null) {
@@ -119,7 +121,8 @@ const AdminCreateForm = () => {
     for (let value of formData.values()) {
       console.log(value);
     }
-    createProduct(formData);
+    await createProduct(formData);
+    navigate('/admin-dashboard');
   };
   return (
     <div>
@@ -250,6 +253,7 @@ const AdminCreateForm = () => {
                 type="file"
                 placeholder="대표 이미지"
                 onChange={thumnailHandler}
+                required
               />
             </div>
             <div className="input-wrap--include-label">
@@ -259,6 +263,7 @@ const AdminCreateForm = () => {
                 type="file"
                 placeholder="상세페이지"
                 onChange={detailImageHandler}
+                required
               />
             </div>
           </div>
