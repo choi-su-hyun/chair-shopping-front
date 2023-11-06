@@ -21,7 +21,7 @@ interface CustomError extends Error {
 // };
 //category 생성 요청
 const createCategory = async () => {
-  return await instance.post('admin/category-create-process');
+  return await post.post('admin-auth/category-create-process');
 };
 
 //admin 로그인 요청
@@ -81,7 +81,7 @@ async function updateProduct(
   productData: any,
   productId: { productId?: string },
 ) {
-  return await post.put('admin/product-update-process', productData, {
+  return await post.put('admin-auth/product-update-process', productData, {
     headers: {
       'Content-Type': 'multipart/form-data',
     },
@@ -90,4 +90,19 @@ async function updateProduct(
     },
   });
 }
-export { createCategory, loginAdmin, createProduct, updateProduct };
+
+//상품 제거 요청
+async function deleteProduct(productId: { productId?: string }) {
+  return await post.delete('admin-auth/product-delete-process', {
+    params: {
+      productId: productId,
+    },
+  });
+}
+export {
+  createCategory,
+  loginAdmin,
+  createProduct,
+  updateProduct,
+  deleteProduct,
+};
