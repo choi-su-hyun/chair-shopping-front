@@ -6,12 +6,15 @@ import { useNavigate } from 'react-router-dom';
 import { popupOff } from '../../redux/alertPopup/action';
 import { increasCartInventory } from '../../api/post';
 import { IProductIdx } from '../../types/product';
+import { deleteProduct } from '../../api/admin';
+import { useQueryClient, useMutation } from 'react-query';
 
 const AlertPopup = () => {
   const popupData = useSelector((state: RootState) => state.popup);
   console.log('popupData 값', popupData);
   const navigate = useNavigate();
   const dispatch = useDispatch();
+  const queryClient = useQueryClient();
   const goLogin = () => {
     navigate('/login');
     dispatch(popupOff());
@@ -19,6 +22,20 @@ const AlertPopup = () => {
   const closePopup = () => {
     dispatch(popupOff());
   };
+  const productId: IProductIdx = {
+    productId: popupData.currentProductId,
+  };
+  const mutation = useMutation(
+    async (): Promise<any> => {
+      return await deleteProduct(productId);
+    },
+    {
+      onSuccess: (newQueryData) => {
+        console.log('newQueryData 값', newQueryData);
+        queryClient.setQueryData('getProductList', newQueryData.data.contents);
+      },
+    },
+  );
   const nextCtaAction = () => {
     if (popupData.title === '로그인이 필요해요.') {
       goLogin();
@@ -29,6 +46,12 @@ const AlertPopup = () => {
       };
       console.log('장바구니 수량 추가');
       increasCartInventory(productId);
+      closePopup();
+    }
+
+    if (popupData.title === '정말 상품을 삭제하시겠습니까?') {
+      mutation.mutate();
+      navigate('/admin-dashboard');
       closePopup();
     }
   };

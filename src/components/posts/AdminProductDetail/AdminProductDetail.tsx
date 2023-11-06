@@ -7,12 +7,17 @@ import { addComma } from '../../../utils/addComma';
 import { discountPrice } from '../../../utils/discountPrice';
 import { IProductOptionDB } from '../../../types/product';
 import { ReactComponent as EditIcon } from '../../../assets/edit-btn.svg';
+import { ReactComponent as DeleteIcon } from '../../../assets/trash-icon.svg';
 import { ReactComponent as BottomLogo } from '../../../assets/secondary-color-logo.svg';
+import { useDispatch } from 'react-redux';
+import { saveNewPopup } from '../../../redux/alertPopup/action';
+import alertImg from '../../../assets/alert-popup-img.png';
 
 const AdminProductDetail = () => {
   const { id } = useParams();
   const productIdx = { productId: id };
   const navigate = useNavigate();
+  const dispatch = useDispatch();
   const { data } = useQuery('getProductDetail', async (): Promise<any> => {
     return await getProductDetail(productIdx).then(
       (res) => res.data.contents[0],
@@ -26,9 +31,19 @@ const AdminProductDetail = () => {
       );
     },
   );
-  // getOptionData.refetch();
   const goEditPage = () => {
     navigate(`/admin-edit-product/${id}`);
+  };
+  const deleteProduct = () => {
+    const popupData = {
+      image: alertImg,
+      title: '정말 상품을 삭제하시겠습니까?',
+      paragraph: '삭제버튼을 클릭 시 해당 상품이 삭제됩니다.',
+      ctaBtn: '삭제',
+      currentProductId: id,
+      popupController: true,
+    };
+    dispatch(saveNewPopup(popupData));
   };
 
   // console.log('data 값 확인중', data);
@@ -54,6 +69,12 @@ const AdminProductDetail = () => {
             onClick={goEditPage}
           >
             <EditIcon /> 수정하기
+          </button>
+          <button
+            className="cta-btn--block have-icon admin"
+            onClick={deleteProduct}
+          >
+            <DeleteIcon /> 상품 삭제하기
           </button>
         </div>
         <div className={style['product-detail']}>
