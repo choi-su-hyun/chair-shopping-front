@@ -114,15 +114,15 @@ const AdminEditForm = ({
     },
     {
       onSuccess: (newQueryData) => {
+        console.log('newQueryData 값', newQueryData);
         queryClient.setQueryData(
           'getOption',
           newQueryData.data.contents.option,
         );
         queryClient.setQueryData(
-          'getOpgetProductDetailtion',
-          newQueryData.data.contents.detailData,
+          'getProductDetail',
+          newQueryData.data.contents.detailData[0],
         );
-        // queryClient.invalidateQueries('getOption');
       },
     },
   );
