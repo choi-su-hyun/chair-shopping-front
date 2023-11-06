@@ -9,29 +9,29 @@ const AdminProductItem = ({ items }: { items: IProductData[] }) => {
   const offset = (page - 1) * limit;
   return (
     <div>
-      {items.slice(offset, offset + limit).map((items) => {
+      {items.slice(offset, offset + limit).map((mapItems) => {
         return (
-          <div key={items.idx} className={style['product-list']}>
+          <div key={mapItems.idx} className={style['product-list']}>
             <img
-              src={process.env.REACT_APP_API_URL + items.image_thumnail_path}
+              src={process.env.REACT_APP_API_URL + mapItems.image_thumnail_path}
               alt=""
             />
             <div className={style['product-list__text-wrap']}>
-              <span className="category">{items.category_name}</span>
-              <h4>{items.product_name}</h4>
+              <span className="category">{mapItems.category_name}</span>
+              <h4>{mapItems.product_name}</h4>
               <div className={style['price']}>
                 <span>
-                  {items.product_price}{' '}
+                  {mapItems.product_price}{' '}
                   <span className={style['price-degree']}>원</span>
                 </span>
               </div>
               <span className={style['discount']}>
-                {items.product_discount} %
+                {mapItems.product_discount} %
               </span>
             </div>
             <div>
               <Link
-                to={`/admin-product/${items.idx}`}
+                to={`/admin-product/${mapItems.idx}`}
                 className="general-btn--text"
               >
                 상세히 보기
