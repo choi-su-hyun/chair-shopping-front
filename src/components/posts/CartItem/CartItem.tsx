@@ -16,7 +16,7 @@ const CartItem = ({
   countPrice: number;
   pageName: string;
 }) => {
-  console.log('item 값', items);
+  // console.log('item 값', items);
   const [selectedData, setSelectedData] = useState<Array<string>>([]);
 
   const arrangeCheckedItem = (checked: boolean, item: string) => {
