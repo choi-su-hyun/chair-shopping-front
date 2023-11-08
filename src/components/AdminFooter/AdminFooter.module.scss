@@ -1,0 +1,18 @@
+@import '../../css/index.scss';
+
+.footer {
+  background-color: $cg-200;
+  padding: 40px 0;
+  margin-top: 240px;
+  &__content {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    font: {
+      size: 14px;
+      weight: 400;
+    }
+    color: $cg-600;
+    margin-top: 32px;
+  }
+}

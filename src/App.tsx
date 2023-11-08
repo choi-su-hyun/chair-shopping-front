@@ -11,18 +11,14 @@ import { useSelector } from 'react-redux';
 import { RootState } from './redux/rootReducer';
 
 // Component
-import Header from './components/Header/Header';
 import Main from './pages/Main/Main';
 import Login from './pages/Login';
 import SignUp from './pages/SignUp';
-import Footer from './components/Footer/Footer';
 import Subscribers from './components/exercise/Subscribers';
 import Display from './components/exercise/Display';
 import Views from './components/exercise/Views';
-import Admin from './pages/AdminMain';
-import HeaderAdmin from './components/Header/HeaderAdmin';
 import AdminLogin from './pages/AdminLogin';
-import AdminMain from './pages/AdminMain';
+import AdminMain from './pages/AdminMain/AdminMain';
 import AdminCreate from './pages/AdminCreate';
 import AdminProductDetail from './components/posts/AdminProductDetail/AdminProductDetail';
 import NotFound from './pages/NotFound';
@@ -32,6 +28,13 @@ import CartPage from './pages/CartPage/CartPage';
 import AlertPopup from './components/AlertPopup/AlertPopup';
 import AdminEditPage from './pages/AdminEditPage/AdminEditPage';
 import OrderPage from './pages/OrderPage/OrderPage';
+import MainLayout from './pages/MainLayout';
+import AdminLoginLayout from './pages/AdminLoginLayout';
+import AdminContentLayout from './pages/AdminContentLayout';
+import PrivateRouter from './router/PrivateRouter';
+import PublicRouter from './router/PublicRouter';
+import AdminPrivateRouter from './router/AdminPrivateRouter';
+import AdminPublicRouter from './router/AdminPublicRouter';
 
 export interface counterProps {
   increase: (num: number) => void;
@@ -52,46 +55,52 @@ function App(props: any) {
   useEffect(() => {
     props.recieveCookieUserData();
     props.recieveCookieAdminData();
-    // const testData2 = testGetCookie('user_name');
-    // console.log('testData2', testData2);
-    // const testData = getCookie('test_name');
-    // console.log('testData', testData);
-    // const testData3 = getCookie('user_name');
-    // console.log('testData3', testData3);
   }, []);
   return (
     <div className="App">
       <BrowserRouter>
         <Provider store={store}>
-          <Header />
           <Routes>
-            <Route
-              path="/"
-              element={<Main increase={increaseHandler} />}
-            ></Route>
-            <Route path="/login" element={<Login />}></Route>
-            <Route path="/signup" element={<SignUp />}></Route>
-            <Route path="/product" element={<ProductPage />}></Route>
-            <Route path="/product/:id" element={<DetailPage />}></Route>
-            <Route path="/cart" element={<CartPage />}></Route>
-            <Route path="/order" element={<OrderPage />}></Route>
-            <Route path="/*" element={<NotFound />}></Route>
+            <Route element={<MainLayout />}>
+              <Route
+                path="/"
+                element={<Main increase={increaseHandler} />}
+              ></Route>
+              <Route element={<PrivateRouter />}>
+                <Route path="/cart" element={<CartPage />}></Route>
+                <Route path="/order" element={<OrderPage />}></Route>
+              </Route>
+              <Route element={<PublicRouter />}>
+                <Route path="/login" element={<Login />}></Route>
+                <Route path="/signup" element={<SignUp />}></Route>
+              </Route>
+              <Route path="/product" element={<ProductPage />}></Route>
+              <Route path="/product/:id" element={<DetailPage />}></Route>
+              <Route path="/*" element={<NotFound />}></Route>
+            </Route>
 
             {/* 관리자 페이지 */}
-            <Route path="/admin" element={<AdminLogin />}></Route>
-            <Route path="/admin-dashboard" element={<AdminMain />}></Route>
-            <Route path="/admin-create" element={<AdminCreate />}></Route>
-            <Route
-              path="/admin-product/:id"
-              element={<AdminProductDetail />}
-            ></Route>
-            <Route
-              path="/admin-edit-product/:id"
-              element={<AdminEditPage />}
-            ></Route>
+            <Route element={<AdminLoginLayout />}>
+              <Route element={<AdminPublicRouter />}>
+                <Route path="/admin" element={<AdminLogin />}></Route>
+              </Route>
+            </Route>
+            <Route element={<AdminContentLayout />}>
+              <Route element={<AdminPrivateRouter />}>
+                <Route path="/admin-dashboard" element={<AdminMain />}></Route>
+                <Route path="/admin-create" element={<AdminCreate />}></Route>
+                <Route
+                  path="/admin-product/:id"
+                  element={<AdminProductDetail />}
+                ></Route>
+                <Route
+                  path="/admin-edit-product/:id"
+                  element={<AdminEditPage />}
+                ></Route>
+              </Route>
+            </Route>
           </Routes>
         </Provider>
-        <Footer />
         {popupController && <AlertPopup />}
       </BrowserRouter>
     </div>

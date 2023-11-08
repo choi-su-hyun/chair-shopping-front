@@ -1,0 +1,37 @@
+@import '../../css/index.scss';
+
+.hero {
+  background-image: url('../../assets/admin-dashboard-hero.png');
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  padding: 80px;
+  h1 {
+    color: white;
+    font: {
+      size: 32px;
+      weight: 700;
+    }
+  }
+}
+
+.page-title-wrap {
+  margin-top: 160px;
+  margin-bottom: 40px;
+}
+
+.side-bar {
+  position: absolute;
+  left: 100%;
+  margin-left: 24px;
+  width: 320px;
+  &__wrap {
+    position: sticky;
+    top: 0;
+  }
+  &__content {
+    ul {
+      list-style: none;
+    }
+  }
+}

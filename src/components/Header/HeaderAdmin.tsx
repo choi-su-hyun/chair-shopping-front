@@ -15,10 +15,7 @@ const HeaderAdmin = () => {
     window.location.href = '/admin';
   };
   return (
-    <div className="container">
-      <div className={style.admin_header_notice}>
-        여기는 관리자 페이지입니다.
-      </div>
+    <div className="container--big">
       <div className={style.header}>
         <Link to="/admin-dashboard">
           <img src={logo} alt="" />

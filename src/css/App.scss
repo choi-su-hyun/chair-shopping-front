@@ -26,10 +26,13 @@ code {
 .container {
   max-width: 1128px;
   margin: 0 auto;
-}
-.container--sm {
-  max-width: 552px;
-  margin: 0 auto;
+  &--sm {
+    max-width: 552px;
+    margin: 0 auto;
+  }
+  &--big {
+    margin: 0 80px;
+  }
 }
 .page-content__wrap {
   padding: 240px 0;
