@@ -18,8 +18,8 @@ import Subscribers from './components/exercise/Subscribers';
 import Display from './components/exercise/Display';
 import Views from './components/exercise/Views';
 import AdminLogin from './pages/AdminLogin';
-import AdminMain from './pages/AdminMain/AdminMain';
-import AdminCreate from './pages/AdminCreate';
+import AdminDashboard from './pages/AdminMain/AdminDashboard';
+import AdminCreate from './pages/AdminCreate/AdminCreate';
 import AdminProductDetail from './components/posts/AdminProductDetail/AdminProductDetail';
 import NotFound from './pages/NotFound';
 import ProductPage from './pages/ProductPage/ProductPage';
@@ -28,9 +28,12 @@ import CartPage from './pages/CartPage/CartPage';
 import AlertPopup from './components/AlertPopup/AlertPopup';
 import AdminEditPage from './pages/AdminEditPage/AdminEditPage';
 import OrderPage from './pages/OrderPage/OrderPage';
+import AdminCategoryCreatePage from './pages/AdminCategoryCreatePage/AdminCategoryCreatePage';
+
 import MainLayout from './pages/MainLayout';
 import AdminLoginLayout from './pages/AdminLoginLayout';
-import AdminContentLayout from './pages/AdminContentLayout';
+import AdminContentLayout from './pages/AdminContentLayout/AdminContentLayout';
+
 import PrivateRouter from './router/PrivateRouter';
 import PublicRouter from './router/PublicRouter';
 import AdminPrivateRouter from './router/AdminPrivateRouter';
@@ -87,7 +90,10 @@ function App(props: any) {
             </Route>
             <Route element={<AdminContentLayout />}>
               <Route element={<AdminPrivateRouter />}>
-                <Route path="/admin-dashboard" element={<AdminMain />}></Route>
+                <Route
+                  path="/admin-dashboard"
+                  element={<AdminDashboard />}
+                ></Route>
                 <Route path="/admin-create" element={<AdminCreate />}></Route>
                 <Route
                   path="/admin-product/:id"
@@ -96,6 +102,10 @@ function App(props: any) {
                 <Route
                   path="/admin-edit-product/:id"
                   element={<AdminEditPage />}
+                ></Route>
+                <Route
+                  path="/admin-category-create"
+                  element={<AdminCategoryCreatePage />}
                 ></Route>
               </Route>
             </Route>
