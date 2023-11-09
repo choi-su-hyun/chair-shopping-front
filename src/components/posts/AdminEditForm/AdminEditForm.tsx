@@ -162,7 +162,7 @@ const AdminEditForm = ({
           encType="multipart/form-data"
           onSubmit={onSubmitHandler}
         >
-          <div className="input-wrap">
+          <div className={style['edit-form-input-wrap']}>
             <div className="input-wrap--include-label">
               <label htmlFor="">상품 이름</label>
               <input

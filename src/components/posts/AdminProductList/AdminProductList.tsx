@@ -14,7 +14,7 @@ const AdminProductList = () => {
   // console.log('data 값', data);
   if (data == null) return null;
   return (
-    <div className="container">
+    <div>
       <AdminProductItem items={data} />
     </div>
   );

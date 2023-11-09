@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-
+import style from './AdminLoginForm.module.scss';
 import { connect } from 'react-redux';
-import { fetchAdminData } from '../../redux/adminAuth/action';
+import { fetchAdminData } from '../../../redux/adminAuth/action';
 import {
   IAdminLoginData,
   IStateAndDispatchInProps,
-} from '../../types/administrator';
-import { RootState } from '../../redux/rootReducer';
+} from '../../../types/administrator';
+import { RootState } from '../../../redux/rootReducer';
 import { ThunkDispatch } from 'redux-thunk';
 import { AnyAction } from 'redux';
 import { Matching } from 'react-redux';
@@ -47,7 +47,7 @@ const AdminLoginForm = (props: IStateAndDispatchInProps) => {
   return (
     <div>
       <form className="post-form" onSubmit={onSubmitHandler}>
-        <div className="input-wrap">
+        <div className={style['login-input-wrap']}>
           <input
             className="input--only-input admin"
             type="text"

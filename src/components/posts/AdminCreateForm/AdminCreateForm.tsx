@@ -1,10 +1,11 @@
 import React, { useState, useEffect, ReactEventHandler, useRef } from 'react';
-import { createProduct } from '../../api/admin';
-import { addComma } from '../../utils/addComma';
-import { ReactComponent as CloseBtn } from '../../assets/close-btn.svg';
-import useCategoryList from '../../hooks/use-category-list';
-import { IProductOptionData } from '../../types/product';
+import { createProduct } from '../../../api/admin';
+import { addComma } from '../../../utils/addComma';
+import { ReactComponent as CloseBtn } from '../../../assets/close-btn.svg';
+import useCategoryList from '../../../hooks/use-category-list';
+import { IProductOptionData } from '../../../types/product';
 import { useNavigate } from 'react-router-dom';
+import style from './AdminCreateForm.module.scss';
 
 const AdminCreateForm = () => {
   const { categoryList } = useCategoryList();
@@ -132,7 +133,7 @@ const AdminCreateForm = () => {
           encType="multipart/form-data"
           onSubmit={onSubmitHandler}
         >
-          <div className="input-wrap">
+          <div className={style['create-input-wrap']}>
             <div className="input-wrap--include-label">
               <label htmlFor="">상품 이름</label>
               <input

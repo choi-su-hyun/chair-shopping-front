@@ -5,21 +5,14 @@ import { useState } from 'react';
 import { addComma } from '../../../utils/addComma';
 import { IProductData } from '../../../types/product';
 import { discountPrice } from '../../../utils/discountPrice';
-import { ReactComponent as EditIcon } from '../../../assets/edit-btn.svg';
 
 import Pagination from '../../Pagination/Pagination';
-import { useSelector } from 'react-redux';
-import { RootState } from '../../../redux/rootReducer';
 
 const ProductItem = ({ item }: { item: IProductData[] }) => {
   const [limit, setLimit] = useState<number>(9);
   const [page, setPage] = useState<number>(1);
   const offset = (page - 1) * limit;
 
-  const isLoginAdmin = useSelector((state: RootState) => state.adminAuth);
-  const goUpdatePage = (id: any) => {
-    console.log('event 값', id);
-  };
   // console.log('item 값', item);
   return (
     <div>
@@ -27,14 +20,6 @@ const ProductItem = ({ item }: { item: IProductData[] }) => {
         {item.slice(offset, offset + limit).map((items: IProductData) => {
           return (
             <div key={items.idx}>
-              {isLoginAdmin.admin_token && (
-                <button
-                  onClick={() => goUpdatePage(items.idx)}
-                  value={items.idx}
-                >
-                  <EditIcon className={style['product_item__edit-button']} />
-                </button>
-              )}
               <Link className="block-link" to={`/product/${items.idx}`}>
                 <div className={style.product_item__thumnail_wrap}>
                   <div className={style.product_item__discount_rate}>

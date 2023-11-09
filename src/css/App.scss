@@ -149,12 +149,21 @@ code {
 .block-btn {
   &.admin {
     font-size: 18px;
+    font-weight: 700;
     border: none;
     border-radius: 6px;
-    color: white;
-    padding: 8px;
+    color: $cg-900;
+    padding: 8px 16px;
     background-color: $secondary;
     cursor: pointer;
+    &.have-icon {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      svg {
+        fill: $cg-900;
+      }
+    }
   }
 }
 
@@ -262,11 +271,6 @@ code {
   }
 }
 
-.input-wrap {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
 .input--only-input {
   border: 1px solid $primary-light3;
   font-size: 16px;

@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import { ILoginData, IStateAndDispatchInProps } from '../../types/user';
+import { ILoginData, IStateAndDispatchInProps } from '../../../types/user';
 import { connect } from 'react-redux';
-import { fetchUserData } from '../../redux/userAuth/action';
+import { fetchUserData } from '../../../redux/userAuth/action';
 import { ThunkDispatch } from 'redux-thunk';
-import { RootState } from '../../redux/rootReducer';
+import { RootState } from '../../../redux/rootReducer';
 import { AnyAction } from 'redux';
 import { Matching } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-// import { useCookies } from 'react-cookie';
-// import { setCookie as testSetCookie } from '../../utils/cookie';
-
-// type IMapDispatchToProps = ReturnType<typeof mapDispatchToProps>;
-// type CombinedProps = Matching<IMapDispatchToProps, IStateAndDispatchInProps>;
+import style from './LoginForm.module.scss';
 
 const LoginForm = (props: IStateAndDispatchInProps) => {
   const [userId, setUserId] = useState<string>('');
@@ -41,7 +37,7 @@ const LoginForm = (props: IStateAndDispatchInProps) => {
   return (
     <div>
       <form className="post-form" onSubmit={onSubmitHandler}>
-        <div className="input-wrap">
+        <div className={style['login-input-wrap']}>
           <input
             required
             className="input--only-input"

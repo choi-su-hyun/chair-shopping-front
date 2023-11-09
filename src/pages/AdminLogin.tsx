@@ -1,7 +1,7 @@
 import React from 'react';
 
 //component
-import AdminLoginForm from '../components/posts/AdminLoginForm';
+import AdminLoginForm from '../components/posts/AdminLoginForm/AdminLoginForm';
 
 const AdminLogin = () => {
   return (

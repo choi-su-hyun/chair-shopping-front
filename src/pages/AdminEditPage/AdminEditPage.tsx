@@ -34,9 +34,9 @@ const AdminEditPage = () => {
     <div>
       <div className={style['banner']}>
         <h1>
-          {/* <span className={style['title']}>
+          <span className={style['title']}>
             &apos;{data.product_name}&apos;
-          </span>{' '} */}
+          </span>{' '}
           수정하기
         </h1>
       </div>

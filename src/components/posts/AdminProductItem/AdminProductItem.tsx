@@ -12,22 +12,26 @@ const AdminProductItem = ({ items }: { items: IProductData[] }) => {
       {items.slice(offset, offset + limit).map((mapItems) => {
         return (
           <div key={mapItems.idx} className={style['product-list']}>
-            <img
-              src={process.env.REACT_APP_API_URL + mapItems.image_thumnail_path}
-              alt=""
-            />
-            <div className={style['product-list__text-wrap']}>
-              <span className="category">{mapItems.category_name}</span>
-              <h4>{mapItems.product_name}</h4>
-              <div className={style['price']}>
-                <span>
-                  {mapItems.product_price}{' '}
-                  <span className={style['price-degree']}>원</span>
+            <div className={style['product-list__content-wrap']}>
+              <img
+                src={
+                  process.env.REACT_APP_API_URL + mapItems.image_thumnail_path
+                }
+                alt=""
+              />
+              <div className={style['product-list__text-wrap']}>
+                <span className="category">{mapItems.category_name}</span>
+                <h4>{mapItems.product_name}</h4>
+                <div className={style['price']}>
+                  <span>
+                    {mapItems.product_price}{' '}
+                    <span className={style['price-degree']}>원</span>
+                  </span>
+                </div>
+                <span className={style['discount']}>
+                  {mapItems.product_discount} %
                 </span>
               </div>
-              <span className={style['discount']}>
-                {mapItems.product_discount} %
-              </span>
             </div>
             <div>
               <Link
