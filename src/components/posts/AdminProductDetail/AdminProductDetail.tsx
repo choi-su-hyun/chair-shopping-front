@@ -62,7 +62,7 @@ const AdminProductDetail = () => {
           상세
         </h1>
       </div>
-      <div className="container">
+      <div>
         <div className={style['top-btn-wrap']}>
           <button
             className="cta-btn--block have-icon admin"
