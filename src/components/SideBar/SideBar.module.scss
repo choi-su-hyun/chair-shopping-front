@@ -1,0 +1,38 @@
+@import '../../css/index.scss';
+
+.side-back {
+  background-color: $secondary;
+  padding: 16px;
+  border-radius: 0 16px 0 0;
+}
+.admin-title {
+  color: white;
+  font-size: 20px;
+  margin-top: 24px;
+  margin-left: 32px;
+  margin-bottom: 32px;
+  line-height: 150%;
+  span {
+    color: $secondary-light2;
+    font-size: 16px;
+  }
+}
+
+.side__btn {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  width: 240px;
+  background-color: $secondary-light1;
+  padding: 16px 40px;
+  border-radius: 4px;
+  font: {
+    size: 16px;
+    weight: 700;
+  }
+  color: $primary-dark2;
+  margin-bottom: 12px;
+  &:hover {
+    background-color: $secondary-light2;
+  }
+}

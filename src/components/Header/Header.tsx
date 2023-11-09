@@ -10,7 +10,6 @@ import { ReactComponent as UserSignUp } from '../../assets/user-sign-up.svg';
 import { ReactComponent as UserCart } from '../../assets/user-cart.svg';
 import { ReactComponent as UserLogout } from '../../assets/user-logout.svg';
 
-import HeaderAdmin from './HeaderAdmin';
 import { IHeaderProps } from '../../types/common';
 import { RootState } from '../../redux/rootReducer';
 import { Dispatch } from 'redux';
@@ -32,52 +31,48 @@ const Header = (props: IHeaderProps) => {
   };
   return (
     <header>
-      {props.admin_token ? (
-        <HeaderAdmin />
-      ) : (
-        <div className="container">
-          <div className={style.header}>
-            <Link to="/">
-              <img src={logo} alt="" />
-            </Link>
-            <nav className={style.nav}>
-              <div className={style.nav__menu}>
-                <Link to="/" className="general-btn--text">
-                  홈
+      <div className="container">
+        <div className={style.header}>
+          <Link to="/">
+            <img src={logo} alt="" />
+          </Link>
+          <nav className={style.nav}>
+            <div className={style.nav__menu}>
+              <Link to="/" className="general-btn--text">
+                홈
+              </Link>
+              <Link to="/abcd/ab" className="general-btn--text">
+                회사소개
+              </Link>
+              <Link to="/product" className="general-btn--text">
+                모든 의자
+              </Link>
+            </div>
+            {!props.user_token && (
+              <div className={style.nav__auth}>
+                <Link to="/login" className="round-btn">
+                  <UserLogin />
                 </Link>
-                <Link to="/abcd/ab" className="general-btn--text">
-                  회사소개
-                </Link>
-                <Link to="/product" className="general-btn--text">
-                  모든 의자
+                <div className={style.divider}>|</div>
+                <Link to="/signup" className="round-btn">
+                  <UserSignUp></UserSignUp>
                 </Link>
               </div>
-              {!props.user_token && (
-                <div className={style.nav__auth}>
-                  <Link to="/login" className="round-btn">
-                    <UserLogin />
-                  </Link>
-                  <div className={style.divider}>|</div>
-                  <Link to="/signup" className="round-btn">
-                    <UserSignUp></UserSignUp>
-                  </Link>
-                </div>
-              )}
-              {props.user_token && (
-                <div className={style.nav__auth}>
-                  <Link to="/cart" className="round-btn">
-                    <UserCart />
-                  </Link>
-                  <div className={style.divider}>|</div>
-                  <button className="round-btn" onClick={logoutStart}>
-                    <UserLogout />
-                  </button>
-                </div>
-              )}
-            </nav>
-          </div>
+            )}
+            {props.user_token && (
+              <div className={style.nav__auth}>
+                <Link to="/cart" className="round-btn">
+                  <UserCart />
+                </Link>
+                <div className={style.divider}>|</div>
+                <button className="round-btn" onClick={logoutStart}>
+                  <UserLogout />
+                </button>
+              </div>
+            )}
+          </nav>
         </div>
-      )}
+      </div>
     </header>
   );
 };
