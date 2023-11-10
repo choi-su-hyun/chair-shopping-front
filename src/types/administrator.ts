@@ -4,7 +4,6 @@ interface IAdminLoginData {
   [key: string]: string;
 }
 interface IAdminInitState {
-  admin_id: string | undefined;
   admin_token: string | undefined;
   admin_refreshToken: string | undefined;
   admin_message: string | undefined;
@@ -30,7 +29,6 @@ interface IAdminLoginAxiosResult {
 }
 
 interface IStateAndDispatchInProps {
-  admin_id: string | undefined;
   admin_token: string | undefined;
   admin_message: string | undefined;
   fetchAdminData: (adminData: IAdminLoginData) => Promise<void>;

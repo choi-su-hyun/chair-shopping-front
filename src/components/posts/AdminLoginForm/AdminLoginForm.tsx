@@ -72,7 +72,6 @@ const AdminLoginForm = (props: IStateAndDispatchInProps) => {
 
 const mapStateToProps = ({ adminAuth }: RootState) => {
   return {
-    admin_id: adminAuth.admin_id,
     admin_token: adminAuth.admin_token,
     admin_message: adminAuth.admin_message,
   };

@@ -61,10 +61,9 @@ export function setInterceptor(instance: AxiosInstance): AxiosInstance {
         }
         if (isAdmin) {
           alert('로그인 시간이 만료되었습니다.');
-          removeCookie('admin_name', { path: '/' });
           removeCookie('admin_token', { path: '/' });
           removeCookie('admin_refreshToken', { path: '/' });
-          // window.location.href = '/admin';
+          window.location.href = '/admin';
         }
       };
 

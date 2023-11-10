@@ -12,8 +12,8 @@ import { RootState } from '../../redux/rootReducer';
 const AdminHeader = () => {
   let navigate = useNavigate();
   const logoutStart = () => {
-    deleteCookie('admin_name');
     deleteCookie('admin_token');
+    deleteCookie('admin_refresh_token');
     window.location.href = '/admin';
   };
   const isLogin = useSelector(

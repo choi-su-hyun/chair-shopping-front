@@ -4,7 +4,6 @@ import { IAdminAction } from '../../types/administrator';
 import { IAdminInitState } from '../../types/administrator';
 
 const adminInitState: IAdminInitState = {
-  admin_id: '',
   admin_token: '',
   admin_refreshToken: '',
   admin_message: '',
@@ -14,7 +13,6 @@ const adminReducer = (state = adminInitState, action: IAdminAction) => {
     case SAVE_ADMIN_STATUS:
       return {
         ...state,
-        admin_id: action.payload.admin_id,
         admin_token: action.payload.admin_token,
         admin_refreshToken: action.payload.admin_refreshToken,
         admin_message: action.payload.admin_message,
