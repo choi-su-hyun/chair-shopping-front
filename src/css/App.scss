@@ -285,17 +285,14 @@ code {
     outline: none;
     border: 1px solid $primary-dark1;
   }
-}
-.input--only-input.admin {
-  border: 1px solid $secondary-light1;
-  &:focus-visible {
-    border: 1px solid $secondary-dark1;
+  &.admin {
+    border: 1px solid $secondary-light1;
+    &:focus-visible {
+      border: 1px solid $secondary-dark1;
+    }
   }
 }
 
-.product_item {
-  display: flex;
-}
 .input-wrap--include-label {
   display: grid;
   grid-template-columns: 160px 1fr;
