@@ -29,6 +29,7 @@ import AlertPopup from './components/AlertPopup/AlertPopup';
 import AdminEditPage from './pages/AdminEditPage/AdminEditPage';
 import OrderPage from './pages/OrderPage/OrderPage';
 import AdminCategoryCreatePage from './pages/AdminCategoryCreatePage/AdminCategoryCreatePage';
+import AdminCategoryEditPage from './pages/AdminCategoryEditPage/AdminCategoryEditPage';
 
 import MainLayout from './pages/MainLayout';
 import AdminLoginLayout from './pages/AdminLoginLayout';
@@ -106,6 +107,10 @@ function App(props: any) {
                 <Route
                   path="/admin-category-create"
                   element={<AdminCategoryCreatePage />}
+                ></Route>
+                <Route
+                  path="/admin-edit-category/:id"
+                  element={<AdminCategoryEditPage />}
                 ></Route>
               </Route>
             </Route>

@@ -15,13 +15,26 @@ interface CustomError extends Error {
   };
 }
 
-// //category 리스트 받기
-// const getCategoryData = async () => {
-//   return await instance.get('admin/category-data');
-// };
+//category 리스트 요청
+const getCategoryList = async () => {
+  return await post.get('admin-auth/category-list');
+};
 //category 생성 요청
-const createCategory = async () => {
-  return await post.post('admin-auth/category-create-process');
+const createCategory = async (categoryName: { categoryName: string }) => {
+  return await post.post('admin-auth/category-create-process', categoryName);
+};
+//특정 category 데이터 요청
+const getCatagoryData = async (categoryId: { categoryId: number | string }) => {
+  return await post.get('admin-auth/get-category-data-process', {
+    params: categoryId,
+  });
+};
+//category 수정 요청
+const editCatagory = async (categoryData: {
+  categoryId?: number | string;
+  categoryName: string;
+}) => {
+  return await post.put('admin-auth/edit-category-process', categoryData);
 };
 
 //admin 로그인 요청
@@ -100,7 +113,10 @@ async function deleteProduct(productId: { productId?: string }) {
   });
 }
 export {
+  getCategoryList,
+  getCatagoryData,
   createCategory,
+  editCatagory,
   loginAdmin,
   createProduct,
   updateProduct,

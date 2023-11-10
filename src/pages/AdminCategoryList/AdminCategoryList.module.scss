@@ -1,0 +1,29 @@
+@import '../../css/index.scss';
+
+.list-back {
+  background-color: $secondary-light2;
+  border-radius: 8px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  .title-wrap {
+    display: flex;
+    align-items: baseline;
+    gap: 12px;
+    h5 {
+      font-size: 18px;
+      color: $cg-800;
+    }
+    span {
+      font-size: 14px;
+      color: $cg-600;
+    }
+  }
+}
+
+.content-wrap {
+  padding: 16px;
+  border-radius: 4px;
+  background-color: white;
+}

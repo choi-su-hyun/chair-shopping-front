@@ -1,0 +1,10 @@
+@import '../../../css/index.scss';
+
+.form-back {
+  background-color: $secondary-light2;
+  padding: 40px;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}

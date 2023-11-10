@@ -1,0 +1,22 @@
+@import '../../../css/index.scss';
+
+.list-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 8px;
+  border-radius: 4px;
+  background-color: $primary-light4;
+  color: $cg-800;
+  font: {
+    size: 16px;
+    weight: 700;
+  }
+  margin-bottom: 8px;
+  .list-link {
+    color: $secondary;
+    &:hover {
+      color: $secondary-light1;
+    }
+  }
+}
