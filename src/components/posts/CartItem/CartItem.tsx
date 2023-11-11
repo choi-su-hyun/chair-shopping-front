@@ -18,16 +18,28 @@ const CartItem = ({
 }) => {
   // console.log('item 값', items);
   const [selectedData, setSelectedData] = useState<Array<string>>([]);
+  // console.log('selectedData 값', selectedData);
 
-  const arrangeCheckedItem = (checked: boolean, item: string) => {
+  const selectedHandler = (e: any) => {
+    handleSingleCheck(e.target.checked, e.target.name);
+  };
+
+  const handleSingleCheck = (checked: boolean, item: string) => {
     if (checked) {
       setSelectedData([...selectedData, item]);
     } else if (!checked) {
       setSelectedData(selectedData.filter((el) => el !== item));
     }
   };
-  const selectedHandler = (e: any) => {
-    arrangeCheckedItem(e.target.checked, e.target.name);
+
+  const handleAllCheck = (checked: boolean) => {
+    if (checked) {
+      let idArray: string[] = [];
+      items.map((item) => idArray.push(String(item.idx)));
+      setSelectedData(idArray);
+    } else {
+      setSelectedData([]);
+    }
   };
   useEffect(() => {
     if (pageName == 'cart') {
@@ -39,7 +51,17 @@ const CartItem = ({
   return (
     <div>
       <div className={style['cart-table__header']}>
-        <div>{pageName == 'order' ? '' : <input type="checkbox" />}</div>
+        <div>
+          {pageName == 'order' ? (
+            ''
+          ) : (
+            <input
+              type="checkbox"
+              onChange={(e) => handleAllCheck(e.target.checked)}
+              checked={items.length === selectedData.length ? true : false}
+            />
+          )}
+        </div>
         <h2>상품 정보</h2>
         <h2>옵션/수량</h2>
         <h2>가격</h2>
@@ -56,6 +78,9 @@ const CartItem = ({
                   type="checkbox"
                   name={String(item.idx)}
                   onChange={selectedHandler}
+                  checked={
+                    selectedData.includes(String(item.idx)) ? true : false
+                  }
                 />
               )}
             </div>
