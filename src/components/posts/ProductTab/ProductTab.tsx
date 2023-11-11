@@ -53,18 +53,35 @@ const ProductTab = () => {
       <div>
         <ul className={style.product_tab}>
           {categoryList !== undefined &&
-            categoryList.map((item: ICategoryObject) => {
-              return (
-                <li
-                  key={item.idx}
-                  className={currentTab == item.idx ? style.active_tab : ''}
-                >
-                  <button onClick={tabButton} value={item.idx}>
-                    {item.category_name}
-                  </button>
-                </li>
-              );
-            })}
+            categoryList
+              .filter((category) => category.idx != '6')
+              .map((item: ICategoryObject) => {
+                return (
+                  <li
+                    key={item.idx}
+                    className={currentTab == item.idx ? style.active_tab : ''}
+                  >
+                    <button onClick={tabButton} value={item.idx}>
+                      {item.category_name}
+                    </button>
+                  </li>
+                );
+              })}
+          {categoryList !== undefined &&
+            categoryList
+              .filter((category) => category.idx == '6')
+              .map((item: ICategoryObject) => {
+                return (
+                  <li
+                    key={item.idx}
+                    className={currentTab == item.idx ? style.active_tab : ''}
+                  >
+                    <button onClick={tabButton} value={item.idx}>
+                      {item.category_name}
+                    </button>
+                  </li>
+                );
+              })}
         </ul>
       </div>
       <div className={style.product_tab__content}>
