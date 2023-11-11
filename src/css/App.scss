@@ -147,15 +147,15 @@ code {
 }
 
 .block-btn {
+  font-size: 18px;
+  font-weight: 700;
+  border: none;
+  border-radius: 6px;
+  padding: 8px 16px;
+  cursor: pointer;
   &.admin {
-    font-size: 18px;
-    font-weight: 700;
-    border: none;
-    border-radius: 6px;
     color: $cg-900;
-    padding: 8px 16px;
     background-color: $secondary;
-    cursor: pointer;
     &.have-icon {
       display: flex;
       align-items: center;
@@ -164,6 +164,10 @@ code {
         fill: $cg-900;
       }
     }
+  }
+  &.alert {
+    color: white;
+    background-color: $red;
   }
 }
 
