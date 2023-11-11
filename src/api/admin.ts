@@ -24,17 +24,25 @@ const createCategory = async (categoryName: { categoryName: string }) => {
   return await post.post('admin-auth/category-create-process', categoryName);
 };
 //특정 category 데이터 요청
-const getCatagoryData = async (categoryId: { categoryId: number | string }) => {
+const getCatagoryData = async (categoryId: {
+  categoryId?: number | string;
+}) => {
   return await post.get('admin-auth/get-category-data-process', {
     params: categoryId,
   });
 };
 //category 수정 요청
 const editCatagory = async (categoryData: {
-  categoryId?: number | string;
+  categoryId: string | number;
   categoryName: string;
 }) => {
   return await post.put('admin-auth/edit-category-process', categoryData);
+};
+//category 삭제 요청
+const deleteCatagory = async (categoryId: { categoryId: string | number }) => {
+  return await post.delete('admin-auth/delete-category-process', {
+    params: categoryId,
+  });
 };
 
 //admin 로그인 요청
@@ -117,6 +125,7 @@ export {
   getCatagoryData,
   createCategory,
   editCatagory,
+  deleteCatagory,
   loginAdmin,
   createProduct,
   updateProduct,

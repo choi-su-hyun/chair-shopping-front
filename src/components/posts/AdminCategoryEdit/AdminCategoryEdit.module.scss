@@ -7,4 +7,16 @@
   display: flex;
   flex-direction: column;
   gap: 24px;
+  margin-bottom: 24px;
+}
+
+.delete-form {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.notice-text {
+  color: $cg-600;
+  font-size: 16px;
 }

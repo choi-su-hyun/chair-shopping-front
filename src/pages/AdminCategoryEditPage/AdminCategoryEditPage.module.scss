@@ -1,7 +1,22 @@
 @import '../../css/index.scss';
 
+.page-title {
+  color: $cg-900;
+}
+
 .page-layout {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 32px;
+  margin-bottom: 120px;
+}
+
+.page-content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  margin-top: 24px;
+  h2 {
+    color: $cg-700;
+  }
 }

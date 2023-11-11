@@ -8,23 +8,29 @@ import { getCatagoryData } from '../../api/admin';
 
 const AdminCategoryEditPage = () => {
   const { id } = useParams();
-  const { data } = useQuery('getCategoryData', async () => {
-    if (id == undefined) {
-      console.log(id);
-    }
-    const enclosedId = {
-      categoryId: id,
-    };
+  const enclosedId = {
+    categoryId: id,
+  };
+  const { data } = useQuery(['getCategoryData', enclosedId], async () => {
+    // if (id !== undefined) {
+    // const enclosedId = {
+    //   categoryId: id,
+    // };
     return await getCatagoryData(enclosedId).then((res) => res.data.contents);
+    // } else {
+    //   return;
+    // }
   });
+  console.log('data값', data);
+  if (data == undefined || data == null) return null;
   return (
     <div>
-      <h1>카테고리 수정하기</h1>
+      <h1 className={style['page-title']}>카테고리 수정하기</h1>
       <div className={style['page-layout']}>
-        <div>
-          <h2></h2>
+        <div className={style['page-content']}>
+          <h2>&apos;{data.category_name}&lsquo; 카테고리 수정하기</h2>
+          <AdminCategoryEdit />
         </div>
-        <AdminCategoryEdit />
       </div>
     </div>
   );

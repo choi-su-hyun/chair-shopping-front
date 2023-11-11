@@ -313,7 +313,7 @@ const AdminEditForm = ({
               />
             </div>
           </div>
-          <button className="cta-btn--block admin">상품 추가</button>
+          <button className="cta-btn--block admin">수정 완료</button>
         </form>
         <div>{mutation.isLoading ? <p>로딩중...</p> : ''}</div>
       </div>
