@@ -109,7 +109,7 @@ const AdminEditForm = ({
     setDetailImage(e.target.files[0]);
   };
   const mutation = useMutation(
-    async (data: any): Promise<any> => {
+    async (data: FormData): Promise<any> => {
       return await updateProduct(data, productIdx);
     },
     {

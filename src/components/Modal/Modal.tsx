@@ -9,7 +9,7 @@ const Modal = ({
 }: {
   children?: React.ReactNode;
   isOpen: boolean;
-  closeModal: any;
+  closeModal: () => void;
 }) => {
   useEffect(() => {
     document.body.style.overflow = 'hidden';

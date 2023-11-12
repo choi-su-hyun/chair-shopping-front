@@ -19,13 +19,6 @@ const ReviewItem = () => {
   // const productData = { productId: id };
   const isLogin = useSelector((state: RootState) => state.userAuth);
 
-  // const mutation = useMutation((): any => {
-  //   getReviewList(productData).then((response) => response);
-  // });
-  // console.log('mutation', mutation);
-  // const { mutate } = useMutation((productData) => {
-  //   getReviewList(productData).then((response) => response);
-  // });
   const { data } = useQuery<IreviewList[]>({
     queryKey: ['post'],
     queryFn: async (): Promise<any> => {

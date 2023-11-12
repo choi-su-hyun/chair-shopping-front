@@ -1,6 +1,7 @@
 import { instance, post } from './index';
 import { ICategoryId } from '../types/category';
 import { IProductIdx } from '../types/product';
+import { ICart } from '../types/cart';
 
 //상품 리스트 요청
 const getProductList = async () => {
@@ -14,21 +15,8 @@ const getCategorys = async () => {
 
 //특정 카테고리의 상품 리스트 요청
 const getCategorysProduct = async (categoryId: ICategoryId) => {
-  try {
-    const result = await instance.post(
-      'post/product-category-data',
-      categoryId,
-    );
-    return result.data.contents;
-  } catch (error: any) {
-    console.log(error);
-    if (error.message === 'DB_ERROR') {
-      return {
-        message: 'database에서 문제가 발생했습니다.',
-        error,
-      };
-    }
-  }
+  const result = await instance.post('post/product-category-data', categoryId);
+  return result.data.contents;
 };
 
 //상세페이지 정보 요청
@@ -52,7 +40,7 @@ const getProductOption = async (productIdx: IProductIdx) => {
 };
 
 //장바구니에 담기 api
-async function insertToCart(cartData: any) {
+async function insertToCart(cartData: ICart) {
   return await post.post('post-auth/insert-to-cart-process', cartData);
 }
 
@@ -62,7 +50,9 @@ async function getCartList() {
 }
 
 //장바구니의 특정 상품 수량 추가하기
-async function increasCartInventory(productId: IProductIdx) {
+async function increasCartInventory(productId: {
+  productId?: string | number;
+}) {
   return await post.post('post-auth/increase-cart-inventory', productId);
 }
 
@@ -86,7 +76,7 @@ async function getReviewList(productData?: { productId: string }) {
 }
 
 //사용자별 리뷰 작성 요청
-async function createReview(reviewData: any) {
+async function createReview(reviewData: FormData) {
   return await post.post('post-auth/create-review-process', reviewData);
 }
 

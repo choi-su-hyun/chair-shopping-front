@@ -37,7 +37,7 @@ const CartPage = () => {
   };
   console.log('cartData', cartData);
 
-  const receiveData = (data: any) => {
+  const receiveData = (data: Array<string>) => {
     setReceivedSelectedData([...data]);
   };
   const doDeleteSelectedCart = () => {

@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { ICategoryObject } from '../types/category';
 import { getCategorys } from '../api/post';
 import useErrorHandler from './error-handler';
+import axios from 'axios';
 
 const useCategoryList = () => {
   const [categoryList, setCategoryList] = useState<ICategoryObject[]>([]);
@@ -14,15 +15,17 @@ const useCategoryList = () => {
       if (!Array.isArray(categoryList)) {
         return;
       }
-      console.log('categoryList 값', axiosGetReponseForCategoryList);
+      // console.log('categoryList 값', axiosGetReponseForCategoryList);
       setCategoryList(catagoryList);
-      console.log('categoryList 값', catagoryList);
-    } catch (err: any) {
-      if (err?.response?.data?.message === 'NETWORK_ERROR') {
-        alert('서버에 문제가 생겼어요!\n새로고침 후 다시 시도해주세요!');
-        return;
+      // console.log('categoryList 값', catagoryList);
+    } catch (err) {
+      if (axios.isAxiosError(err)) {
+        if (err?.response?.data?.message === 'NETWORK_ERROR') {
+          alert('서버에 문제가 생겼어요!\n새로고침 후 다시 시도해주세요!');
+          return;
+        }
+        errorHandle(err);
       }
-      errorHandle(err);
     }
   };
 

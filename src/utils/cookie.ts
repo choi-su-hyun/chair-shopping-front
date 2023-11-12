@@ -6,11 +6,12 @@
 // 	document.cookie = `todo_id=${value}`;
 // }
 type cookieOptionType = {
-  [key: string]: string | number | boolean | undefined | any;
+  [key: string]: string | number | boolean | undefined;
   path?: string;
   expires?: any;
   secure?: boolean;
   httpOnly?: boolean;
+  'max-age'?: number;
 };
 
 function setCookie(

@@ -41,7 +41,7 @@ const DetailPage = () => {
         setProductData(response.data.contents[0]);
         // console.log('response 값', response);
       })
-      .catch((error: any) => {
+      .catch((error: Error) => {
         console.log(error);
       });
 

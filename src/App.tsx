@@ -9,6 +9,8 @@ import { recieveCookieUserData } from './redux/userAuth/action';
 import { recieveCookieAdminData } from './redux/adminAuth/action';
 import { useSelector } from 'react-redux';
 import { RootState } from './redux/rootReducer';
+import { ThunkDispatch } from 'redux-thunk';
+import { AnyAction } from 'redux';
 
 // Component
 import Main from './pages/Main/Main';
@@ -121,7 +123,9 @@ function App(props: any) {
     </div>
   );
 }
-const mapDispatchToProps = (dispatch: any) => {
+const mapDispatchToProps = (
+  dispatch: ThunkDispatch<RootState, undefined, AnyAction>,
+) => {
   return {
     recieveCookieUserData: () => dispatch(recieveCookieUserData()),
     recieveCookieAdminData: () => dispatch(recieveCookieAdminData()),

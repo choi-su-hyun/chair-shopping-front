@@ -6,23 +6,12 @@ import ProductItem from '../ProductItem/ProductItem';
 import useCategoryList from '../../../hooks/use-category-list';
 import { ReactComponent as ProductNotExist } from '../../../assets/product-not-exist-img.svg';
 import { ICategoryObject } from '../../../types/category';
-// interface test {
 
-// }
 const ProductTab = () => {
   const { categoryList } = useCategoryList();
   const [productResult, setProductResult] = useState<IProductData[]>([]);
-  const [currentTab, setCurrentTab] = useState<string>('1');
+  const [currentTab, setCurrentTab] = useState<string>('6');
   useEffect(() => {
-    // getProductList()
-    //   .then((response: any) => {
-    //     // console.log('productList 값', response);
-    //     setProductResult(response.data.contents);
-    //     // console.log('product state 값', productResult);
-    //   })
-    //   .catch((error) => {
-    //     console.log(error);
-    //   });
     const categoryId = {
       category_idx: currentTab,
     };
@@ -34,6 +23,7 @@ const ProductTab = () => {
       return;
     });
   }, []);
+
   const tabButton = (e: React.MouseEvent<HTMLButtonElement>) => {
     const categoryName = e.currentTarget.value;
     const categoryData = {

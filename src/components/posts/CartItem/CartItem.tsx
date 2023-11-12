@@ -12,7 +12,7 @@ const CartItem = ({
   pageName,
 }: {
   items: IcartData[];
-  transportSelectedCart?: any;
+  transportSelectedCart?: (arg: Array<string>) => void;
   countPrice: number;
   pageName: string;
 }) => {
@@ -20,7 +20,7 @@ const CartItem = ({
   const [selectedData, setSelectedData] = useState<Array<string>>([]);
   // console.log('selectedData 값', selectedData);
 
-  const selectedHandler = (e: any) => {
+  const selectedHandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     handleSingleCheck(e.target.checked, e.target.name);
   };
 
@@ -43,7 +43,7 @@ const CartItem = ({
   };
   useEffect(() => {
     if (pageName == 'cart') {
-      transportSelectedCart(selectedData);
+      transportSelectedCart?.(selectedData);
     }
   }, [selectedData]);
   // console.log('countPrice', countPrice);

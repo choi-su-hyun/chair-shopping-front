@@ -1,14 +1,15 @@
+import { IPopupAction, IPopupData } from '../../types/popup';
 import { NEW_POPUP_CONTENT, POPUP_ON, POPUP_OFF } from './type';
 
-const popupInitState = {
-  image: null,
+const popupInitState: IPopupData = {
+  image: '',
   title: '',
   paragraph: '',
   ctaBtn: '',
-  currentProductId: null,
+  currentProductId: '',
   popupController: false,
 };
-const popupReducer = (state = popupInitState, action: any) => {
+const popupReducer = (state = popupInitState, action: IPopupAction) => {
   switch (action.type) {
     case NEW_POPUP_CONTENT:
       return {

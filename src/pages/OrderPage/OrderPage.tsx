@@ -7,6 +7,7 @@ import { discountPrice } from '../../utils/discountPrice';
 import DaumPostcode from 'react-daum-postcode';
 import { ReactComponent as CloseBtn } from '../../assets/close-btn.svg';
 import { IorderData } from '../../types/order';
+import { IPostCode } from '../../types/postcode';
 
 const OrderPage = () => {
   const [countPrice, setCountPrice] = useState<number>(0);
@@ -39,7 +40,8 @@ const OrderPage = () => {
       return res.data.content;
     });
   });
-  const handleComplete = (data: any) => {
+
+  const handleComplete = (data: IPostCode) => {
     let fullAddress = data.address;
     let extraAddress = '';
 

@@ -8,9 +8,10 @@ import { increasCartInventory } from '../../api/post';
 import { IProductIdx } from '../../types/product';
 import { deleteProduct } from '../../api/admin';
 import { useQueryClient, useMutation } from 'react-query';
+import { IPopupData } from '../../types/popup';
 
 const AlertPopup = () => {
-  const popupData = useSelector((state: RootState) => state.popup);
+  const popupData: IPopupData = useSelector((state: RootState) => state.popup);
   console.log('popupData 값', popupData);
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -22,7 +23,7 @@ const AlertPopup = () => {
   const closePopup = () => {
     dispatch(popupOff());
   };
-  const productId: IProductIdx = {
+  const productId = {
     productId: popupData.currentProductId,
   };
   const mutation = useMutation(
@@ -41,7 +42,7 @@ const AlertPopup = () => {
       goLogin();
     }
     if (popupData.title === '장바구니에 이미 담겨있는 상품입니다.') {
-      const productId: IProductIdx = {
+      const productId = {
         productId: popupData.currentProductId,
       };
       console.log('장바구니 수량 추가');

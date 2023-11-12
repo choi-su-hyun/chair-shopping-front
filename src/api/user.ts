@@ -1,6 +1,7 @@
 import { instance, post } from './index';
 import { ISignupData } from '../types/user';
 import { ILoginData, ILoginAxiosResult } from '../types/user';
+import axios from 'axios';
 
 //회원가입 api
 async function registerUser(userData: ISignupData) {
@@ -25,20 +26,22 @@ async function loginUser(userData: ILoginData): Promise<ILoginAxiosResult> {
       loginResponsedData: loginResponsedData,
     };
     return result;
-  } catch (error: any) {
-    if (error.response.data.message === 'ID_NOTHING') {
-      const result = {
-        successStatus: false,
-        message: '존재하지 않는 아이디입니다.',
-      };
-      return result;
-    }
-    if (error.response.data.message === 'PASSWORD_NOT_MATCHED') {
-      const result = {
-        successStatus: false,
-        message: '비밀번호가 일치하지 않습니다.',
-      };
-      return result;
+  } catch (error) {
+    if (axios.isAxiosError(error)) {
+      if (error.response?.data.message === 'ID_NOTHING') {
+        const result = {
+          successStatus: false,
+          message: '존재하지 않는 아이디입니다.',
+        };
+        return result;
+      }
+      if (error.response?.data.message === 'PASSWORD_NOT_MATCHED') {
+        const result = {
+          successStatus: false,
+          message: '비밀번호가 일치하지 않습니다.',
+        };
+        return result;
+      }
     }
     return {
       successStatus: false,

@@ -1,6 +1,7 @@
 import { NEW_POPUP_CONTENT, POPUP_ON, POPUP_OFF } from './type';
+import { IPopupData } from '../../types/popup';
 
-const saveNewPopup = (content: any) => {
+const saveNewPopup = (content: IPopupData) => {
   return {
     type: NEW_POPUP_CONTENT,
     payload: content,

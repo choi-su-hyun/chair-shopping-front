@@ -8,20 +8,20 @@ import { getCatagoryData } from '../../api/admin';
 
 const AdminCategoryEditPage = () => {
   const { id } = useParams();
-  const enclosedId = {
-    categoryId: id,
-  };
-  const { data } = useQuery(['getCategoryData', enclosedId], async () => {
-    // if (id !== undefined) {
-    // const enclosedId = {
-    //   categoryId: id,
-    // };
-    return await getCatagoryData(enclosedId).then((res) => res.data.contents);
-    // } else {
-    //   return;
-    // }
-  });
-  console.log('data값', data);
+
+  if (id == null) {
+    return <div />;
+  }
+
+  const { data } = useQuery(
+    ['getCategoryData', { categoryId: id }],
+    async () => {
+      return await getCatagoryData({ categoryId: id }).then(
+        (res) => res.data.contents,
+      );
+    },
+  );
+
   if (data == undefined || data == null) return null;
   return (
     <div>

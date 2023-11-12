@@ -6,6 +6,7 @@ import useCategoryList from '../../../hooks/use-category-list';
 import { IProductOptionData } from '../../../types/product';
 import { useNavigate } from 'react-router-dom';
 import style from './AdminCreateForm.module.scss';
+import { ICategoryObject } from '../../../types/category';
 
 const AdminCreateForm = () => {
   const { categoryList } = useCategoryList();
@@ -148,7 +149,7 @@ const AdminCreateForm = () => {
               <label htmlFor="">상품 카테고리</label>
               <select name="" id="" onChange={productCategoryHandler}>
                 {categoryList !== undefined &&
-                  categoryList.map((items: any) => {
+                  categoryList.map((items: ICategoryObject) => {
                     return (
                       <option key={items.idx} value={items.idx}>
                         {items.category_name}

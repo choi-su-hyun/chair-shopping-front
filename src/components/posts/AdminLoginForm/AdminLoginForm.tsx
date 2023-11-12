@@ -77,13 +77,6 @@ const mapStateToProps = ({ adminAuth }: RootState) => {
   };
 };
 
-// const mapDispatchToProps = {
-//   fetchUserData: (userData: any) => {
-//     fetchUserData(userData);
-//   },
-//   // fetchUserData,
-//   // changeUserData,
-// };
 const mapDispatchToProps = (
   dispatch: ThunkDispatch<RootState, undefined, AnyAction>,
 ) => {
