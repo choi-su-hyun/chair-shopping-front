@@ -48,10 +48,17 @@ const AdminEditForm = ({
     e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { value, name } = e.target;
-    setInputs({
-      ...inputs,
-      [name]: value,
-    });
+    if (name == 'price') {
+      setInputs({
+        ...inputs,
+        [name]: value.replaceAll(',', ''),
+      });
+    } else {
+      setInputs({
+        ...inputs,
+        [name]: value,
+      });
+    }
   };
 
   const productCategoryHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
