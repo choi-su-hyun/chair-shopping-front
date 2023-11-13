@@ -76,7 +76,7 @@ const ProductTab = () => {
       </div>
       <div className={style.product_tab__content}>
         {productResult[0] ? (
-          <ProductItem item={productResult} />
+          <ProductItem item={productResult} havePagenation={true} />
         ) : (
           <div className={style.product_not_exist}>
             <ProductNotExist />
