@@ -3,6 +3,8 @@ import { IProductData } from '../../../types/product';
 import style from './AdminProductItem.module.scss';
 import { Link } from 'react-router-dom';
 import Pagination from '../../Pagination/Pagination';
+import { addComma } from '../../../utils/addComma';
+import { discountPrice } from '../../../utils/discountPrice';
 
 const AdminProductItem = ({ items }: { items: IProductData[] }) => {
   const [limit, setLimit] = useState<number>(5);
@@ -23,11 +25,19 @@ const AdminProductItem = ({ items }: { items: IProductData[] }) => {
               <div className={style['product-list__text-wrap']}>
                 <span className="category">{mapItems.category_name}</span>
                 <h4>{mapItems.product_name}</h4>
-                <div className={style['price']}>
-                  <span>
-                    {mapItems.product_price}{' '}
-                    <span className={style['price-degree']}>원</span>
-                  </span>
+                <div className={style.product_item__price_wrap}>
+                  <p className={style.product_item__price_number}>
+                    {addComma(
+                      discountPrice(
+                        mapItems.product_price,
+                        mapItems.product_discount,
+                      ),
+                    )}{' '}
+                    <span className={style.product_item__price_degree}>원</span>
+                  </p>
+                  <p className={style.product_item__for_discounted_price}>
+                    {addComma(mapItems.product_price)} <span>원</span>
+                  </p>
                 </div>
                 <span className={style['discount']}>
                   {mapItems.product_discount} %

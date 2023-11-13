@@ -28,19 +28,40 @@
       color: $cg-700;
     }
   }
-  a {
-  }
-}
-.price {
-  font-size: 18px;
-  font-weight: 700;
-  color: $primary-light1;
-  &-degree {
-    font-size: 14px;
-    color: $cg-600;
-  }
 }
 .discount {
   font-weight: 700;
   color: $red;
+}
+
+.product_item {
+  &__price {
+    &_wrap {
+      display: flex;
+      align-items: baseline;
+    }
+    &_number {
+      color: $primary;
+      font: {
+        size: 20px;
+        weight: 700;
+      }
+    }
+    &_degree {
+      color: $primary-light3;
+      font: {
+        size: 16px;
+        weight: 400;
+      }
+    }
+  }
+  &__for_discounted_price {
+    color: $cg-500;
+    text-decoration: line-through;
+    margin-left: 16px;
+    font: {
+      size: 14px;
+      weight: 700;
+    }
+  }
 }
