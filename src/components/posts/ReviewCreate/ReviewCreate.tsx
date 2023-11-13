@@ -5,6 +5,7 @@ import { ReactComponent as ErrorIcon } from '../../../assets/error.svg';
 import { useParams } from 'react-router-dom';
 import style from './ReviewCreate.module.scss';
 import { createReview } from '../../../api/post';
+import { useMutation, useQueryClient } from 'react-query';
 
 const ReviewCreate = () => {
   const [clicked, setClicked] = useState([false, false, false, false, false]);
@@ -47,6 +48,19 @@ const ReviewCreate = () => {
     }
     setClicked(Array(5).fill(false));
   };
+
+  const queryClient = useQueryClient();
+  const mutation = useMutation(
+    async (data: FormData) => {
+      return await createReview(data);
+    },
+    {
+      onSuccess: (newQueryData) => {
+        console.log('newQueryData 값', newQueryData);
+        queryClient.setQueryData('getReviewlist', newQueryData.data.contents);
+      },
+    },
+  );
   const submitReview = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const formData = new FormData();
@@ -69,7 +83,8 @@ const ReviewCreate = () => {
       setNoticeStarRate(false);
     }
     try {
-      createReview(formData);
+      // createReview(formData);
+      mutation.mutate(formData);
       setReviewResultController(true);
       setReviewResult(true);
     } catch (error) {

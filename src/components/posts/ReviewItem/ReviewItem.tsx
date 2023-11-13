@@ -20,7 +20,7 @@ const ReviewItem = () => {
   const isLogin = useSelector((state: RootState) => state.userAuth);
 
   const { data } = useQuery<IreviewList[]>({
-    queryKey: ['post'],
+    queryKey: ['getReviewlist'],
     queryFn: async (): Promise<any> => {
       if (id !== undefined) {
         const productData = { productId: id };
@@ -91,13 +91,13 @@ const ReviewItem = () => {
                     })}
                 </div>
                 <div>
-                  {item.user_idx == userIndex ? (
+                  {/* {item.user_idx == userIndex ? (
                     <button>
                       <EditIcon className={style['review-edit-btn']} />
                     </button>
                   ) : (
                     ''
-                  )}
+                  )} */}
                 </div>
               </div>
             </div>
