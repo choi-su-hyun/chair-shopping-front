@@ -163,7 +163,7 @@ const AdminEditForm = ({
 
   return (
     <div>
-      <div>
+      <div className={style['edit-form-wrap']}>
         <form
           className="post-form"
           encType="multipart/form-data"

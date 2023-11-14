@@ -128,7 +128,7 @@ const AdminCreateForm = () => {
   };
   return (
     <div>
-      <div>
+      <div className={style['create-form-wrap']}>
         <form
           className="post-form"
           encType="multipart/form-data"
