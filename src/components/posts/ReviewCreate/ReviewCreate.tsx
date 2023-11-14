@@ -57,7 +57,14 @@ const ReviewCreate = () => {
     {
       onSuccess: (newQueryData) => {
         console.log('newQueryData 값', newQueryData);
-        queryClient.setQueryData('getReviewlist', newQueryData.data.contents);
+        queryClient.setQueryData(
+          'getReviewlist',
+          newQueryData.data.contents.review,
+        );
+        queryClient.setQueryData(
+          'getReviewAverage',
+          newQueryData.data.contents.reviewAverage,
+        );
       },
     },
   );
