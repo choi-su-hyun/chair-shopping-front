@@ -35,7 +35,7 @@ const CartPage = () => {
         console.log(err);
       });
   };
-  console.log('cartData', cartData);
+  // console.log('cartData', cartData);
 
   const receiveData = (data: Array<string>) => {
     setReceivedSelectedData([...data]);
@@ -43,12 +43,13 @@ const CartPage = () => {
   const doDeleteSelectedCart = () => {
     deleteSelectedCart(receivedSelectedData);
     doGetCartList();
+    setReceivedSelectedData([]);
   };
   const deleteAllCart = () => {
     deleteCart();
     doGetCartList();
+    setReceivedSelectedData([]);
   };
-  console.log('window', window);
 
   useEffect(() => {
     doGetCartList();
@@ -92,16 +93,21 @@ const CartPage = () => {
               items={cartData}
               transportSelectedCart={receiveData}
               countPrice={countPrice}
+              selectedCart={receivedSelectedData}
               pageName="cart"
             />
           )}
         </div>
       </div>
-      <div className={style['btn-wrap']}>
-        <Link to={'/order'} className="cta-btn--block">
-          주문하러가기
-        </Link>
-      </div>
+      {cartData.length == 0 ? (
+        ''
+      ) : (
+        <div className={style['btn-wrap']}>
+          <Link to={'/order'} className="cta-btn--block">
+            주문하러가기
+          </Link>
+        </div>
+      )}
     </div>
   );
 };

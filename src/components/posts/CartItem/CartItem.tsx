@@ -10,11 +10,13 @@ const CartItem = ({
   transportSelectedCart,
   countPrice,
   pageName,
+  selectedCart,
 }: {
   items: IcartData[];
   transportSelectedCart?: (arg: Array<string>) => void;
   countPrice: number;
   pageName: string;
+  selectedCart?: string[];
 }) => {
   // console.log('item 값', items);
   const [selectedData, setSelectedData] = useState<Array<string>>([]);
@@ -58,7 +60,7 @@ const CartItem = ({
             <input
               type="checkbox"
               onChange={(e) => handleAllCheck(e.target.checked)}
-              checked={items.length === selectedData.length ? true : false}
+              checked={items.length === selectedCart?.length ? true : false}
             />
           )}
         </div>
