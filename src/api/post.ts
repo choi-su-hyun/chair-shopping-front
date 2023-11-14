@@ -15,8 +15,13 @@ const getCategorys = async () => {
 
 //특정 카테고리의 상품 리스트 요청
 const getCategorysProduct = async (categoryId: ICategoryId) => {
-  const result = await instance.post('post/product-category-data', categoryId);
+  const result = await instance.get('post/product-category-data', {
+    params: categoryId,
+  });
   return result.data.contents;
+  // return await instance.get('post/product-category-data', {
+  //   params: categoryId,
+  // });
 };
 
 //상세페이지 정보 요청
