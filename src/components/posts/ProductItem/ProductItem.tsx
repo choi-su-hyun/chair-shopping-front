@@ -15,7 +15,7 @@ const ProductItem = ({
   item: IProductData[];
   havePagenation: boolean;
 }) => {
-  const [limit, setLimit] = useState<number>(9);
+  const [limit, setLimit] = useState<number>(6);
   const [page, setPage] = useState<number>(1);
   const offset = (page - 1) * limit;
 
