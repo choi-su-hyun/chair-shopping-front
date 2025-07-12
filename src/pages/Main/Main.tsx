@@ -35,7 +35,7 @@ function Main({ increase }: { increase: (num: number) => void }) {
           <div className={style.container__side_layout}>
             <div className={style['title-wrap']}>
               <h2 className="page-content__title main-page">
-                요즘 많이 찾는 의자
+                요즘 많이 찾는 의자(테스트)
               </h2>
               <span>Favorite Product</span>
             </div>
