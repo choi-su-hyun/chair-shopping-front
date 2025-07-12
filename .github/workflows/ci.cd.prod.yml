@@ -1,11 +1,40 @@
-name: 🚀 Deploy workflow on production environment
-
+name: Build
 on:
-  pull_request:
-    branches: [main]
-      types: [closed]
-
+  push:
+    branches:
+      - main #빌드하고싶은 브랜치
 jobs:
-  deploy:
-    if: github.event.pull_request.merged == true
-    environment: production
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        node-version: [16.x]
+
+    steps:
+      - uses: actions/checkout@v1
+      - name: Use Node.js ${{ matrix.node-version }}
+        uses: actions/setup-node@v1
+        with:
+          node-version: ${{ matrix.node-version }}
+      - name: Create env file
+        run: |
+          touch .env
+          echo REACT_APP_API_URL=${{ secrets.REACT_APP_API_URL }} >> .env
+          # ...이런식으로 환경 변수 삽입
+          cat .env
+      - name: Npm Install
+        run: |
+          npm install
+      - name: Npm Build
+        run: |
+          npm run build
+      - name: Deploy to S3
+        uses: jakejarvis/s3-sync-action@master
+        with:
+          args: --delete
+        env:
+          AWS_S3_BUCKET: ${{ secrets.AWS_STAGING_BUCKET_NAME }}
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: ${{ secrets.AWS_DEFAULT_REGION }}
+          SOURCE_DIR: 'build'
